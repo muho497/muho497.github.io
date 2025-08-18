@@ -11,6 +11,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         :root {
             --primary: #00d4ff;
             --secondary: #ff00ff;
@@ -137,6 +141,7 @@
             transition: all 0.3s;
             padding: 5px 0;
             font-size: 14px;
+            cursor: pointer;
         }
 
         .nav-links a::after {
@@ -547,12 +552,281 @@
         <div class="nav-container">
             <a href="#home" class="logo" style="text-decoration: none;">MA.ai</a>
             <ul class="nav-links">
+                <li><a onclick="scrollToSection('home')">Home</a></li>
+                <li><a onclick="scrollToSection('about')">About</a></li>
+                <li><a onclick="scrollToSection('skills')">AI Skills</a></li>
+                <li><a onclick="scrollToSection('other-skills')">Other Skills</a></li>
+                <li><a onclick="scrollToSection('projects')">Projects</a></li>
+                <li><a onclick="scrollToSection('about')">Research Interests</a></li>
+                <li><a onclick="scrollToSection('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="ai-badge">🤖 AI SPECIALIST • MACHINE LEARNING EXPERT</div>
+            <h1 class="glitch-text">Muhammet Aslan</h1>
+            <p class="subtitle">Artificial Intelligence Engineer & Computer Scientist</p>
+            <p style="font-size: 20px; margin: 30px 0; opacity: 0.9;">
+                <span style="color: var(--primary);">🎓 İnönü University - Computer Engineering</span><br>
+                Specializing in <span style="background: var(--ai-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">Artificial Intelligence, Machine Learning & Deep Learning</span><br>
+                Building the future with intelligent algorithms and innovative solutions.
+            </p>
+            <div class="cta-buttons">
+                <a onclick="scrollToSection('contact')" class="btn btn-primary" style="cursor: pointer;">Let's Collaborate</a>
+                <a onclick="scrollToSection('projects')" class="btn btn-secondary" style="cursor: pointer;">View My Projects</a>
+            </div>
+        </div>
+    </section>234, 0.1), rgba(240, 147, 251, 0.05));
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-card {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-skill-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(240, 147, 251, 0.1));
+            border: 2px solid rgba(102, 126, 234, 0.5);
+            animation: ai-pulse 3s infinite;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .skill-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .ai-skill-name {
+            background: var(--ai-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .skill-card p {
+            font-size: 13px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .tech-badge {
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            color: white;
+            transition: transform 0.3s;
+        }
+
+        .tech-badge:hover {
+            transform: translateY(-3px);
+        }
+
+        .ai-tech-badge {
+            background: var(--ai-gradient);
+            animation: ai-pulse 3s infinite;
+        }
+
+        /* Projects */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 255, 0.05));
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .ai-project-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(240, 147, 251, 0.15));
+            border: 2px solid rgba(102, 126, 234, 0.6);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .project-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tech-tag {
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .ai-tech-tag {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(240, 147, 251, 0.2));
+            color: #fff;
+            border: 1px solid rgba(102, 126, 234, 0.5);
+        }
+
+        /* Hobbies */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .hobby-card {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.3);
+            border-color: var(--primary);
+        }
+
+        /* Contact */
+        .contact-container {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(0, 212, 255, 0.05));
+            border-radius: 30px;
+            padding: 60px;
+            text-align: center;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--light);
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s;
+            padding: 10px 20px;
+            border-radius: 30px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .contact-link:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .glitch-text {
+                font-size: 48px;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 60px 20px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="grid-bg"></div>
+        <div class="floating-particle" style="width: 200px; height: 200px; top: 10%; left: 10%;"></div>
+        <div class="floating-particle" style="width: 150px; height: 150px; top: 60%; right: 20%; animation-delay: 2s;"></div>
+        <div class="floating-particle" style="width: 100px; height: 100px; bottom: 20%; left: 30%; animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo" style="text-decoration: none;">MA.ai</a>
+            <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">AI Skills</a></li>
                 <li><a href="#other-skills">Other Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#hobbies">Interests</a></li>
+                <li><a href="#about">Research Interests</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
