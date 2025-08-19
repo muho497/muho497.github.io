@@ -59,7 +59,6 @@
             66% { transform: translateY(50px) translateX(-50px) scale(0.9); }
         }
 
-        /* AI Pulse Animation */
         @keyframes ai-pulse {
             0%, 100% { 
                 box-shadow: 0 0 20px rgba(102, 126, 234, 0.5), 
@@ -71,7 +70,6 @@
             }
         }
 
-        /* Grid Background */
         .grid-bg {
             position: absolute;
             width: 100%;
@@ -114,18 +112,8 @@
             background: var(--ai-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: glow 2s ease-in-out infinite alternate;
             cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .logo:hover {
-            transform: scale(1.1);
-        }
-
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.5)); }
-            to { filter: drop-shadow(0 0 20px rgba(118, 75, 162, 0.8)); }
+            text-decoration: none;
         }
 
         .nav-links {
@@ -137,11 +125,11 @@
         .nav-links a {
             color: var(--light);
             text-decoration: none;
-            position: relative;
             transition: all 0.3s;
             padding: 5px 0;
             font-size: 14px;
             cursor: pointer;
+            position: relative;
         }
 
         .nav-links a::after {
@@ -165,13 +153,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
             padding: 0 50px;
         }
 
         .hero-content {
             text-align: center;
-            z-index: 2;
             max-width: 1000px;
         }
 
@@ -191,7 +177,6 @@
             font-size: 72px;
             font-weight: bold;
             margin-bottom: 20px;
-            position: relative;
             text-transform: uppercase;
             letter-spacing: 3px;
             animation: glitch 2s infinite;
@@ -226,8 +211,6 @@
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
             transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
@@ -255,7 +238,6 @@
             padding: 100px 50px;
             max-width: 1400px;
             margin: 0 auto;
-            position: relative;
         }
 
         .section-title {
@@ -263,13 +245,6 @@
             margin-bottom: 50px;
             text-align: center;
             background: linear-gradient(45deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-        }
-
-        .ai-section-title {
-            background: var(--ai-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -282,150 +257,55 @@
             align-items: start;
         }
 
-        .about-text {
-            font-size: 16px;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
         .info-box {
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 20px;
-        }
-
-        .ai-info-box {
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(240, 147, 251, 0.05));
             border-left: 4px solid #667eea;
         }
 
-        .edu-info-box {
-            background: rgba(0, 212, 255, 0.1);
-            border-left: 4px solid var(--primary);
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
         }
 
-        /* Skills Grid */
-        .skills-container {
+        .skill-card {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Projects Section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
             margin-top: 50px;
         }
 
-        .ai-skills-showcase {
+        .project-card {
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(240, 147, 251, 0.05));
             border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 50px;
-            border: 2px solid rgba(102, 126, 234, 0.3);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .skill-card {
-            background: rgba(0, 212, 255, 0.05);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ai-skill-card {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(240, 147, 251, 0.1));
-            border: 2px solid rgba(102, 126, 234, 0.5);
-            animation: ai-pulse 3s infinite;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.3);
-        }
-
-        .skill-icon {
-            font-size: 36px;
-            margin-bottom: 15px;
-        }
-
-        .skill-name {
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .ai-skill-name {
-            background: var(--ai-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .skill-card p {
-            font-size: 13px;
-            opacity: 0.9;
-            line-height: 1.5;
-        }
-
-        /* Tech Stack */
-        .tech-stack {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .tech-badge {
-            padding: 12px;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 14px;
-            color: white;
-            transition: transform 0.3s;
-        }
-
-        .tech-badge:hover {
-            transform: translateY(-3px);
-        }
-
-        .ai-tech-badge {
-            background: var(--ai-gradient);
-            animation: ai-pulse 3s infinite;
-        }
-
-        /* Projects */
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .project-card {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 255, 0.05));
-            border-radius: 20px;
             padding: 30px;
-            border: 1px solid rgba(0, 212, 255, 0.3);
+            border: 2px solid rgba(102, 126, 234, 0.3);
             transition: all 0.3s;
-        }
-
-        .ai-project-card {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(240, 147, 251, 0.15));
-            border: 2px solid rgba(102, 126, 234, 0.6);
         }
 
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
-        }
-
-        .project-title {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: var(--accent);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
         }
 
         .project-tech {
@@ -436,44 +316,14 @@
         }
 
         .tech-tag {
-            background: rgba(0, 212, 255, 0.2);
-            color: var(--primary);
-            padding: 4px 12px;
+            background: rgba(102, 126, 234, 0.2);
+            color: var(--light);
+            padding: 5px 12px;
             border-radius: 15px;
             font-size: 12px;
-            border: 1px solid rgba(0, 212, 255, 0.3);
         }
 
-        .ai-tech-tag {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(240, 147, 251, 0.2));
-            color: #fff;
-            border: 1px solid rgba(102, 126, 234, 0.5);
-        }
-
-        /* Hobbies */
-        .hobbies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 50px;
-        }
-
-        .hobby-card {
-            background: rgba(0, 212, 255, 0.05);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 20px;
-            padding: 25px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .hobby-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.3);
-            border-color: var(--primary);
-        }
-
-        /* Contact */
+        /* Contact Section */
         .contact-container {
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(0, 212, 255, 0.05));
             border-radius: 30px;
@@ -497,336 +347,45 @@
             color: var(--light);
             text-decoration: none;
             font-size: 16px;
-            transition: all 0.3s;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 30px;
             background: rgba(102, 126, 234, 0.1);
             border: 1px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.3s;
         }
 
         .contact-link:hover {
             background: rgba(102, 126, 234, 0.2);
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .glitch-text {
-                font-size: 48px;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            section {
-                padding: 60px 20px;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-container {
-                grid-template-columns: 1fr;
-            }
+            .nav-links { display: none; }
+            .glitch-text { font-size: 48px; }
+            .about-content { grid-template-columns: 1fr; }
+            section { padding: 60px 20px; }
+            .projects-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
+    <!-- Background -->
     <div class="bg-animation">
         <div class="grid-bg"></div>
         <div class="floating-particle" style="width: 200px; height: 200px; top: 10%; left: 10%;"></div>
         <div class="floating-particle" style="width: 150px; height: 150px; top: 60%; right: 20%; animation-delay: 2s;"></div>
-        <div class="floating-particle" style="width: 100px; height: 100px; bottom: 20%; left: 30%; animation-delay: 4s;"></div>
     </div>
 
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#home" class="logo" style="text-decoration: none;">MA.ai</a>
-            <ul class="nav-links">
-                <li><a onclick="scrollToSection('home')">Home</a></li>
-                <li><a onclick="scrollToSection('about')">About</a></li>
-                <li><a onclick="scrollToSection('skills')">AI Skills</a></li>
-                <li><a onclick="scrollToSection('other-skills')">Other Skills</a></li>
-                <li><a onclick="scrollToSection('projects')">Projects</a></li>
-                <li><a onclick="scrollToSection('about')">Research Interests</a></li>
-                <li><a onclick="scrollToSection('contact')">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="ai-badge">🤖 AI SPECIALIST • MACHINE LEARNING EXPERT</div>
-            <h1 class="glitch-text">Muhammet Aslan</h1>
-            <p class="subtitle">Artificial Intelligence Engineer & Computer Scientist</p>
-            <p style="font-size: 20px; margin: 30px 0; opacity: 0.9;">
-                <span style="color: var(--primary);">🎓 İnönü University - Computer Engineering</span><br>
-                Specializing in <span style="background: var(--ai-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">Artificial Intelligence, Machine Learning & Deep Learning</span><br>
-                Building the future with intelligent algorithms and innovative solutions.
-            </p>
-            <div class="cta-buttons">
-                <a onclick="scrollToSection('contact')" class="btn btn-primary" style="cursor: pointer;">Let's Collaborate</a>
-                <a onclick="scrollToSection('projects')" class="btn btn-secondary" style="cursor: pointer;">View My Projects</a>
-            </div>
-        </div>
-    </section>234, 0.1), rgba(240, 147, 251, 0.05));
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 50px;
-            border: 2px solid rgba(102, 126, 234, 0.3);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .skill-card {
-            background: rgba(0, 212, 255, 0.05);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ai-skill-card {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(240, 147, 251, 0.1));
-            border: 2px solid rgba(102, 126, 234, 0.5);
-            animation: ai-pulse 3s infinite;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.3);
-        }
-
-        .skill-icon {
-            font-size: 36px;
-            margin-bottom: 15px;
-        }
-
-        .skill-name {
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .ai-skill-name {
-            background: var(--ai-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .skill-card p {
-            font-size: 13px;
-            opacity: 0.9;
-            line-height: 1.5;
-        }
-
-        /* Tech Stack */
-        .tech-stack {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .tech-badge {
-            padding: 12px;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 14px;
-            color: white;
-            transition: transform 0.3s;
-        }
-
-        .tech-badge:hover {
-            transform: translateY(-3px);
-        }
-
-        .ai-tech-badge {
-            background: var(--ai-gradient);
-            animation: ai-pulse 3s infinite;
-        }
-
-        /* Projects */
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .project-card {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 255, 0.05));
-            border-radius: 20px;
-            padding: 30px;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            transition: all 0.3s;
-        }
-
-        .ai-project-card {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(240, 147, 251, 0.15));
-            border: 2px solid rgba(102, 126, 234, 0.6);
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
-        }
-
-        .project-title {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: var(--accent);
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .tech-tag {
-            background: rgba(0, 212, 255, 0.2);
-            color: var(--primary);
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 12px;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-        }
-
-        .ai-tech-tag {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(240, 147, 251, 0.2));
-            color: #fff;
-            border: 1px solid rgba(102, 126, 234, 0.5);
-        }
-
-        /* Hobbies */
-        .hobbies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 50px;
-        }
-
-        .hobby-card {
-            background: rgba(0, 212, 255, 0.05);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 20px;
-            padding: 25px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .hobby-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.3);
-            border-color: var(--primary);
-        }
-
-        /* Contact */
-        .contact-container {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(0, 212, 255, 0.05));
-            border-radius: 30px;
-            padding: 60px;
-            text-align: center;
-            border: 2px solid rgba(102, 126, 234, 0.3);
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--light);
-            text-decoration: none;
-            font-size: 16px;
-            transition: all 0.3s;
-            padding: 10px 20px;
-            border-radius: 30px;
-            background: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-        }
-
-        .contact-link:hover {
-            background: rgba(102, 126, 234, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .glitch-text {
-                font-size: 48px;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            section {
-                padding: 60px 20px;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-container {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Animated Background -->
-    <div class="bg-animation">
-        <div class="grid-bg"></div>
-        <div class="floating-particle" style="width: 200px; height: 200px; top: 10%; left: 10%;"></div>
-        <div class="floating-particle" style="width: 150px; height: 150px; top: 60%; right: 20%; animation-delay: 2s;"></div>
-        <div class="floating-particle" style="width: 100px; height: 100px; bottom: 20%; left: 30%; animation-delay: 4s;"></div>
-    </div>
-
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="#home" class="logo" style="text-decoration: none;">MA.ai</a>
+            <a href="#home" class="logo">MA.ai</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#skills">AI Skills</a></li>
-                <li><a href="#other-skills">Other Skills</a></li>
+                <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#about">Research Interests</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -840,7 +399,8 @@
             <p class="subtitle">Artificial Intelligence Engineer & Computer Scientist</p>
             <p style="font-size: 20px; margin: 30px 0; opacity: 0.9;">
                 <span style="color: var(--primary);">🎓 İnönü University - Computer Engineering</span><br>
-                Specializing in <span style="background: var(--ai-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">Artificial Intelligence, Machine Learning & Deep Learning</span><br>
+                Specializing in <span style="background: var(--ai-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">
+                Artificial Intelligence, Machine Learning & Deep Learning</span><br>
                 Building the future with intelligent algorithms and innovative solutions.
             </p>
             <div class="cta-buttons">
@@ -854,162 +414,200 @@
     <section id="about">
         <h2 class="section-title">About Me</h2>
         <div class="about-content">
-            <div class="about-text">
-                <div class="info-box ai-info-box">
-                    <h3 style="background: var(--ai-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px;">
-                        🎯 Primary Focus: Artificial Intelligence
-                    </h3>
-                    <p style="font-weight: bold;">Specializing in Machine Learning and AI-driven solutions</p>
-                    <p style="font-size: 14px; opacity: 0.9; margin-top: 10px;">
-                        Building intelligent systems that make a difference
+            <div>
+                <div class="info-box">
+                    <h3 style="color: var(--accent); margin-bottom: 10px;">🎯 AI Engineer & Curious Explorer</h3>
+                    <p>I strive to learn about artificial intelligence both in-depth and from a broad perspective.</p>
+                </div>
+                <p style="line-height: 1.8; margin-top: 20px;">
+                    In my journey as an AI Engineer, I explore various subjects that interest me and integrate them into the field of AI. 
+                    My primary areas of reading span a wide range, from popular science to neuroscience, robotics, physics, biology, 
+                    philosophy, chemistry, materials science, astronomy, mathematics, art, literature, ecology, architecture, and economics. 
+                    I am deeply fascinated by the working principles and mechanisms of anything that has a design.
+                </p>
+                <p style="line-height: 1.8; margin-top: 20px;">
+                    I love nature and believe it enhances my creativity. I enjoy asking questions like, "How can we do this better?" 
+                    and "How can we optimize this further?" I prefer creating over consuming and embrace the idea of using consumption 
+                    as a means of production.
+                </p>
+                <p style="line-height: 1.8; margin-top: 20px; font-style: italic; color: var(--primary);">
+                    "The idea of building the future together excites me, and I take great pleasure in the innovations it will bring. 
+                    Let's design the future together as humanity!"
+                </p>
+                
+                <div style="margin-top: 30px; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
+                    <h4 style="color: var(--accent); margin-bottom: 15px;">🎓 Education</h4>
+                    <p><strong>İnönü University - Computer Engineering</strong> (2019 - Present)</p>
+                    <p style="font-size: 14px; margin-top: 10px;">
+                        Relevant Courses: Algorithms, Compilers, Data Structures, Machine Learning, Data Mining, 
+                        Cybersecurity, Natural Language Processing, Engineering Mathematics, Statistics, 
+                        Artificial Intelligence, Database Management Systems, Image Processing, Computer Networks, 
+                        Mobile Development, Object-Oriented Programming, Internet Programming
                     </p>
                 </div>
-                
-                <div class="info-box edu-info-box">
-                    <h3 style="color: var(--primary); margin-bottom: 10px;">🎓 Education</h3>
-                    <p style="font-weight: bold;">İnönü University - Computer Engineering (2019 - Present)</p>
-                    <p style="font-size: 14px; opacity: 0.9;">Major: AI & Software Engineering</p>
-                </div>
-                
-                <p style="margin-bottom: 20px;">
-                    I strive to learn about artificial intelligence both in-depth and from a broad perspective. 
-                    My journey spans from theoretical foundations to practical implementations, always 
-                    seeking to push the boundaries of what's possible with technology.
-                </p>
-                <p style="margin-bottom: 20px;">
-                    With expertise in <span style="color: var(--primary);">multiple programming languages</span> and 
-                    specialization in <span style="background: var(--ai-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">
-                    Artificial Intelligence and Machine Learning</span>, 
-                    I build scalable, intelligent systems that solve real-world problems.
-                </p>
-                <p style="font-style: italic; padding: 15px; background: rgba(102, 126, 234, 0.1); border-radius: 10px; border-left: 3px solid #667eea;">
-                    "I believe AI is not just about creating intelligent machines, but about augmenting human 
-                    capabilities and solving humanity's greatest challenges. Code is poetry, algorithms are art, 
-                    and engineering is the bridge between imagination and reality. Let's design the future together as humanity!"
-                </p>
             </div>
-            <div style="padding: 20px;">
-                <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(240, 147, 251, 0.05)); border: 2px solid rgba(102, 126, 234, 0.3); border-radius: 20px; padding: 30px;">
-                    <h3 style="background: var(--ai-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px;">
-                        🔬 Research Interests
-                    </h3>
-                    <ul style="list-style: none; line-height: 2; font-size: 14px;">
-                        <li><strong style="color: #667eea;">🤖 Artificial Intelligence</strong></li>
-                        <li><strong style="color: #764ba2;">🧠 Machine Learning</strong></li>
-                        <li><strong style="color: #f093fb;">💻 Software Engineering</strong></li>
-                        <li>🚀 Space Technology</li>
-                        <li>🦾 Robotics & Automation</li>
-                        <li>⚛️ Quantum Computing</li>
-                        <li>🧬 Bioinformatics</li>
-                        <li>📐 Mathematics & Algorithms</li>
-                        <li>🌍 Sustainable Technology</li>
-                        <li>💹 Blockchain & Fintech</li>
-                    </ul>
-                    <div style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(240, 147, 251, 0.1)); border-radius: 10px; border-left: 3px solid #667eea;">
-                        <p style="font-size: 13px; font-style: italic; color: #f093fb;">
-                            "Every mechanism and principle behind intelligent design fascinates me. 
-                            I love nature and believe it enhances my creativity. I enjoy asking questions like, 
-                            'How can we do this better?' and 'How can we optimize this further?' 
-                            I prefer creating over consuming and embrace the idea of using consumption as a means of production."
-                        </p>
+            <div>
+                <h3 style="color: var(--primary); margin-bottom: 20px;">🔬 Interests & Research Areas</h3>
+                <ul style="list-style: none; line-height: 2.2;">
+                    <li style="font-weight: bold; color: var(--accent);">🤖 Generative AI</li>
+                    <li style="font-weight: bold; color: var(--accent);">🚀 Space Technology</li>
+                    <li style="font-weight: bold; color: var(--accent);">🦾 Robotics</li>
+                    <li style="font-weight: bold; color: var(--accent);">🧠 Neuro-Science</li>
+                    <li>📚 Literature & Philosophy</li>
+                    <li>🎨 Art & Design</li>
+                    <li>🌍 Ecology & Sustainability</li>
+                    <li>🏛️ Architecture</li>
+                    <li>💹 Economics</li>
+                    <li>🔬 Materials Science</li>
+                    <li>⚛️ Physics & Chemistry</li>
+                    <li>🌌 Astronomy</li>
+                </ul>
+                
+                <div style="margin-top: 30px; padding: 20px; background: rgba(0, 255, 136, 0.1); border-radius: 10px;">
+                    <h4 style="color: var(--accent); margin-bottom: 15px;">🌐 Languages</h4>
+                    <div style="display: flex; gap: 20px;">
+                        <div>
+                            <div style="font-size: 24px; font-weight: bold; color: var(--primary);">75%</div>
+                            <div>Turkish (Native)</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 24px; font-weight: bold; color: var(--accent);">20%</div>
+                            <div>English</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 24px; font-weight: bold; color: var(--secondary);">5%</div>
+                            <div>Deutsch</div>
+                        </div>
                     </div>
+                </div>
+                
+                <div style="margin-top: 30px; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
+                    <h4 style="color: var(--accent); margin-bottom: 15px;">🎯 Hobbies</h4>
+                    <ul style="list-style: none; line-height: 2;">
+                        <li>📖 Reading books about anything I'm curious about</li>
+                        <li>🎨 Origami</li>
+                        <li>✈️ Traveling</li>
+                        <li>🤝 Meeting and talking with different people</li>
+                        <li>💪 Fitness & Stretching exercises</li>
+                        <li>🏕️ Scouting</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- AI Skills Section - PRIMARY -->
+    <!-- Skills Section -->
     <section id="skills">
-        <h2 class="section-title ai-section-title">🎯 PRIMARY EXPERTISE: ARTIFICIAL INTELLIGENCE</h2>
-        
-        <div class="ai-skills-showcase">
-            <h3 style="text-align: center; font-size: 24px; margin-bottom: 30px; color: white;">
-                Core AI & Machine Learning Competencies
-            </h3>
-            
-            <div class="skills-grid" style="margin-top: 40px;">
-                <div class="skill-card ai-skill-card">
-                    <div class="skill-icon">🧠</div>
-                    <div class="skill-name ai-skill-name">Machine Learning</div>
-                    <p>Building intelligent systems and predictive models</p>
-                </div>
-                <div class="skill-card ai-skill-card">
-                    <div class="skill-icon">💬</div>
-                    <div class="skill-name ai-skill-name">Natural Language Processing</div>
-                    <p>Text analysis and language understanding systems</p>
-                </div>
-                <div class="skill-card ai-skill-card">
-                    <div class="skill-icon">👁️</div>
-                    <div class="skill-name ai-skill-name">Computer Vision</div>
-                    <p>Image processing and visual recognition</p>
-                </div>
-                <div class="skill-card ai-skill-card">
-                    <div class="skill-icon">🤖</div>
-                    <div class="skill-name ai-skill-name">Deep Learning</div>
-                    <p>Neural networks and advanced AI architectures</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Other Skills Section - SECONDARY -->
-    <section id="other-skills">
-        <h2 class="section-title">Additional Technical Skills</h2>
-        
-        <div style="margin-bottom: 40px;">
-            <h3 style="text-align: center; font-size: 20px; margin-bottom: 30px; color: var(--primary);">
-                Full-Stack Development & Engineering
-            </h3>
-            <div class="tech-stack">
-                <div class="tech-badge" style="background: linear-gradient(135deg, #F7DF1E, #F0DB4F); color: #000;">JavaScript</div>
-                <div class="tech-badge" style="background: linear-gradient(135deg, #00599C, #004482);">C++</div>
-                <div class="tech-badge" style="background: linear-gradient(135deg, #007396, #00758F);">Java</div>
-                <div class="tech-badge" style="background: linear-gradient(135deg, #7F52FF, #A374F9);">Kotlin</div>
-                <div class="tech-badge" style="background: linear-gradient(135deg, #68217A, #8B3F9B);">C#</div>
-                <div class="tech-badge" style="background: linear-gradient(135deg, #0074BD, #0099E0);">MATLAB</div>
-                <div class="tech-badge" style="background: linear-gradient(135deg, #336791, #2E5C8A);">PostgreSQL</div>
-                <div class="tech-badge" style="background: linear-gradient(135deg, #092E20, #0C4B33);">Django</div>
-                <div class="tech-badge" style="background: linear-gradient(135deg, #61DAFB, #36A3D9); color: #000;">React</div>
-                <div class="tech-badge" style="background: linear-gradient(135deg, #FF9900, #FFB266); color: #000;">AWS</div>
-                <div class="tech-badge" style="background: linear-gradient(135deg, #F05032, #E14E1D);">Git</div>
-                <div class="tech-badge" style="background: linear-gradient(135deg, #FCC624, #E88A0A); color: #000;">Linux</div>
-            </div>
-        </div>
-
+        <h2 class="section-title">Technical Skills</h2>
         <div class="skills-grid">
             <div class="skill-card">
-                <div class="skill-icon">🖥️</div>
-                <div class="skill-name">Software Engineering</div>
-                <p>Full-stack, System Design, Clean Code</p>
+                <h3 style="color: var(--accent); margin-bottom: 10px;">🧠 AI & ML</h3>
+                <p>Deep Learning, Neural Networks, NLP, Computer Vision</p>
             </div>
             <div class="skill-card">
-                <div class="skill-icon">📊</div>
-                <div class="skill-name">Data Science</div>
-                <p>ETL, Statistical Analysis, Visualization</p>
+                <h3 style="color: var(--accent); margin-bottom: 10px;">🐍 Python</h3>
+                <p>Advanced Python for AI/ML and Backend Development</p>
             </div>
             <div class="skill-card">
-                <div class="skill-icon">☁️</div>
-                <div class="skill-name">Cloud Computing</div>
-                <p>AWS (EC2, S3, Lambda), Serverless</p>
+                <h3 style="color: var(--accent); margin-bottom: 10px;">🌐 Web Dev</h3>
+                <p>React, JavaScript, Django, REST APIs</p>
             </div>
             <div class="skill-card">
-                <div class="skill-icon">🌐</div>
-                <div class="skill-name">Web Development</div>
-                <p>React, JavaScript, REST APIs, CSS</p>
+                <h3 style="color: var(--accent); margin-bottom: 10px;">📱 Mobile</h3>
+                <p>Kotlin, Android Studio, Mobile Architecture</p>
             </div>
             <div class="skill-card">
-                <div class="skill-icon">📱</div>
-                <div class="skill-name">Android Development</div>
-                <p>Kotlin, Android Studio, Material Design</p>
+                <h3 style="color: var(--accent); margin-bottom: 10px;">☁️ Cloud</h3>
+                <p>AWS (EC2, S3, Lambda), Cloud Architecture</p>
             </div>
             <div class="skill-card">
-                <div class="skill-icon">🗄️</div>
-                <div class="skill-name">Database Systems</div>
+                <h3 style="color: var(--accent); margin-bottom: 10px;">🗄️ Database</h3>
                 <p>PostgreSQL, SQL, Database Design</p>
             </div>
             <div class="skill-card">
-                <div class="skill-icon">🐧</div>
-                <div class="skill-name">Linux & DevOps</div>
-                <p>Bash, SSH, Server Management</p>
+                <h3 style="color: var(--accent); margin-bottom: 10px;">🔀 DevOps</h3>
+                <p>Git, GitHub, Linux, Docker, Kubernetes, CI/CD</p>
             </div>
             <div class="skill-card">
-                <div class="skill-
+                <h3 style="color: var(--accent); margin-bottom: 10px;">💻 Languages</h3>
+                <p>C++, Java, C#, MATLAB, Kotlin</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <h3 style="color: var(--accent); margin-bottom: 15px;">🔧 Full-Stack Application System</h3>
+                <p>Designed and developed a full-stack application using Django for backend and modern frontend 
+                   technologies. Integrated real-time data processing and authentication systems.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Django</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">REST API</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3 style="color: var(--accent); margin-bottom: 15px;">🤖 Machine Learning Implementation</h3>
+                <p>Implemented machine learning algorithms to enhance system functionality. 
+                   Developed predictive models and automated decision-making processes.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Machine Learning</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">TensorFlow</span>
+                    <span class="tech-tag">Data Science</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3 style="color: var(--accent); margin-bottom: 15px;">🗄️ Database Architecture</h3>
+                <p>Designed and structured databases with PostgreSQL. Theoretical modeling conducted 
+                   using Entity-Relationship (ER) diagrams for optimal performance.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">ER Diagrams</span>
+                    <span class="tech-tag">SQL</span>
+                    <span class="tech-tag">Database Design</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="contact-container">
+            <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(0, 255, 136, 0.1)); 
+                        padding: 25px; border-radius: 15px; margin-bottom: 30px;">
+                <p style="font-size: 22px; font-weight: bold; color: var(--accent); margin-bottom: 10px;">
+                    🚀 Open for New Opportunities!
+                </p>
+                <p style="font-size: 18px;">
+                    I am actively seeking collaborations with innovative research teams and exciting projects. 
+                    Let's build the future of AI together!
+                </p>
+            </div>
+            
+            <div class="contact-links">
+                <a href="mailto:muhammetaslan.ai@gmail.com" class="contact-link">
+                    📧 muhammetaslan.ai@gmail.com
+                </a>
+                <a href="https://linkedin.com/in/muhammet-aslan-1911a8209" target="_blank" class="contact-link">
+                    💼 LinkedIn
+                </a>
+                <a href="https://github.com/muho497" target="_blank" class="contact-link">
+                    💻 GitHub
+                </a>
+                <a href="https://1000kitap.com/Muho497" target="_blank" class="contact-link">
+                    📚 1000 Kitap
+                </a>
+                <a href="tel:+905399396783" class="contact-link">
+                    📱 +90 539 939 67 83
+                </a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
