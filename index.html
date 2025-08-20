@@ -148,6 +148,36 @@
             width: 100%;
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--light);
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -364,11 +394,38 @@
         /* Responsive */
         @media (max-width: 768px) {
             nav {
-                padding: 15px 20px; /* Mobilde daha küçük padding */
+                padding: 15px 20px;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                right: -100%;
+                background: rgba(10, 14, 39, 0.98);
+                flex-direction: column;
+                padding: 30px;
+                width: 250px;
+                height: 100vh;
+                transition: right 0.3s ease;
+                border-left: 2px solid rgba(102, 126, 234, 0.3);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                font-size: 18px;
+                padding: 15px 0;
+                border-bottom: 1px solid rgba(102, 126, 234, 0.1);
             }
             
             .hero {
-                padding-top: 100px; /* Mobilde nav için daha fazla boşluk */
+                padding-top: 100px;
                 min-height: 100vh;
                 height: auto;
             }
@@ -377,7 +434,6 @@
                 margin-top: 20px;
             }
             
-            .nav-links { display: none; }
             .glitch-text { font-size: 48px; }
             .about-content { grid-template-columns: 1fr; }
             section { padding: 60px 20px; }
@@ -418,6 +474,34 @@
             }
         }
     </style>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+        
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+        
+        // Sayfa dışına tıklanınca menüyü kapat
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('nav');
+            
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+    </script>
 </head>
 <body>
     <!-- Background -->
@@ -431,12 +515,17 @@
     <nav>
         <div class="nav-container">
             <a href="#home" class="logo">MA.ai</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="closeMenu()">Home</a></li>
+                <li><a href="#about" onclick="closeMenu()">About</a></li>
+                <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+                <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
             </ul>
         </div>
     </nav>
