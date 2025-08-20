@@ -96,6 +96,7 @@
             backdrop-filter: blur(20px);
             z-index: 1000;
             border-bottom: 1px solid rgba(102, 126, 234, 0.3);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
         }
 
         .nav-container {
@@ -154,6 +155,7 @@
             align-items: center;
             justify-content: center;
             padding: 0 50px;
+            padding-top: 80px; /* Nav bar için boşluk */
         }
 
         .hero-content {
@@ -361,11 +363,59 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px; /* Mobilde daha küçük padding */
+            }
+            
+            .hero {
+                padding-top: 100px; /* Mobilde nav için daha fazla boşluk */
+                min-height: 100vh;
+                height: auto;
+            }
+            
+            .hero-content {
+                margin-top: 20px;
+            }
+            
             .nav-links { display: none; }
             .glitch-text { font-size: 48px; }
             .about-content { grid-template-columns: 1fr; }
             section { padding: 60px 20px; }
             .projects-container { grid-template-columns: 1fr; }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .glitch-text { 
+                font-size: 36px; 
+                letter-spacing: 1px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            .hero {
+                padding: 100px 15px 50px;
+            }
+            
+            .ai-badge {
+                font-size: 12px;
+                padding: 6px 15px;
+            }
+            
+            .contact-container {
+                padding: 40px 20px;
+            }
         }
     </style>
 </head>
@@ -394,7 +444,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <div class="ai-badge">🤖 AI SPECIALIST • MACHINE LEARNING EXPERT</div>
+            <div class="ai-badge">🤖 AI SPECIALIST • MACHINE LEARNING EXPERT • DEEP LEARNING EXPERT</div>
             <h1 class="glitch-text">Muhammet Aslan</h1>
             <p class="subtitle">Artificial Intelligence Engineer & Computer Scientist</p>
             <p style="font-size: 20px; margin: 30px 0; opacity: 0.9;">
