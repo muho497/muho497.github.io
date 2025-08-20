@@ -127,25 +127,21 @@
             color: var(--light);
             text-decoration: none;
             transition: all 0.3s;
-            padding: 5px 0;
+            padding: 8px 16px;
             font-size: 14px;
             cursor: pointer;
             position: relative;
+            border-radius: 20px;
+            background: transparent;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
+        .nav-links a.active {
             background: var(--ai-gradient);
-            transition: width 0.3s;
+            font-weight: bold;
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
+        .nav-links a:hover:not(.active) {
+            background: rgba(102, 126, 234, 0.2);
         }
 
         /* Hamburger Menu */
@@ -178,14 +174,34 @@
             transform: rotate(-45deg) translate(7px, -6px);
         }
 
+        /* Main Content */
+        .main-content {
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Hero Section */
         .hero {
-            height: 100vh;
+            height: calc(100vh - 70px);
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 0 50px;
-            padding-top: 80px; /* Nav bar için boşluk */
         }
 
         .hero-content {
@@ -265,20 +281,45 @@
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
         }
 
-        /* Section Styles */
-        section {
-            padding: 100px 50px;
+        /* Section Container */
+        .section-container {
+            padding: 60px 50px;
             max-width: 1400px;
             margin: 0 auto;
+            min-height: calc(100vh - 70px);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--ai-gradient);
+            border-radius: 2px;
         }
 
         .section-title {
             font-size: 48px;
-            margin-bottom: 50px;
-            text-align: center;
+            margin-bottom: 20px;
             background: linear-gradient(45deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         /* About Section */
@@ -317,6 +358,8 @@
         .skill-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 212, 255, 0.3);
+            border-color: var(--primary);
+            background: rgba(0, 212, 255, 0.1);
         }
 
         /* Projects Section */
@@ -338,6 +381,7 @@
         .project-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+            border-color: #667eea;
         }
 
         .project-tech {
@@ -362,6 +406,8 @@
             padding: 60px;
             text-align: center;
             border: 2px solid rgba(102, 126, 234, 0.3);
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .contact-links {
@@ -389,6 +435,7 @@
         .contact-link:hover {
             background: rgba(102, 126, 234, 0.2);
             transform: translateY(-3px);
+            border-color: #667eea;
         }
 
         /* Responsive */
@@ -412,31 +459,45 @@
                 height: 100vh;
                 transition: right 0.3s ease;
                 border-left: 2px solid rgba(102, 126, 234, 0.3);
+                gap: 15px;
             }
             
             .nav-links.active {
                 right: 0;
             }
             
+            .nav-links li {
+                width: 100%;
+            }
+            
             .nav-links a {
                 font-size: 18px;
-                padding: 15px 0;
-                border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+                padding: 15px 20px;
+                border: 1px solid rgba(102, 126, 234, 0.2);
+                text-align: center;
+                display: block;
+                width: 100%;
+                border-radius: 10px;
+                background: rgba(102, 126, 234, 0.05);
+            }
+            
+            .nav-links a.active {
+                background: var(--ai-gradient);
+                border-color: transparent;
+            }
+            
+            .nav-links a:hover:not(.active) {
+                background: rgba(102, 126, 234, 0.3);
+                border-color: var(--primary);
             }
             
             .hero {
-                padding-top: 100px;
-                min-height: 100vh;
-                height: auto;
-            }
-            
-            .hero-content {
-                margin-top: 20px;
+                padding: 0 20px;
             }
             
             .glitch-text { font-size: 48px; }
             .about-content { grid-template-columns: 1fr; }
-            section { padding: 60px 20px; }
+            .section-container { padding: 40px 20px; }
             .projects-container { grid-template-columns: 1fr; }
             
             .cta-buttons {
@@ -460,10 +521,6 @@
                 font-size: 18px;
             }
             
-            .hero {
-                padding: 100px 15px 50px;
-            }
-            
             .ai-badge {
                 font-size: 12px;
                 padding: 6px 15px;
@@ -472,9 +529,40 @@
             .contact-container {
                 padding: 40px 20px;
             }
+            
+            .section-title {
+                font-size: 36px;
+            }
         }
     </style>
     <script>
+        // Tab switching functionality
+        function showTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all nav links
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked nav link
+            event.target.classList.add('active');
+            
+            // Close mobile menu if open
+            closeMenu();
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             const hamburger = document.querySelector('.hamburger');
@@ -491,7 +579,7 @@
             hamburger.classList.remove('active');
         }
         
-        // Sayfa dışına tıklanınca menüyü kapat
+        // Close menu when clicking outside
         document.addEventListener('click', function(event) {
             const navLinks = document.getElementById('navLinks');
             const hamburger = document.querySelector('.hamburger');
@@ -501,6 +589,12 @@
                 closeMenu();
             }
         });
+        
+        // Set home tab as active on load
+        window.onload = function() {
+            document.getElementById('home').classList.add('active');
+            document.querySelector('.nav-links a').classList.add('active');
+        }
     </script>
 </head>
 <body>
@@ -514,239 +608,264 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#home" class="logo">MA.ai</a>
+            <a href="#" onclick="showTab('home'); return false;" class="logo">MA.ai</a>
             <div class="hamburger" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home" onclick="closeMenu()">Home</a></li>
-                <li><a href="#about" onclick="closeMenu()">About</a></li>
-                <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
-                <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
-                <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+                <li><a href="#" onclick="showTab('home'); return false;" class="active">Home</a></li>
+                <li><a href="#" onclick="showTab('about'); return false;">About</a></li>
+                <li><a href="#" onclick="showTab('skills'); return false;">Skills</a></li>
+                <li><a href="#" onclick="showTab('projects'); return false;">Projects</a></li>
+                <li><a href="#" onclick="showTab('contact'); return false;">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="ai-badge">🤖 AI SPECIALIST • MACHINE LEARNING EXPERT • DEEP LEARNING EXPERT</div>
-            <h1 class="glitch-text">Muhammet Aslan</h1>
-            <p class="subtitle">Artificial Intelligence Engineer & Computer Scientist</p>
-            <p style="font-size: 20px; margin: 30px 0; opacity: 0.9;">
-                <span style="color: var(--primary);">🎓 İnönü University - Computer Engineering</span><br>
-                Specializing in <span style="background: var(--ai-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">
-                Artificial Intelligence, Machine Learning & Deep Learning</span><br>
-                Building the future with intelligent algorithms and innovative solutions.
-            </p>
-            <div class="cta-buttons">
-                <a href="#contact" class="btn btn-primary">Let's Collaborate</a>
-                <a href="#projects" class="btn btn-secondary">View My Projects</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-            <div>
-                <div class="info-box">
-                    <h3 style="color: var(--accent); margin-bottom: 10px;">🎯 AI Engineer & Curious Explorer</h3>
-                    <p>I strive to learn about artificial intelligence both in-depth and from a broad perspective.</p>
-                </div>
-                <p style="line-height: 1.8; margin-top: 20px;">
-                    In my journey as an AI Engineer, I explore various subjects that interest me and integrate them into the field of AI. 
-                    My primary areas of reading span a wide range, from popular science to neuroscience, robotics, physics, biology, 
-                    philosophy, chemistry, materials science, astronomy, mathematics, art, literature, ecology, architecture, and economics. 
-                    I am deeply fascinated by the working principles and mechanisms of anything that has a design.
-                </p>
-                <p style="line-height: 1.8; margin-top: 20px;">
-                    I love nature and believe it enhances my creativity. I enjoy asking questions like, "How can we do this better?" 
-                    and "How can we optimize this further?" I prefer creating over consuming and embrace the idea of using consumption 
-                    as a means of production.
-                </p>
-                <p style="line-height: 1.8; margin-top: 20px; font-style: italic; color: var(--primary);">
-                    "The idea of building the future together excites me, and I take great pleasure in the innovations it will bring. 
-                    Let's design the future together as humanity!"
-                </p>
-                
-                <div style="margin-top: 30px; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
-                    <h4 style="color: var(--accent); margin-bottom: 15px;">🎓 Education</h4>
-                    <p><strong>İnönü University - Computer Engineering</strong> (2019 - Present)</p>
-                    <p style="font-size: 14px; margin-top: 10px;">
-                        Relevant Courses: Algorithms, Compilers, Data Structures, Machine Learning, Data Mining, 
-                        Cybersecurity, Natural Language Processing, Engineering Mathematics, Statistics, 
-                        Artificial Intelligence, Database Management Systems, Image Processing, Computer Networks, 
-                        Mobile Development, Object-Oriented Programming, Internet Programming
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Home Tab -->
+        <div id="home" class="tab-content">
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="ai-badge">🤖 AI SPECIALIST • MACHINE LEARNING EXPERT • DEEP LEARNING EXPERT</div>
+                    <h1 class="glitch-text">Muhammet Aslan</h1>
+                    <p class="subtitle">Artificial Intelligence Engineer & Computer Scientist</p>
+                    <p style="font-size: 20px; margin: 30px 0; opacity: 0.9;">
+                        <span style="color: var(--primary);">🎓 İnönü University - Computer Engineering</span><br>
+                        Specializing in <span style="background: var(--ai-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">
+                        Artificial Intelligence, Machine Learning & Deep Learning</span><br>
+                        Building the future with intelligent algorithms and innovative solutions.
                     </p>
+                    <div class="cta-buttons">
+                        <a href="#" onclick="showTab('contact'); return false;" class="btn btn-primary">Let's Collaborate</a>
+                        <a href="#" onclick="showTab('projects'); return false;" class="btn btn-secondary">View My Projects</a>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <h3 style="color: var(--primary); margin-bottom: 20px;">🔬 Interests & Research Areas</h3>
-                <ul style="list-style: none; line-height: 2.2;">
-                    <li style="font-weight: bold; color: var(--accent);">🤖 Generative AI</li>
-                    <li style="font-weight: bold; color: var(--accent);">🚀 Space Technology</li>
-                    <li style="font-weight: bold; color: var(--accent);">🦾 Robotics</li>
-                    <li style="font-weight: bold; color: var(--accent);">🧠 Neuro-Science</li>
-                    <li>📚 Literature & Philosophy</li>
-                    <li>🎨 Art & Design</li>
-                    <li>🌍 Ecology & Sustainability</li>
-                    <li>🏛️ Architecture</li>
-                    <li>💹 Economics</li>
-                    <li>🔬 Materials Science</li>
-                    <li>⚛️ Physics & Chemistry</li>
-                    <li>🌌 Astronomy</li>
-                </ul>
-                
-                <div style="margin-top: 30px; padding: 20px; background: rgba(0, 255, 136, 0.1); border-radius: 10px;">
-                    <h4 style="color: var(--accent); margin-bottom: 15px;">🌐 Languages</h4>
-                    <div style="display: flex; gap: 20px;">
-                        <div>
-                            <div style="font-size: 24px; font-weight: bold; color: var(--primary);">75%</div>
-                            <div>Turkish (Native)</div>
+            </section>
+        </div>
+
+        <!-- About Tab -->
+        <div id="about" class="tab-content">
+            <section class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">AI Engineer & Curious Explorer</p>
+                </div>
+                <div class="about-content">
+                    <div>
+                        <div class="info-box">
+                            <h3 style="color: var(--accent); margin-bottom: 10px;">🎯 AI Engineer & Curious Explorer</h3>
+                            <p>I strive to learn about artificial intelligence both in-depth and from a broad perspective.</p>
                         </div>
-                        <div>
-                            <div style="font-size: 24px; font-weight: bold; color: var(--accent);">20%</div>
-                            <div>English</div>
+                        <p style="line-height: 1.8; margin-top: 20px;">
+                            In my journey as an AI Engineer, I explore various subjects that interest me and integrate them into the field of AI. 
+                            My primary areas of reading span a wide range, from popular science to neuroscience, robotics, physics, biology, 
+                            philosophy, chemistry, materials science, astronomy, mathematics, art, literature, ecology, architecture, and economics. 
+                            I am deeply fascinated by the working principles and mechanisms of anything that has a design.
+                        </p>
+                        <p style="line-height: 1.8; margin-top: 20px;">
+                            I love nature and believe it enhances my creativity. I enjoy asking questions like, "How can we do this better?" 
+                            and "How can we optimize this further?" I prefer creating over consuming and embrace the idea of using consumption 
+                            as a means of production.
+                        </p>
+                        <p style="line-height: 1.8; margin-top: 20px; font-style: italic; color: var(--primary);">
+                            "The idea of building the future together excites me, and I take great pleasure in the innovations it will bring. 
+                            Let's design the future together as humanity!"
+                        </p>
+                        
+                        <div style="margin-top: 30px; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
+                            <h4 style="color: var(--accent); margin-bottom: 15px;">🎓 Education</h4>
+                            <p><strong>İnönü University - Computer Engineering</strong> (2019 - Present)</p>
+                            <p style="font-size: 14px; margin-top: 10px;">
+                                Relevant Courses: Algorithms, Compilers, Data Structures, Machine Learning, Data Mining, 
+                                Cybersecurity, Natural Language Processing, Engineering Mathematics, Statistics, 
+                                Artificial Intelligence, Database Management Systems, Image Processing, Computer Networks, 
+                                Mobile Development, Object-Oriented Programming, Internet Programming
+                            </p>
                         </div>
-                        <div>
-                            <div style="font-size: 24px; font-weight: bold; color: var(--secondary);">5%</div>
-                            <div>Deutsch</div>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--primary); margin-bottom: 20px;">🔬 Interests & Research Areas</h3>
+                        <ul style="list-style: none; line-height: 2.2;">
+                            <li style="font-weight: bold; color: var(--accent);">🤖 Generative AI</li>
+                            <li style="font-weight: bold; color: var(--accent);">🚀 Space Technology</li>
+                            <li style="font-weight: bold; color: var(--accent);">🦾 Robotics</li>
+                            <li style="font-weight: bold; color: var(--accent);">🧠 Neuro-Science</li>
+                            <li>📚 Literature & Philosophy</li>
+                            <li>🎨 Art & Design</li>
+                            <li>🌍 Ecology & Sustainability</li>
+                            <li>🏛️ Architecture</li>
+                            <li>💹 Economics</li>
+                            <li>🔬 Materials Science</li>
+                            <li>⚛️ Physics & Chemistry</li>
+                            <li>🌌 Astronomy</li>
+                        </ul>
+                        
+                        <div style="margin-top: 30px; padding: 20px; background: rgba(0, 255, 136, 0.1); border-radius: 10px;">
+                            <h4 style="color: var(--accent); margin-bottom: 15px;">🌐 Languages</h4>
+                            <div style="display: flex; gap: 20px;">
+                                <div>
+                                    <div style="font-size: 24px; font-weight: bold; color: var(--primary);">75%</div>
+                                    <div>Turkish (Native)</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 24px; font-weight: bold; color: var(--accent);">20%</div>
+                                    <div>English</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 24px; font-weight: bold; color: var(--secondary);">5%</div>
+                                    <div>Deutsch</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 30px; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
+                            <h4 style="color: var(--accent); margin-bottom: 15px;">🎯 Hobbies</h4>
+                            <ul style="list-style: none; line-height: 2;">
+                                <li>📖 Reading books about anything I'm curious about</li>
+                                <li>🎨 Origami</li>
+                                <li>✈️ Traveling</li>
+                                <li>🤝 Meeting and talking with different people</li>
+                                <li>💪 Fitness & Stretching exercises</li>
+                                <li>🏕️ Scouting</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                
-                <div style="margin-top: 30px; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
-                    <h4 style="color: var(--accent); margin-bottom: 15px;">🎯 Hobbies</h4>
-                    <ul style="list-style: none; line-height: 2;">
-                        <li>📖 Reading books about anything I'm curious about</li>
-                        <li>🎨 Origami</li>
-                        <li>✈️ Traveling</li>
-                        <li>🤝 Meeting and talking with different people</li>
-                        <li>💪 Fitness & Stretching exercises</li>
-                        <li>🏕️ Scouting</li>
-                    </ul>
-                </div>
-            </div>
+            </section>
         </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <h3 style="color: var(--accent); margin-bottom: 10px;">🧠 AI & ML</h3>
-                <p>Deep Learning, Neural Networks, NLP, Computer Vision</p>
-            </div>
-            <div class="skill-card">
-                <h3 style="color: var(--accent); margin-bottom: 10px;">🐍 Python</h3>
-                <p>Advanced Python for AI/ML and Backend Development</p>
-            </div>
-            <div class="skill-card">
-                <h3 style="color: var(--accent); margin-bottom: 10px;">🌐 Web Dev</h3>
-                <p>React, JavaScript, Django, REST APIs</p>
-            </div>
-            <div class="skill-card">
-                <h3 style="color: var(--accent); margin-bottom: 10px;">📱 Mobile</h3>
-                <p>Kotlin, Android Studio, Mobile Architecture</p>
-            </div>
-            <div class="skill-card">
-                <h3 style="color: var(--accent); margin-bottom: 10px;">☁️ Cloud</h3>
-                <p>AWS (EC2, S3, Lambda), Cloud Architecture</p>
-            </div>
-            <div class="skill-card">
-                <h3 style="color: var(--accent); margin-bottom: 10px;">🗄️ Database</h3>
-                <p>PostgreSQL, SQL, Database Design</p>
-            </div>
-            <div class="skill-card">
-                <h3 style="color: var(--accent); margin-bottom: 10px;">🔀 DevOps</h3>
-                <p>Git, GitHub, Linux, Docker, Kubernetes, CI/CD</p>
-            </div>
-            <div class="skill-card">
-                <h3 style="color: var(--accent); margin-bottom: 10px;">💻 Languages</h3>
-                <p>C++, Java, C#, MATLAB, Kotlin</p>
-            </div>
+        <!-- Skills Tab -->
+        <div id="skills" class="tab-content">
+            <section class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <p class="section-subtitle">Technologies and tools I work with</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3 style="color: var(--accent); margin-bottom: 10px;">🧠 AI & ML</h3>
+                        <p>Deep Learning, Neural Networks, NLP, Computer Vision</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3 style="color: var(--accent); margin-bottom: 10px;">🐍 Python</h3>
+                        <p>Advanced Python for AI/ML and Backend Development</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3 style="color: var(--accent); margin-bottom: 10px;">🌐 Web Dev</h3>
+                        <p>React, JavaScript, Django, REST APIs</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3 style="color: var(--accent); margin-bottom: 10px;">📱 Mobile</h3>
+                        <p>Kotlin, Android Studio, Mobile Architecture</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3 style="color: var(--accent); margin-bottom: 10px;">☁️ Cloud</h3>
+                        <p>AWS (EC2, S3, Lambda), Cloud Architecture</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3 style="color: var(--accent); margin-bottom: 10px;">🗄️ Database</h3>
+                        <p>PostgreSQL, SQL, Database Design</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3 style="color: var(--accent); margin-bottom: 10px;">🔀 DevOps</h3>
+                        <p>Git, GitHub, Linux, Docker, Kubernetes, CI/CD</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3 style="color: var(--accent); margin-bottom: 10px;">💻 Languages</h3>
+                        <p>C++, Java, C#, MATLAB, Kotlin</p>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-container">
-            <div class="project-card">
-                <h3 style="color: var(--accent); margin-bottom: 15px;">🔧 Full-Stack Application System</h3>
-                <p>Designed and developed a full-stack application using Django for backend and modern frontend 
-                   technologies. Integrated real-time data processing and authentication systems.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">Django</span>
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">REST API</span>
-                    <span class="tech-tag">PostgreSQL</span>
+        <!-- Projects Tab -->
+        <div id="projects" class="tab-content">
+            <section class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">My recent work and achievements</p>
                 </div>
-            </div>
-            <div class="project-card">
-                <h3 style="color: var(--accent); margin-bottom: 15px;">🤖 Machine Learning Implementation</h3>
-                <p>Implemented machine learning algorithms to enhance system functionality. 
-                   Developed predictive models and automated decision-making processes.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">Machine Learning</span>
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">TensorFlow</span>
-                    <span class="tech-tag">Data Science</span>
+                <div class="projects-container">
+                    <div class="project-card">
+                        <h3 style="color: var(--accent); margin-bottom: 15px;">🔧 Full-Stack Application System</h3>
+                        <p>Designed and developed a full-stack application using Django for backend and modern frontend 
+                           technologies. Integrated real-time data processing and authentication systems.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">REST API</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3 style="color: var(--accent); margin-bottom: 15px;">🤖 Machine Learning Implementation</h3>
+                        <p>Implemented machine learning algorithms to enhance system functionality. 
+                           Developed predictive models and automated decision-making processes.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Data Science</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3 style="color: var(--accent); margin-bottom: 15px;">🗄️ Database Architecture</h3>
+                        <p>Designed and structured databases with PostgreSQL. Theoretical modeling conducted 
+                           using Entity-Relationship (ER) diagrams for optimal performance.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">ER Diagrams</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Database Design</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="project-card">
-                <h3 style="color: var(--accent); margin-bottom: 15px;">🗄️ Database Architecture</h3>
-                <p>Designed and structured databases with PostgreSQL. Theoretical modeling conducted 
-                   using Entity-Relationship (ER) diagrams for optimal performance.</p>
-                <div class="project-tech">
-                    <span class="tech-tag">PostgreSQL</span>
-                    <span class="tech-tag">ER Diagrams</span>
-                    <span class="tech-tag">SQL</span>
-                    <span class="tech-tag">Database Design</span>
-                </div>
-            </div>
+            </section>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2 class="section-title">Let's Connect</h2>
-        <div class="contact-container">
-            <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(0, 255, 136, 0.1)); 
-                        padding: 25px; border-radius: 15px; margin-bottom: 30px;">
-                <p style="font-size: 22px; font-weight: bold; color: var(--accent); margin-bottom: 10px;">
-                    🚀 Open for New Opportunities!
-                </p>
-                <p style="font-size: 18px;">
-                    I am actively seeking collaborations with innovative research teams and exciting projects. 
-                    Let's build the future of AI together!
-                </p>
-            </div>
-            
-            <div class="contact-links">
-                <a href="mailto:muhammetaslan.ai@gmail.com" class="contact-link">
-                    📧 muhammetaslan.ai@gmail.com
-                </a>
-                <a href="https://linkedin.com/in/muhammet-aslan-1911a8209" target="_blank" class="contact-link">
-                    💼 LinkedIn
-                </a>
-                <a href="https://github.com/muho497" target="_blank" class="contact-link">
-                    💻 GitHub
-                </a>
-                <a href="https://1000kitap.com/Muho497" target="_blank" class="contact-link">
-                    📚 1000 Kitap
-                </a>
-                <a href="tel:+905399396783" class="contact-link">
-                    📱 +90 539 939 67 83
-                </a>
-            </div>
+        <!-- Contact Tab -->
+        <div id="contact" class="tab-content">
+            <section class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Let's Connect</h2>
+                    <p class="section-subtitle">Get in touch for collaborations and opportunities</p>
+                </div>
+                <div class="contact-container">
+                    <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(0, 255, 136, 0.1)); 
+                                padding: 25px; border-radius: 15px; margin-bottom: 30px;">
+                        <p style="font-size: 22px; font-weight: bold; color: var(--accent); margin-bottom: 10px;">
+                            🚀 Open for New Opportunities!
+                        </p>
+                        <p style="font-size: 18px;">
+                            I am actively seeking collaborations with innovative research teams and exciting projects. 
+                            Let's build the future of AI together!
+                        </p>
+                    </div>
+                    
+                    <div class="contact-links">
+                        <a href="mailto:muhammetaslan.ai@gmail.com" class="contact-link">
+                            📧 muhammetaslan.ai@gmail.com
+                        </a>
+                        <a href="https://linkedin.com/in/muhammet-aslan-1911a8209" target="_blank" class="contact-link">
+                            💼 LinkedIn
+                        </a>
+                        <a href="https://github.com/muho497" target="_blank" class="contact-link">
+                            💻 GitHub
+                        </a>
+                        <a href="https://1000kitap.com/Muho497" target="_blank" class="contact-link">
+                            📚 1000 Kitap
+                        </a>
+                        <a href="tel:+905399396783" class="contact-link">
+                            📱 +90 539 939 67 83
+                        </a>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
+    </div>
 </body>
 </html>
