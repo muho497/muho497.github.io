@@ -3,16 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammet Aslan - AI Engineer & Computer Scientist</title>
+    <title>Muhammet Aslan - AI Engineer & Curious Explorer</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
         }
 
         :root {
@@ -30,10 +26,9 @@
             background: var(--darker);
             color: var(--light);
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* Animated Background */
+        /* Background */
         .bg-animation {
             position: fixed;
             width: 100%;
@@ -42,32 +37,6 @@
             left: 0;
             z-index: -1;
             background: linear-gradient(135deg, #0a0e27 0%, #060818 50%, #0f1538 100%);
-            overflow: hidden;
-        }
-
-        .floating-particle {
-            position: absolute;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            opacity: 0.1;
-            animation: float 20s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0) scale(1); }
-            33% { transform: translateY(-100px) translateX(50px) scale(1.1); }
-            66% { transform: translateY(50px) translateX(-50px) scale(0.9); }
-        }
-
-        @keyframes ai-pulse {
-            0%, 100% { 
-                box-shadow: 0 0 20px rgba(102, 126, 234, 0.5), 
-                           0 0 40px rgba(118, 75, 162, 0.3);
-            }
-            50% { 
-                box-shadow: 0 0 30px rgba(102, 126, 234, 0.8), 
-                           0 0 60px rgba(118, 75, 162, 0.5);
-            }
         }
 
         .grid-bg {
@@ -84,6 +53,20 @@
         @keyframes grid-move {
             0% { transform: translate(0, 0); }
             100% { transform: translate(50px, 50px); }
+        }
+
+        .floating-particle {
+            position: absolute;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+            33% { transform: translateY(-100px) translateX(50px) scale(1.1); }
+            66% { transform: translateY(50px) translateX(-50px) scale(0.9); }
         }
 
         /* Navigation */
@@ -114,7 +97,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             cursor: pointer;
-            text-decoration: none;
         }
 
         .nav-links {
@@ -126,13 +108,10 @@
         .nav-links a {
             color: var(--light);
             text-decoration: none;
-            transition: all 0.3s;
             padding: 8px 16px;
-            font-size: 14px;
-            cursor: pointer;
-            position: relative;
             border-radius: 20px;
-            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
         .nav-links a.active {
@@ -174,15 +153,11 @@
             transform: rotate(-45deg) translate(7px, -6px);
         }
 
-        /* Main Content */
-        .main-content {
-            margin-top: 70px;
-            min-height: calc(100vh - 70px);
-        }
-
         /* Tab Content */
         .tab-content {
             display: none;
+            padding-top: 90px;
+            min-height: 100vh;
             animation: fadeIn 0.5s;
         }
 
@@ -197,16 +172,33 @@
 
         /* Hero Section */
         .hero {
-            height: calc(100vh - 70px);
+            min-height: calc(100vh - 90px);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 50px;
+            padding: 20px 50px;
         }
 
         .hero-content {
             text-align: center;
             max-width: 1000px;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--ai-gradient);
+            padding: 3px;
+            margin: 0 auto 20px;
+            animation: pulse 3s infinite;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
         .ai-badge {
@@ -218,7 +210,12 @@
             font-size: 14px;
             font-weight: bold;
             margin-bottom: 20px;
-            animation: ai-pulse 3s infinite;
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(102, 126, 234, 0.8); }
         }
 
         .glitch-text {
@@ -246,23 +243,16 @@
             font-weight: bold;
         }
 
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 40px;
-        }
-
         .btn {
             padding: 15px 40px;
+            margin: 10px;
             border: none;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
             border-radius: 50px;
+            display: inline-block;
         }
 
         .btn-primary {
@@ -283,10 +273,9 @@
 
         /* Section Container */
         .section-container {
-            padding: 60px 50px;
+            padding: 40px 50px 60px 50px;
             max-width: 1400px;
             margin: 0 auto;
-            min-height: calc(100vh - 70px);
         }
 
         .section-header {
@@ -322,7 +311,7 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
-        /* About Section */
+        /* About Content */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -338,36 +327,53 @@
             border-left: 4px solid #667eea;
         }
 
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
+        /* Skills Categories */
+        .skills-category {
+            margin-bottom: 40px;
         }
 
-        .skill-card {
+        .skills-category h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 24px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-item {
             background: rgba(0, 212, 255, 0.05);
             border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
+            border-radius: 10px;
+            padding: 15px;
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.3);
-            border-color: var(--primary);
+        .skill-item:hover {
+            transform: translateX(5px);
             background: rgba(0, 212, 255, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
         }
 
-        /* Projects Section */
+        .skill-icon {
+            font-size: 20px;
+        }
+
+        /* Projects */
         .projects-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
-            margin-top: 50px;
+            margin-top: 40px;
         }
 
         .project-card {
@@ -384,66 +390,145 @@
             border-color: #667eea;
         }
 
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
+        .project-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--ai-gradient);
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-bottom: 15px;
         }
 
         .tech-tag {
+            display: inline-block;
             background: rgba(102, 126, 234, 0.2);
             color: var(--light);
             padding: 5px 12px;
             border-radius: 15px;
             font-size: 12px;
+            margin: 5px 5px 5px 0;
         }
 
-        /* Contact Section */
+        /* Contact */
         .contact-container {
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(0, 212, 255, 0.05));
             border-radius: 30px;
             padding: 60px;
             text-align: center;
-            border: 2px solid rgba(102, 126, 234, 0.3);
             max-width: 1000px;
             margin: 0 auto;
+            border: 2px solid rgba(102, 126, 234, 0.3);
         }
 
-        .contact-links {
-            display: flex;
-            justify-content: center;
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin-top: 40px;
-            flex-wrap: wrap;
         }
 
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--light);
-            text-decoration: none;
-            font-size: 16px;
-            padding: 12px 24px;
-            border-radius: 30px;
-            background: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.3);
+        .contact-item {
+            background: rgba(102, 126, 234, 0.05);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
             transition: all 0.3s;
         }
 
-        .contact-link:hover {
-            background: rgba(102, 126, 234, 0.2);
-            transform: translateY(-3px);
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background: rgba(102, 126, 234, 0.1);
             border-color: #667eea;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .contact-item a {
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-icon {
+            font-size: 36px;
+            background: var(--ai-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Languages */
+        .language-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .language-item {
+            text-align: center;
+        }
+
+        .language-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: conic-gradient(var(--accent) 0deg, var(--accent) var(--percentage), rgba(255,255,255,0.1) var(--percentage));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 24px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .language-circle::before {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: var(--darker);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        /* Hobbies */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .hobby-item {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(102, 126, 234, 0.05));
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .hobby-item:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(102, 126, 234, 0.1));
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .hobby-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            nav {
-                padding: 15px 20px;
-            }
-            
             .hamburger {
                 display: flex;
             }
@@ -466,136 +551,46 @@
                 right: 0;
             }
             
-            .nav-links li {
-                width: 100%;
-            }
-            
-            .nav-links a {
-                font-size: 18px;
-                padding: 15px 20px;
-                border: 1px solid rgba(102, 126, 234, 0.2);
-                text-align: center;
-                display: block;
-                width: 100%;
-                border-radius: 10px;
-                background: rgba(102, 126, 234, 0.05);
-            }
-            
-            .nav-links a.active {
-                background: var(--ai-gradient);
-                border-color: transparent;
-            }
-            
-            .nav-links a:hover:not(.active) {
-                background: rgba(102, 126, 234, 0.3);
-                border-color: var(--primary);
-            }
-            
-            .hero {
-                padding: 0 20px;
-            }
-            
-            .glitch-text { font-size: 48px; }
-            .about-content { grid-template-columns: 1fr; }
-            .section-container { padding: 40px 20px; }
-            .projects-container { grid-template-columns: 1fr; }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                max-width: 280px;
-            }
-        }
-
-        @media (max-width: 480px) {
             .glitch-text { 
-                font-size: 36px; 
+                font-size: 48px; 
                 letter-spacing: 1px;
             }
             
-            .subtitle {
-                font-size: 18px;
+            .about-content { 
+                grid-template-columns: 1fr; 
             }
             
-            .ai-badge {
-                font-size: 12px;
-                padding: 6px 15px;
+            .section-container { 
+                padding: 40px 20px; 
+            }
+            
+            .projects-container { 
+                grid-template-columns: 1fr; 
             }
             
             .contact-container {
                 padding: 40px 20px;
             }
             
+            .language-container {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .glitch-text { 
+                font-size: 36px; 
+            }
+            
             .section-title {
                 font-size: 36px;
             }
+            
+            .subtitle {
+                font-size: 18px;
+            }
         }
     </style>
-    <script>
-        // Tab switching functionality
-        function showTab(tabName) {
-            // Hide all tabs
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Remove active class from all nav links
-            const navLinks = document.querySelectorAll('.nav-links a');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            // Show selected tab
-            document.getElementById(tabName).classList.add('active');
-            
-            // Add active class to clicked nav link
-            event.target.classList.add('active');
-            
-            // Close mobile menu if open
-            closeMenu();
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
-        
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            const hamburger = document.querySelector('.hamburger');
-            
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        }
-        
-        function closeMenu() {
-            const navLinks = document.getElementById('navLinks');
-            const hamburger = document.querySelector('.hamburger');
-            
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('active');
-        }
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const navLinks = document.getElementById('navLinks');
-            const hamburger = document.querySelector('.hamburger');
-            const nav = document.querySelector('nav');
-            
-            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
-                closeMenu();
-            }
-        });
-        
-        // Set home tab as active on load
-        window.onload = function() {
-            document.getElementById('home').classList.add('active');
-            document.querySelector('.nav-links a').classList.add('active');
-        }
-    </script>
 </head>
 <body>
     <!-- Background -->
@@ -603,269 +598,200 @@
         <div class="grid-bg"></div>
         <div class="floating-particle" style="width: 200px; height: 200px; top: 10%; left: 10%;"></div>
         <div class="floating-particle" style="width: 150px; height: 150px; top: 60%; right: 20%; animation-delay: 2s;"></div>
+        <div class="floating-particle" style="width: 100px; height: 100px; top: 80%; left: 50%; animation-delay: 4s;"></div>
     </div>
 
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#" onclick="showTab('home'); return false;" class="logo">MA.ai</a>
+            <div class="logo">MA.ai</div>
             <div class="hamburger" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#" onclick="showTab('home'); return false;" class="active">Home</a></li>
-                <li><a href="#" onclick="showTab('about'); return false;">About</a></li>
-                <li><a href="#" onclick="showTab('skills'); return false;">Skills</a></li>
-                <li><a href="#" onclick="showTab('projects'); return false;">Projects</a></li>
-                <li><a href="#" onclick="showTab('contact'); return false;">Contact</a></li>
+                <li><a href="javascript:void(0)" onclick="window.showTab('home')" class="active">Home</a></li>
+                <li><a href="javascript:void(0)" onclick="window.showTab('about')">About</a></li>
+                <li><a href="javascript:void(0)" onclick="window.showTab('skills')">Skills</a></li>
+                <li><a href="javascript:void(0)" onclick="window.showTab('projects')">Projects</a></li>
+                <li><a href="javascript:void(0)" onclick="window.showTab('education')">Education</a></li>
+                <li><a href="javascript:void(0)" onclick="window.showTab('contact')">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Home Tab -->
-        <div id="home" class="tab-content">
-            <section class="hero">
-                <div class="hero-content">
-                    <div class="ai-badge">🤖 AI SPECIALIST • MACHINE LEARNING EXPERT • DEEP LEARNING EXPERT</div>
-                    <h1 class="glitch-text">Muhammet Aslan</h1>
-                    <p class="subtitle">Artificial Intelligence Engineer & Computer Scientist</p>
-                    <p style="font-size: 20px; margin: 30px 0; opacity: 0.9;">
-                        <span style="color: var(--primary);">🎓 İnönü University - Computer Engineering</span><br>
-                        Specializing in <span style="background: var(--ai-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">
-                        Artificial Intelligence, Machine Learning & Deep Learning</span><br>
-                        Building the future with intelligent algorithms and innovative solutions.
-                    </p>
-                    <div class="cta-buttons">
-                        <a href="#" onclick="showTab('contact'); return false;" class="btn btn-primary">Let's Collaborate</a>
-                        <a href="#" onclick="showTab('projects'); return false;" class="btn btn-secondary">View My Projects</a>
+    <!-- Home Tab -->
+    <div id="home" class="tab-content active">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="profile-photo">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #667eea, #f093fb); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 60px;">
+                        MA
                     </div>
                 </div>
-            </section>
-        </div>
+                <h1 class="glitch-text">Muhammet Aslan</h1>
+                <p class="subtitle">IA Engineer and Curious and Exploratory</p>
+                <div class="ai-badge">🤖 AI SPECIALIST • MACHINE LEARNING • DEEP LEARNING • ROBOTICS</div>
+                <p style="font-size: 20px; margin: 30px auto; max-width: 800px; line-height: 1.6;">
+                    <span style="color: var(--primary);">🎓 İnönü University - Computer Engineering Student</span><br>
+                    Building the future with intelligent algorithms and innovative solutions.<br>
+                    <span style="font-style: italic; color: var(--accent);">"Let's design the future together as humanity!"</span>
+                </p>
+                <div>
+                    <button class="btn btn-primary" onclick="window.showTab('contact')">Let's Collaborate</button>
+                    <button class="btn btn-secondary" onclick="window.showTab('projects')">View Projects</button>
+                </div>
+            </div>
+        </section>
+    </div>
 
-        <!-- About Tab -->
-        <div id="about" class="tab-content">
-            <section class="section-container">
-                <div class="section-header">
-                    <h2 class="section-title">About Me</h2>
-                    <p class="section-subtitle">AI Engineer & Curious Explorer</p>
-                </div>
-                <div class="about-content">
-                    <div>
-                        <div class="info-box">
-                            <h3 style="color: var(--accent); margin-bottom: 10px;">🎯 AI Engineer & Curious Explorer</h3>
-                            <p>I strive to learn about artificial intelligence both in-depth and from a broad perspective.</p>
-                        </div>
-                        <p style="line-height: 1.8; margin-top: 20px;">
-                            In my journey as an AI Engineer, I explore various subjects that interest me and integrate them into the field of AI. 
-                            My primary areas of reading span a wide range, from popular science to neuroscience, robotics, physics, biology, 
-                            philosophy, chemistry, materials science, astronomy, mathematics, art, literature, ecology, architecture, and economics. 
-                            I am deeply fascinated by the working principles and mechanisms of anything that has a design.
-                        </p>
-                        <p style="line-height: 1.8; margin-top: 20px;">
-                            I love nature and believe it enhances my creativity. I enjoy asking questions like, "How can we do this better?" 
-                            and "How can we optimize this further?" I prefer creating over consuming and embrace the idea of using consumption 
-                            as a means of production.
-                        </p>
-                        <p style="line-height: 1.8; margin-top: 20px; font-style: italic; color: var(--primary);">
-                            "The idea of building the future together excites me, and I take great pleasure in the innovations it will bring. 
-                            Let's design the future together as humanity!"
-                        </p>
-                        
-                        <div style="margin-top: 30px; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
-                            <h4 style="color: var(--accent); margin-bottom: 15px;">🎓 Education</h4>
-                            <p><strong>İnönü University - Computer Engineering</strong> (2019 - Present)</p>
-                            <p style="font-size: 14px; margin-top: 10px;">
-                                Relevant Courses: Algorithms, Compilers, Data Structures, Machine Learning, Data Mining, 
-                                Cybersecurity, Natural Language Processing, Engineering Mathematics, Statistics, 
-                                Artificial Intelligence, Database Management Systems, Image Processing, Computer Networks, 
-                                Mobile Development, Object-Oriented Programming, Internet Programming
-                            </p>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 style="color: var(--primary); margin-bottom: 20px;">🔬 Interests & Research Areas</h3>
-                        <ul style="list-style: none; line-height: 2.2;">
-                            <li style="font-weight: bold; color: var(--accent);">🤖 Generative AI</li>
-                            <li style="font-weight: bold; color: var(--accent);">🚀 Space Technology</li>
-                            <li style="font-weight: bold; color: var(--accent);">🦾 Robotics</li>
-                            <li style="font-weight: bold; color: var(--accent);">🧠 Neuro-Science</li>
-                            <li>📚 Literature & Philosophy</li>
-                            <li>🎨 Art & Design</li>
-                            <li>🌍 Ecology & Sustainability</li>
-                            <li>🏛️ Architecture</li>
-                            <li>💹 Economics</li>
-                            <li>🔬 Materials Science</li>
-                            <li>⚛️ Physics & Chemistry</li>
-                            <li>🌌 Astronomy</li>
-                        </ul>
-                        
-                        <div style="margin-top: 30px; padding: 20px; background: rgba(0, 255, 136, 0.1); border-radius: 10px;">
-                            <h4 style="color: var(--accent); margin-bottom: 15px;">🌐 Languages</h4>
-                            <div style="display: flex; gap: 20px;">
-                                <div>
-                                    <div style="font-size: 24px; font-weight: bold; color: var(--primary);">75%</div>
-                                    <div>Turkish (Native)</div>
-                                </div>
-                                <div>
-                                    <div style="font-size: 24px; font-weight: bold; color: var(--accent);">20%</div>
-                                    <div>English</div>
-                                </div>
-                                <div>
-                                    <div style="font-size: 24px; font-weight: bold; color: var(--secondary);">5%</div>
-                                    <div>Deutsch</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div style="margin-top: 30px; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
-                            <h4 style="color: var(--accent); margin-bottom: 15px;">🎯 Hobbies</h4>
-                            <ul style="list-style: none; line-height: 2;">
-                                <li>📖 Reading books about anything I'm curious about</li>
-                                <li>🎨 Origami</li>
-                                <li>✈️ Traveling</li>
-                                <li>🤝 Meeting and talking with different people</li>
-                                <li>💪 Fitness & Stretching exercises</li>
-                                <li>🏕️ Scouting</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Skills Tab -->
-        <div id="skills" class="tab-content">
-            <section class="section-container">
-                <div class="section-header">
-                    <h2 class="section-title">Technical Skills</h2>
-                    <p class="section-subtitle">Technologies and tools I work with</p>
-                </div>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <h3 style="color: var(--accent); margin-bottom: 10px;">🧠 AI & ML</h3>
-                        <p>Deep Learning, Neural Networks, NLP, Computer Vision</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3 style="color: var(--accent); margin-bottom: 10px;">🐍 Python</h3>
-                        <p>Advanced Python for AI/ML and Backend Development</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3 style="color: var(--accent); margin-bottom: 10px;">🌐 Web Dev</h3>
-                        <p>React, JavaScript, Django, REST APIs</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3 style="color: var(--accent); margin-bottom: 10px;">📱 Mobile</h3>
-                        <p>Kotlin, Android Studio, Mobile Architecture</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3 style="color: var(--accent); margin-bottom: 10px;">☁️ Cloud</h3>
-                        <p>AWS (EC2, S3, Lambda), Cloud Architecture</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3 style="color: var(--accent); margin-bottom: 10px;">🗄️ Database</h3>
-                        <p>PostgreSQL, SQL, Database Design</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3 style="color: var(--accent); margin-bottom: 10px;">🔀 DevOps</h3>
-                        <p>Git, GitHub, Linux, Docker, Kubernetes, CI/CD</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3 style="color: var(--accent); margin-bottom: 10px;">💻 Languages</h3>
-                        <p>C++, Java, C#, MATLAB, Kotlin</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Projects Tab -->
-        <div id="projects" class="tab-content">
-            <section class="section-container">
-                <div class="section-header">
-                    <h2 class="section-title">Featured Projects</h2>
-                    <p class="section-subtitle">My recent work and achievements</p>
-                </div>
-                <div class="projects-container">
-                    <div class="project-card">
-                        <h3 style="color: var(--accent); margin-bottom: 15px;">🔧 Full-Stack Application System</h3>
-                        <p>Designed and developed a full-stack application using Django for backend and modern frontend 
-                           technologies. Integrated real-time data processing and authentication systems.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Django</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">REST API</span>
-                            <span class="tech-tag">PostgreSQL</span>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <h3 style="color: var(--accent); margin-bottom: 15px;">🤖 Machine Learning Implementation</h3>
-                        <p>Implemented machine learning algorithms to enhance system functionality. 
-                           Developed predictive models and automated decision-making processes.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Machine Learning</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">Data Science</span>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <h3 style="color: var(--accent); margin-bottom: 15px;">🗄️ Database Architecture</h3>
-                        <p>Designed and structured databases with PostgreSQL. Theoretical modeling conducted 
-                           using Entity-Relationship (ER) diagrams for optimal performance.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">PostgreSQL</span>
-                            <span class="tech-tag">ER Diagrams</span>
-                            <span class="tech-tag">SQL</span>
-                            <span class="tech-tag">Database Design</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Contact Tab -->
-        <div id="contact" class="tab-content">
-            <section class="section-container">
-                <div class="section-header">
-                    <h2 class="section-title">Let's Connect</h2>
-                    <p class="section-subtitle">Get in touch for collaborations and opportunities</p>
-                </div>
-                <div class="contact-container">
-                    <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(0, 255, 136, 0.1)); 
-                                padding: 25px; border-radius: 15px; margin-bottom: 30px;">
-                        <p style="font-size: 22px; font-weight: bold; color: var(--accent); margin-bottom: 10px;">
-                            🚀 Open for New Opportunities!
-                        </p>
-                        <p style="font-size: 18px;">
-                            I am actively seeking collaborations with innovative research teams and exciting projects. 
-                            Let's build the future of AI together!
-                        </p>
+    <!-- About Tab -->
+    <div id="about" class="tab-content">
+        <section class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">About Me and My Ideas</h2>
+                <p class="section-subtitle">AI Engineer & Curious Explorer</p>
+            </div>
+            <div class="about-content">
+                <div>
+                    <div class="info-box">
+                        <h3 style="color: var(--accent); margin-bottom: 10px;">🎯 My Philosophy</h3>
+                        <p>I strive to learn about artificial intelligence both in-depth and from a broad perspective.</p>
                     </div>
                     
-                    <div class="contact-links">
-                        <a href="mailto:muhammetaslan.ai@gmail.com" class="contact-link">
-                            📧 muhammetaslan.ai@gmail.com
-                        </a>
-                        <a href="https://linkedin.com/in/muhammet-aslan-1911a8209" target="_blank" class="contact-link">
-                            💼 LinkedIn
-                        </a>
-                        <a href="https://github.com/muho497" target="_blank" class="contact-link">
-                            💻 GitHub
-                        </a>
-                        <a href="https://1000kitap.com/Muho497" target="_blank" class="contact-link">
-                            📚 1000 Kitap
-                        </a>
-                        <a href="tel:+905399396783" class="contact-link">
-                            📱 +90 539 939 67 83
-                        </a>
+                    <p style="line-height: 1.8; margin-top: 20px;">
+                        In this process, I also explore other subjects that interest me and integrate some of them into the field of AI. 
+                        My primary areas of reading span a wide range, starting from popular science to neuroscience, robotics, physics, 
+                        biology, philosophy, chemistry, materials science, astronomy, mathematics, art, literature, ecology, architecture, 
+                        and economics.
+                    </p>
+                    
+                    <p style="line-height: 1.8; margin-top: 20px;">
+                        In short, I am deeply fascinated by the working principles and mechanisms of anything that has a design.
+                    </p>
+                    
+                    <p style="line-height: 1.8; margin-top: 20px;">
+                        I love nature and believe it enhances my creativity. I enjoy asking questions like, "How can we do this better?" 
+                        and "How can we optimize this further?" I prefer creating over consuming and embrace the idea of using consumption 
+                        as a means of production.
+                    </p>
+                    
+                    <p style="line-height: 1.8; margin-top: 20px; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 10px; border-left: 4px solid var(--primary);">
+                        <strong style="color: var(--accent);">My Vision:</strong><br>
+                        The idea of building the future together excites me, and I take great pleasure in the innovations it will bring. 
+                        Let's design the future together as humanity!
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">🔬 Interests & Research Areas</h3>
+                    <ul style="list-style: none; line-height: 2.2;">
+                        <li style="font-weight: bold; color: var(--accent);">🤖 Generative AI</li>
+                        <li style="font-weight: bold; color: var(--accent);">🧬 Reinforcement Learning</li>
+                        <li style="font-weight: bold; color: var(--accent);">👁️ Computer Vision</li>
+                        <li style="font-weight: bold; color: var(--accent);">💬 Natural Language Processing</li>
+                        <li style="font-weight: bold; color: var(--accent);">🎯 Expert Systems</li>
+                        <li style="font-weight: bold; color: var(--accent);">🔮 Predictive Analytics</li>
+                        <li style="font-weight: bold; color: var(--accent);">🕸️ Neural Networks</li>
+                        <li style="font-weight: bold; color: var(--accent);">🚀 Space Technology</li>
+                        <li style="font-weight: bold; color: var(--accent);">🦾 Robotics</li>
+                        <li style="font-weight: bold; color: var(--accent);">🧠 Neuro-Science</li>
+                        <li style="font-weight: bold; color: var(--accent);">🧩 Psychology</li>
+                        <li>📚 Literature & Philosophy</li>
+                        <li>🎨 Art & Design</li>
+                        <li>🌍 Ecology & Sustainability</li>
+                        <li>🏛️ Architecture</li>
+                        <li>💹 Economics</li>
+                        <li>🔬 Materials Science</li>
+                        <li>⚛️ Physics & Chemistry</li>
+                        <li>🌌 Astronomy</li>
+                        <li>➕ Mathematics</li>
+                        <li style="font-weight: bold; color: var(--primary);">✨ Everything I wonder about!</li>
+                    </ul>
+                    
+                    <div class="language-container" style="margin-top: 40px;">
+                        <div class="language-item">
+                            <div class="language-circle" style="--percentage: 270deg;">75%</div>
+                            <div>Turkish</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-circle" style="--percentage: 72deg;">20%</div>
+                            <div>English</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-circle" style="--percentage: 18deg;">5%</div>
+                            <div>Deutsch</div>
+                        </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+            
+            <!-- Hobbies Section -->
+            <div style="margin-top: 60px;">
+                <h3 style="color: var(--primary); margin-bottom: 30px; text-align: center; font-size: 32px;">🎯 Hobbies & Activities</h3>
+                <div class="hobbies-grid">
+                    <div class="hobby-item">
+                        <div class="hobby-icon">🎨</div>
+                        <strong>Origami</strong>
+                    </div>
+                    <div class="hobby-item">
+                        <div class="hobby-icon">📚</div>
+                        <strong>Reading</strong>
+                        <p style="font-size: 12px; margin-top: 5px;">Books about anything I'm curious about</p>
+                    </div>
+                    <div class="hobby-item">
+                        <div class="hobby-icon">✈️</div>
+                        <strong>Traveling</strong>
+                    </div>
+                    <div class="hobby-item">
+                        <div class="hobby-icon">🤝</div>
+                        <strong>Meeting People</strong>
+                        <p style="font-size: 12px; margin-top: 5px;">Talking with different people</p>
+                    </div>
+                    <div class="hobby-item">
+                        <div class="hobby-icon">🔍</div>
+                        <strong>Exploring</strong>
+                        <p style="font-size: 12px; margin-top: 5px;">Various activities outside my field</p>
+                    </div>
+                    <div class="hobby-item">
+                        <div class="hobby-icon">💪</div>
+                        <strong>Fitness</strong>
+                    </div>
+                    <div class="hobby-item">
+                        <div class="hobby-icon">🧘</div>
+                        <strong>Stretching</strong>
+                        <p style="font-size: 12px; margin-top: 5px;">Exercises</p>
+                    </div>
+                    <div class="hobby-item">
+                        <div class="hobby-icon">🏕️</div>
+                        <strong>Scouting</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-</body>
-</html>
+
+    <!-- Skills Tab -->
+    <div id="skills" class="tab-content">
+        <section class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Skills & Expertise</h2>
+                <p class="section-subtitle">Technical and Soft Skills</p>
+            </div>
+            
+            <!-- Technical Skills -->
+            <div class="skills-category">
+                <h3>💻 Technical Skills</h3>
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <span class="skill-icon">🤖</span>
+                        <span>Artificial Intelligence & Machine Learning</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-icon">📊</span>
+                        <span>Data Analysis & Data Science</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-icon">🐍</span>
+                        <span>Programming (Python, MATLAB, R, etc.)</span>
