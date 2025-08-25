@@ -112,7 +112,9 @@
             font-weight: bold;
             background: var(--ai-gradient);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
+            color: transparent;
             cursor: pointer;
             text-decoration: none;
         }
@@ -241,7 +243,9 @@
             font-size: 24px;
             background: var(--ai-gradient);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
+            color: transparent;
             margin-bottom: 30px;
             font-weight: bold;
         }
@@ -314,7 +318,9 @@
             margin-bottom: 20px;
             background: linear-gradient(45deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
+            color: transparent;
         }
 
         .section-subtitle {
@@ -605,18 +611,18 @@
         <div id="home" class="tab-content active">
             <section class="hero">
                 <div class="hero-content">
-                    <div class="ai-badge">🤖 AI SPECIALIST • MACHINE LEARNING EXPERT • DEEP LEARNING EXPERT • RESEARCHER</div>
+                    <div class="ai-badge">AI SPECIALIST • MACHINE LEARNING EXPERT • DEEP LEARNING EXPERT • RESEARCHER</div>
                     <h1 class="glitch-text">Muhammet Aslan</h1>
                     <p class="subtitle">AI Engineer, Researcher and Curious Explorer</p>
                     <p style="font-size: 20px; margin: 30px 0; opacity: 0.9;">
-                        <span style="color: var(--primary);">🎓 İnönü University - Computer Engineering</span><br>
-                        Specializing in <span style="background: var(--ai-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">
+                        <span style="color: var(--primary);">İnönü University - Computer Engineering</span><br>
+                        Specializing in <span style="background: var(--ai-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; font-weight: bold;">
                         Artificial Intelligence, Machine Learning & Deep Learning</span><br>
                         Building the future with intelligent algorithms and innovative solutions.
                     </p>
                     <div class="cta-buttons">
-                        <a href="javascript:void(0)" onclick="showTab('contact')" class="btn btn-primary">Let's Collaborate</a>
-                        <a href="javascript:void(0)" onclick="showTab('projects')" class="btn btn-secondary">View My Projects</a>
+                        <a href="javascript:void(0)" onclick="showTab('contact', this)" class="btn btn-primary">Let's Collaborate</a>
+                        <a href="javascript:void(0)" onclick="showTab('projects', this)" class="btn btn-secondary">View My Projects</a>
                     </div>
                 </div>
             </section>
@@ -632,7 +638,7 @@
                 <div class="about-content">
                     <div>
                         <div class="info-box">
-                            <h3 style="color: var(--accent); margin-bottom: 10px;">🎯 AI Engineer & Curious Explorer</h3>
+                            <h3 style="color: var(--accent); margin-bottom: 10px;">AI Engineer & Curious Explorer</h3>
                             <p>I strive to learn about artificial intelligence both in-depth and from a broad perspective.</p>
                         </div>
                         <p style="line-height: 1.8; margin-top: 20px;">
@@ -655,14 +661,14 @@
                         <h3 style="color: var(--primary); margin-bottom: 20px;">🔬 Research Interests & Areas</h3>
                         <ul style="list-style: none; line-height: 2.2;">
                             <li style="font-weight: bold; color: var(--accent);">🤖 Generative AI</li>
-                            <li style="font-weight: bold; color: var(--accent);">🧬 Reinforcement Learning</li>
+                            <li style="font-weight: bold; color: var(--accent);">🎮 Reinforcement Learning</li>
                             <li style="font-weight: bold; color: var(--accent);">👁️ Computer Vision</li>
                             <li style="font-weight: bold; color: var(--accent);">💬 Natural Language Processing</li>
                             <li style="font-weight: bold; color: var(--accent);">🎯 Expert Systems</li>
                             <li style="font-weight: bold; color: var(--accent);">🔮 Predictive Analytics</li>
                             <li style="font-weight: bold; color: var(--accent);">🕸️ Neural Networks</li>
                             <li style="font-weight: bold; color: var(--accent);">🧬 Biology & Computational Biology</li>
-                            <li style="font-weight: bold; color: var(--accent);">🔬 Computational Science</li>
+                            <li style="font-weight: bold; color: var(--accent);">⚗️ Computational Science</li>
                             <li style="font-weight: bold; color: var(--accent);">🚀 Space Technology</li>
                             <li style="font-weight: bold; color: var(--accent);">🦾 Robotics</li>
                             <li style="font-weight: bold; color: var(--accent);">🧠 Neuro-Science</li>
@@ -673,7 +679,7 @@
                             <li>🌍 Ecology & Sustainability</li>
                             <li>🏛️ Architecture</li>
                             <li>💹 Economics</li>
-                            <li>🔬 Materials Science</li>
+                            <li>🧪 Materials Science</li>
                             <li>⚛️ Physics & Chemistry</li>
                             <li>🌌 Astronomy</li>
                             <li style="font-weight: bold; color: var(--primary);">✨ Everything I wonder about!</li>
@@ -733,7 +739,7 @@
                 
                 <!-- Technical Skills -->
                 <div class="skills-category">
-                    <h3>💻 Technical Skills</h3>
+                    <h3>Technical Skills</h3>
                     <div class="skills-list">
                         <div class="skill-item">
                             <span class="skill-icon">🤖</span>
@@ -772,7 +778,7 @@
                 
                 <!-- Cognitive & Creative Skills -->
                 <div class="skills-category">
-                    <h3>🧠 Cognitive & Creative Skills</h3>
+                    <h3>Cognitive & Creative Skills</h3>
                     <div class="skills-list">
                         <div class="skill-item">
                             <span class="skill-icon">🧩</span>
@@ -803,7 +809,7 @@
                 
                 <!-- Interpersonal Skills -->
                 <div class="skills-category">
-                    <h3>🤝 Interpersonal Skills</h3>
+                    <h3>Interpersonal Skills</h3>
                     <div class="skills-list">
                         <div class="skill-item">
                             <span class="skill-icon">👥</span>
@@ -822,7 +828,7 @@
                 
                 <!-- Programming Languages & Tools -->
                 <div class="skills-category">
-                    <h3>🛠️ Programming Languages & Tools</h3>
+                    <h3>Programming Languages & Tools</h3>
                     <div class="skills-list">
                         <div class="skill-item">
                             <span class="skill-icon">🐍</span>
@@ -857,6 +863,10 @@
                             <span>Docker, Kubernetes, Git</span>
                         </div>
                         <div class="skill-item">
+                            <span class="skill-icon">🔗</span>
+                            <span>n8n (Workflow Automation)</span>
+                        </div>
+                        <div class="skill-item">
                             <span class="skill-icon">☁️</span>
                             <span>AWS (EC2, S3, Lambda)</span>
                         </div>
@@ -874,7 +884,7 @@
                 </div>
                 <div class="projects-container">
                     <div class="project-card">
-                        <h3 style="color: var(--accent); margin-bottom: 15px;">🔧 Full-Stack Application System</h3>
+                        <h3 style="color: var(--accent); margin-bottom: 15px;">Full-Stack Application System</h3>
                         <p>Designed and developed a full-stack application using Django for backend and modern frontend 
                            technologies. Integrated real-time data processing and authentication systems.</p>
                         <div class="project-tech">
@@ -885,7 +895,7 @@
                         </div>
                     </div>
                     <div class="project-card">
-                        <h3 style="color: var(--accent); margin-bottom: 15px;">🤖 Machine Learning Implementation</h3>
+                        <h3 style="color: var(--accent); margin-bottom: 15px;">Machine Learning Implementation</h3>
                         <p>Implemented machine learning algorithms to enhance system functionality. 
                            Developed predictive models and automated decision-making processes.</p>
                         <div class="project-tech">
@@ -896,7 +906,7 @@
                         </div>
                     </div>
                     <div class="project-card">
-                        <h3 style="color: var(--accent); margin-bottom: 15px;">🗄️ Database Architecture</h3>
+                        <h3 style="color: var(--accent); margin-bottom: 15px;">Database Architecture</h3>
                         <p>Designed and structured databases with PostgreSQL. Theoretical modeling conducted 
                            using Entity-Relationship (ER) diagrams for optimal performance.</p>
                         <div class="project-tech">
@@ -919,11 +929,11 @@
                 </div>
                 <div style="max-width: 1000px; margin: 0 auto;">
                     <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(240, 147, 251, 0.05)); border-radius: 20px; padding: 40px; border: 2px solid rgba(102, 126, 234, 0.3);">
-                        <h3 style="color: var(--accent); font-size: 28px; margin-bottom: 20px;">🎓 İnönü University</h3>
+                        <h3 style="color: var(--accent); font-size: 28px; margin-bottom: 20px;">İnönü University</h3>
                         <p style="font-size: 20px; color: var(--primary); margin-bottom: 10px;">Computer Engineering Student</p>
                         <p style="color: rgba(255,255,255,0.7); margin-bottom: 30px;">2019 - Present</p>
                         
-                        <h4 style="color: var(--primary); margin-bottom: 20px;">📚 Relevant Courses</h4>
+                        <h4 style="color: var(--primary); margin-bottom: 20px;">Relevant Courses</h4>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
                             <ul style="list-style: none; background: rgba(0, 212, 255, 0.05); padding: 15px; border-radius: 10px;">
                                 <li style="color: var(--accent); font-weight: bold; margin-bottom: 10px;">Core CS</li>
@@ -1055,7 +1065,7 @@
                     
                     <!-- Travel Quote -->
                     <div style="text-align: center; margin-top: 40px; padding: 30px; background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(102, 126, 234, 0.05)); border-radius: 20px; border: 1px solid rgba(0, 255, 136, 0.3);">
-                        <h3 style="color: var(--accent); margin-bottom: 15px;">✈️ More Adventures Await</h3>
+                        <h3 style="color: var(--accent); margin-bottom: 15px;">More Adventures Await</h3>
                         <p style="font-size: 16px; color: rgba(255, 255, 255, 0.8); line-height: 1.6;">
                             Every journey tells a story, and every destination adds a new chapter to my life. 
                             From the bustling streets of İstanbul to the ancient history of Şanlıurfa, 
@@ -1080,7 +1090,7 @@
                     <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(0, 255, 136, 0.1)); 
                                 padding: 25px; border-radius: 15px; margin-bottom: 30px;">
                         <p style="font-size: 22px; font-weight: bold; color: var(--accent); margin-bottom: 10px;">
-                            🚀 Open for New Opportunities!
+                            Open for New Opportunities!
                         </p>
                         <p style="font-size: 18px;">
                             I am actively seeking collaborations with innovative research teams and exciting projects. 
@@ -1090,19 +1100,19 @@
                     
                     <div class="contact-links">
                         <a href="mailto:muhammetaslan.ai@gmail.com" class="contact-link">
-                            📧 muhammetaslan.ai@gmail.com
+                            muhammetaslan.ai@gmail.com
                         </a>
                         <a href="https://linkedin.com/in/muhammet-aslan-1911a8209" target="_blank" class="contact-link">
-                            💼 LinkedIn
+                            LinkedIn
                         </a>
                         <a href="https://github.com/muho497" target="_blank" class="contact-link">
-                            💻 GitHub
+                            GitHub
                         </a>
                         <a href="https://1000kitap.com/Muho497" target="_blank" class="contact-link">
-                            📚 1000 Kitap
+                            1000 Kitap
                         </a>
                         <a href="tel:+905399396783" class="contact-link">
-                            📱 +90 539 939 67 83
+                            +90 539 939 67 83
                         </a>
                     </div>
                 </div>
@@ -1173,30 +1183,6 @@
                 closeMenu();
             }
         });
-        
-        // City info function
-        function showCityInfo(cityName) {
-            const cityInfo = document.getElementById('cityInfo');
-            const cityNameElement = document.getElementById('cityName');
-            const cityDescription = document.getElementById('cityDescription');
-            
-            const cityData = {
-                'Istanbul': '🏛️ İstanbul - The bridge between Europe and Asia, a city of history and culture.',
-                'Ankara': '🏛️ Ankara - The capital city, heart of modern Turkey.',
-                'Izmir': '🌊 İzmir - Pearl of the Aegean, where history meets the sea.',
-                'Antalya': '🏖️ Antalya - Turkish Riviera, paradise on the Mediterranean.',
-                'Bursa': '🕌 Bursa - First Ottoman capital, city of green and silk.',
-                'Trabzon': '⛰️ Trabzon - Gateway to the Black Sea, surrounded by mountains.',
-                'Konya': '🕌 Konya - City of Rumi and whirling dervishes.',
-                'Malatya': '🍑 Malatya - Famous for its apricots and rich history.'
-            };
-            
-            if (cityInfo && cityNameElement && cityDescription) {
-                cityInfo.style.display = 'block';
-                cityNameElement.textContent = cityName;
-                cityDescription.textContent = cityData[cityName] || 'A beautiful city in Turkey.';
-            }
-        }
         
         // Set home tab as active on load
         window.onload = function() {
