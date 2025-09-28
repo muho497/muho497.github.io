@@ -1,149 +1,1011 @@
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammet Aslan - AI Engineer & Computer Scientist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #00d4ff;
+            --secondary: #ff00ff;
+            --accent: #00ff88;
+            --ai-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --dark: #0a0e27;
+            --darker: #060818;
+            --light: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0e27 0%, #060818 50%, #0f1538 100%);
+            overflow: hidden;
+        }
+
+        .floating-particle {
+            position: absolute;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+            33% { transform: translateY(-100px) translateX(50px) scale(1.1); }
+            66% { transform: translateY(50px) translateX(-50px) scale(0.9); }
+        }
+
+        @keyframes ai-pulse {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(102, 126, 234, 0.5), 
+                           0 0 40px rgba(118, 75, 162, 0.3);
+            }
+            50% { 
+                box-shadow: 0 0 30px rgba(102, 126, 234, 0.8), 
+                           0 0 60px rgba(118, 75, 162, 0.5);
+            }
+        }
+
+        .grid-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: grid-move 10s linear infinite;
+        }
+
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.3);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: var(--ai-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            position: relative;
+            border-radius: 20px;
+            background: transparent;
+        }
+
+        .nav-links a.active {
+            background: var(--ai-gradient);
+            font-weight: bold;
+        }
+
+        .nav-links a:hover:not(.active) {
+            background: rgba(102, 126, 234, 0.2);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--light);
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: calc(100vh - 70px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 50px;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1000px;
+        }
+
+        .ai-badge {
+            display: inline-block;
+            background: var(--ai-gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: ai-pulse 3s infinite;
+        }
+
+        .glitch-text {
+            font-size: 72px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { text-shadow: 2px 2px 0 #667eea, -2px -2px 0 #f093fb; }
+            25% { text-shadow: -2px 2px 0 #667eea, 2px -2px 0 #f093fb; }
+            50% { text-shadow: 2px -2px 0 #667eea, -2px 2px 0 #f093fb; }
+            75% { text-shadow: -2px -2px 0 #667eea, 2px 2px 0 #f093fb; }
+        }
+
+        .subtitle {
+            font-size: 24px;
+            background: var(--ai-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 50px;
+        }
+
+        .btn-primary {
+            background: var(--ai-gradient);
+            color: var(--light);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid #667eea;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Section Container */
+        .section-container {
+            padding: 60px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - 70px);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--ai-gradient);
+            border-radius: 2px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .info-box {
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(240, 147, 251, 0.05));
+            border-left: 4px solid #667eea;
+        }
+
+        /* Skills Categories */
+        .skills-category {
+            margin-bottom: 40px;
+        }
+
+        .skills-category h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 24px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-item {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-item:hover {
+            transform: translateX(5px);
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .skill-icon {
+            font-size: 20px;
+        }
+
+        /* Projects Section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(240, 147, 251, 0.05));
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+            border-color: #667eea;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tech-tag {
+            background: rgba(102, 126, 234, 0.2);
+            color: var(--light);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(0, 212, 255, 0.05));
+            border-radius: 30px;
+            padding: 60px;
+            text-align: center;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--light);
+            text-decoration: none;
+            font-size: 16px;
+            padding: 12px 24px;
+            border-radius: 30px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-3px);
+            border-color: #667eea;
+        }
+
+        /* Travel Map Styles */
+        .city-marker {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .city-marker:hover circle {
+            fill: var(--primary);
+            transform: scale(1.2);
+        }
+        
+        .city-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            background: rgba(102, 126, 234, 0.2) !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                right: -100%;
+                background: rgba(10, 14, 39, 0.98);
+                flex-direction: column;
+                padding: 30px;
+                width: 250px;
+                height: 100vh;
+                transition: right 0.3s ease;
+                border-left: 2px solid rgba(102, 126, 234, 0.3);
+                gap: 15px;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                width: 100%;
+            }
+            
+            .nav-links a {
+                font-size: 18px;
+                padding: 15px 20px;
+                border: 1px solid rgba(102, 126, 234, 0.2);
+                text-align: center;
+                display: block;
+                width: 100%;
+                border-radius: 10px;
+                background: rgba(102, 126, 234, 0.05);
+            }
+            
+            .nav-links a.active {
+                background: var(--ai-gradient);
+                border-color: transparent;
+            }
+            
+            .nav-links a:hover:not(.active) {
+                background: rgba(102, 126, 234, 0.3);
+                border-color: var(--primary);
+            }
+            
+            .hero {
+                padding: 0 20px;
+            }
+            
+            .glitch-text { font-size: 48px; }
+            .about-content { grid-template-columns: 1fr; }
+            .section-container { padding: 40px 20px; }
+            .projects-container { grid-template-columns: 1fr; }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .glitch-text { 
+                font-size: 36px; 
+                letter-spacing: 1px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            .ai-badge {
+                font-size: 12px;
+                padding: 6px 15px;
+            }
+            
+            .contact-container {
+                padding: 40px 20px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background -->
+    <div class="bg-animation">
+        <div class="grid-bg"></div>
+        <div class="floating-particle" style="width: 200px; height: 200px; top: 10%; left: 10%;"></div>
+        <div class="floating-particle" style="width: 150px; height: 150px; top: 60%; right: 20%; animation-delay: 2s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="javascript:void(0)" onclick="showTab('home', this)" class="logo">MA.ai</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="javascript:void(0)" onclick="showTab('home', this)" class="active">Home</a></li>
+                <li><a href="javascript:void(0)" onclick="showTab('about', this)">About</a></li>
+                <li><a href="javascript:void(0)" onclick="showTab('skills', this)">Skills</a></li>
+                <li><a href="javascript:void(0)" onclick="showTab('projects', this)">Projects</a></li>
+                <li><a href="javascript:void(0)" onclick="showTab('education', this)">Education</a></li>
+                <li><a href="javascript:void(0)" onclick="showTab('travel', this)">Travel</a></li>
+                <li><a href="javascript:void(0)" onclick="showTab('contact', this)">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Home Tab -->
+        <div id="home" class="tab-content active">
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="ai-badge">AI SPECIALIST • MACHINE LEARNING EXPERT • DEEP LEARNING EXPERT • RESEARCHER</div>
+                    <h1 class="glitch-text">Muhammet Aslan</h1>
+                    <p class="subtitle">AI Engineer, Researcher and Curious Explorer</p>
+                    <p style="font-size: 20px; margin: 30px 0; opacity: 0.9;">
+                        <span style="color: var(--primary);">İnönü University - Computer Engineering</span><br>
+                        Specializing in <span style="background: var(--ai-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; font-weight: bold;">
+                        Artificial Intelligence, Machine Learning & Deep Learning</span><br>
+                        Building the future with intelligent algorithms and innovative solutions.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="javascript:void(0)" onclick="showTab('contact', this)" class="btn btn-primary">Let's Collaborate</a>
+                        <a href="javascript:void(0)" onclick="showTab('projects', this)" class="btn btn-secondary">View My Projects</a>
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <!-- Skills -->
+        <!-- About Tab -->
+        <div id="about" class="tab-content">
+            <section class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me and My Ideas</h2>
+                    <p class="section-subtitle">AI Engineer & Curious Explorer</p>
+                </div>
+                <div class="about-content">
+                    <div>
+                        <div class="info-box">
+                            <h3 style="color: var(--accent); margin-bottom: 10px;">AI Engineer & Curious Explorer</h3>
+                            <p>I strive to learn about artificial intelligence both in-depth and from a broad perspective.</p>
+                        </div>
+                        <p style="line-height: 1.8; margin-top: 20px;">
+                            In this process, I also explore other subjects that interest me and integrate some of them into the field of AI. 
+                            My primary areas of reading span a wide range, starting from popular science to neuroscience, robotics, physics, biology, 
+                            philosophy, chemistry, materials science, astronomy, mathematics, art, literature, ecology, architecture, and economics. 
+                            In short, I am deeply fascinated by the working principles and mechanisms of anything that has a design.
+                        </p>
+                        <p style="line-height: 1.8; margin-top: 20px;">
+                            I love nature and believe it enhances my creativity. I enjoy asking questions like, "How can we do this better?" 
+                            and "How can we optimize this further?" I prefer creating over consuming and embrace the idea of using consumption 
+                            as a means of production.
+                        </p>
+                        <p style="line-height: 1.8; margin-top: 20px; font-style: italic; color: var(--primary);">
+                            "The idea of building the future together excites me, and I take great pleasure in the innovations it will bring. 
+                            Let's design the future together as humanity!"
+                        </p>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--primary); margin-bottom: 20px;">🔬 Research Interests & Areas</h3>
+                        <ul style="list-style: none; line-height: 2.2;">
+                            <li style="font-weight: bold; color: var(--accent);">🤖 Generative AI</li>
+                            <li style="font-weight: bold; color: var(--accent);">🎮 Reinforcement Learning</li>
+                            <li style="font-weight: bold; color: var(--accent);">👁️ Computer Vision</li>
+                            <li style="font-weight: bold; color: var(--accent);">💬 Natural Language Processing</li>
+                            <li style="font-weight: bold; color: var(--accent);">🎯 Expert Systems</li>
+                            <li style="font-weight: bold; color: var(--accent);">🔮 Predictive Analytics</li>
+                            <li style="font-weight: bold; color: var(--accent);">🕸️ Neural Networks</li>
+                            <li style="font-weight: bold; color: var(--accent);">🧬 Biology & Computational Biology</li>
+                            <li style="font-weight: bold; color: var(--accent);">⚗️ Computational Science</li>
+                            <li style="font-weight: bold; color: var(--accent);">🚀 Space Technology</li>
+                            <li style="font-weight: bold; color: var(--accent);">🦾 Robotics</li>
+                            <li style="font-weight: bold; color: var(--accent);">🧠 Neuro-Science</li>
+                            <li style="font-weight: bold; color: var(--accent);">🧩 Psychology</li>
+                            <li style="font-weight: bold; color: var(--accent);">💡 Startup Ecosystem</li>
+                            <li style="font-weight: bold; color: var(--accent);">🔧 Hardware Studies & Design</li>
+                            <li style="font-weight: bold; color: var(--accent);">💾 Embedded Systems</li>
+                            <li style="font-weight: bold; color: var(--accent);">⚡ Electronics & Circuit Design</li>
+                            <li style="font-weight: bold; color: var(--accent);">⚙️ Machine Working Principles</li>
+                            <li>📚 Literature & Philosophy</li>
+                            <li>🎨 Art & Design</li>
+                            <li>🌍 Ecology & Sustainability</li>
+                            <li>🏛️ Architecture</li>
+                            <li>💹 Economics</li>
+                            <li>🧪 Materials Science</li>
+                            <li>⚛️ Physics & Chemistry</li>
+                            <li>🌌 Astronomy</li>
+                            <li>📜 History</li>
+                            <li style="font-weight: bold; color: var(--primary);">✨ Everything I wonder about!</li>
+                        </ul>
+                        
+                        <div style="margin-top: 30px; padding: 20px; background: rgba(255, 0, 255, 0.1); border-radius: 10px; border: 1px solid rgba(255, 0, 255, 0.2);">
+                            <h4 style="color: var(--secondary); margin-bottom: 15px;">🛠️ Periodic Work Experience</h4>
+                            <ul style="list-style: none; line-height: 2; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+                                <li>🌾 Farming</li>
+                                <li>🐄 Animal Husbandry</li>
+                                <li>🚗 Auto Body Repair</li>
+                                <li>🔨 Carpentry</li>
+                                <li>⚙️ Assembly</li>
+                                <li>🏗️ Construction Worker</li>
+                                <li>🚲 Bicycle Repairman</li>
+                                <li>🌲 Forestry</li>
+                                <li>🔧 Plumbing</li>
+                                <li>📦 Porter</li>
+                                <li>🍽️ Busboy</li>
+                                <li>👨‍🍳 Waiter</li>
+                                <li>🍳 Cook</li>
+                                <li>🍸 Bartender / Barboy</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-top: 20px; padding: 20px; background: rgba(0, 212, 255, 0.1); border-radius: 10px; border: 1px solid rgba(0, 212, 255, 0.2);">
+                            <h4 style="color: var(--primary); margin-bottom: 15px;">💼 Managerial and Technical Skills</h4>
+                            <ul style="list-style: none; line-height: 2;">
+                                <li>📊 Accounting</li>
+                                <li>👔 Management</li>
+                                <li>🔧 Operation of multiple electronic, mechanical, and manual devices/tools</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-top: 30px; padding: 20px; background: rgba(0, 255, 136, 0.1); border-radius: 10px;">
+                            <h4 style="color: var(--accent); margin-bottom: 15px;">🌐 Languages</h4>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 20px;">
+                                <div>
+                                    <div style="font-size: 24px; font-weight: bold; color: var(--primary);">75%</div>
+                                    <div>Turkish (Native)</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 24px; font-weight: bold; color: var(--accent);">20%</div>
+                                    <div>English</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 24px; font-weight: bold; color: var(--secondary);">3%</div>
+                                    <div>Deutsch</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 24px; font-weight: bold; color: var(--primary);">1%</div>
+                                    <div>中文 (Chinese)</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 24px; font-weight: bold; color: var(--accent);">1%</div>
+                                    <div>Русский (Russian)</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 30px; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 10px;">
+                            <h4 style="color: var(--accent); margin-bottom: 15px;">🎯 Current Hobbies</h4>
+                            <ul style="list-style: none; line-height: 2;">
+                                <li>📖 Reading books about anything I'm curious about</li>
+                                <li>🎬 Watching movies, series, and documentaries</li>
+                                <li>🎨 Origami</li>
+                                <li>✈️ Traveling</li>
+                                <li>🤝 Meeting and talking with different people</li>
+                                <li>💪 Fitness & Stretching exercises</li>
+                                <li>🏕️ Scouting</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-top: 20px; padding: 20px; background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(102, 126, 234, 0.05)); border-radius: 10px; border: 1px solid rgba(0, 255, 136, 0.2);">
+                            <h4 style="color: var(--primary); margin-bottom: 15px;">🎯 Future Hobbies I Want to Learn</h4>
+                            <ul style="list-style: none; line-height: 2;">
+                                <li>♟️ Chess - Strategic thinking and planning</li>
+                                <li>🎲 Backgammon (Tavla) - Traditional strategy game</li>
+                                <li>⚫ Go - Ancient strategic board game</li>
+                                <li>🥋 MMA & Martial Arts - Self-discipline and physical mastery</li>
+                                <li>🎹 Piano - Musical expression and creativity</li>
+                                <li>🎻 Violin - Classical musical artistry</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Skills Tab -->
         <div id="skills" class="tab-content">
             <section class="section-container">
-                <h2 class="section-title">SKILLS & EXPERTISE</h2>
-                
-                <div class="holo-card">
-                    <h3 style="color: var(--neon-cyan); font-family: 'Orbitron', monospace; margin-bottom: 20px;">TECHNICAL SKILLS</h3>
-                    <div class="skills-grid">
-                        <div class="skill-chip">🤖 AI & MACHINE LEARNING</div>
-                        <div class="skill-chip">📊 DATA ANALYSIS & SCIENCE</div>
-                        <div class="skill-chip">🐍 PYTHON, MATLAB, R</div>
-                        <div class="skill-chip">⚙️ OPTIMIZATION & ALGORITHMS</div>
-                        <div class="skill-chip">🔬 SCIENTIFIC RESEARCH</div>
-                        <div class="skill-chip">🦾 ROBOTICS & AUTOMATION</div>
-                        <div class="skill-chip">📐 MATHEMATICAL MODELING</div>
-                        <div class="skill-chip">🔄 INTERDISCIPLINARY THINKING</div>
-                    </div>
-                </div>
-
-                <div class="holo-card" style="margin-top: 30px;">
-                    <h3 style="color: var(--neon-magenta); font-family: 'Orbitron', monospace; margin-bottom: 20px;">COGNITIVE & CREATIVE SKILLS</h3>
-                    <div class="skills-grid">
-                        <div class="skill-chip">🧩 COMPLEX PROBLEM SOLVING</div>
-                        <div class="skill-chip">💡 CRITICAL THINKING</div>
-                        <div class="skill-chip">📈 PROCESS OPTIMIZATION</div>
-                        <div class="skill-chip">🎨 DESIGN THINKING</div>
-                        <div class="skill-chip">🌿 NATURE-INSPIRED CREATIVITY</div>
-                        <div class="skill-chip">🚀 FUTURE-ORIENTED VISION</div>
-                    </div>
+                <div class="section-header">
+                    <h2 class="section-title">Skills & Expertise</h2>
+                    <p class="section-subtitle">Technical and Soft Skills</p>
                 </div>
                 
-                <div class="holo-card" style="margin-top: 30px;">
-                    <h3 style="color: var(--neon-yellow); font-family: 'Orbitron', monospace; margin-bottom: 20px;">PROGRAMMING LANGUAGES & TOOLS</h3>
-                    <div class="skills-grid">
-                        <div class="skill-chip">🐍 PYTHON (TF, PYTORCH)</div>
-                        <div class="skill-chip">📊 MATLAB & R</div>
-                        <div class="skill-chip">☕ JAVA & C++</div>
-                        <div class="skill-chip">💎 C# & .NET</div>
-                        <div class="skill-chip">📱 KOTLIN (ANDROID)</div>
-                        <div class="skill-chip">🌐 JS, REACT, DJANGO</div>
-                        <div class="skill-chip">🗄️ SQL & POSTGRESQL</div>
-                        <div class="skill-chip">🐳 DOCKER, K8S, GIT</div>
-                        <div class="skill-chip">🔗 N8N AUTOMATION</div>
-                        <div class="skill-chip">☁️ AWS (EC2, S3, LAMBDA)</div>
+                <!-- Technical Skills -->
+                <div class="skills-category">
+                    <h3>Technical Skills</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-icon">🤖</span>
+                            <span>Artificial Intelligence & Machine Learning</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">📊</span>
+                            <span>Data Analysis & Data Science</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🐍</span>
+                            <span>Programming (Python, MATLAB, R, etc.)</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">⚙️</span>
+                            <span>Optimization & Algorithm Design</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🔬</span>
+                            <span>Scientific Research & Analysis</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🦾</span>
+                            <span>Robotics & Automation</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">📐</span>
+                            <span>Mathematical Modeling</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🔄</span>
+                            <span>Interdisciplinary Thinking</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cognitive & Creative Skills -->
+                <div class="skills-category">
+                    <h3>Cognitive & Creative Skills</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-icon">🧩</span>
+                            <span>Complex Problem Solving</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">💡</span>
+                            <span>Critical Thinking & Logical Reasoning</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">📈</span>
+                            <span>Optimization & Process Improvement</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🎨</span>
+                            <span>Design Thinking & Innovation</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🌿</span>
+                            <span>Nature-Inspired Creativity</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🚀</span>
+                            <span>Future-Oriented Vision & Strategic Planning</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Interpersonal Skills -->
+                <div class="skills-category">
+                    <h3>Interpersonal Skills</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-icon">👥</span>
+                            <span>Collaboration & Teamwork</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🔄</span>
+                            <span>Adaptability & Fast Learning</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">💬</span>
+                            <span>Effective Communication</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Programming Languages & Tools -->
+                <div class="skills-category">
+                    <h3>Programming Languages & Tools</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-icon">🐍</span>
+                            <span>Python (TensorFlow, PyTorch, Scikit-learn)</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">📊</span>
+                            <span>MATLAB & R</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">☕</span>
+                            <span>Java & C++</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">💎</span>
+                            <span>C# & .NET</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">📱</span>
+                            <span>Kotlin (Android Development)</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🌐</span>
+                            <span>JavaScript, React, Django</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🗄️</span>
+                            <span>SQL & PostgreSQL</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🐳</span>
+                            <span>Docker, Kubernetes, Git</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🔗</span>
+                            <span>n8n (Workflow Automation)</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">☁️</span>
+                            <span>AWS (EC2, S3, Lambda)</span>
+                        </div>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- Projects -->
+        <!-- Projects Tab -->
         <div id="projects" class="tab-content">
             <section class="section-container">
-                <h2 class="section-title">FEATURED PROJECTS</h2>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">My recent work and achievements</p>
+                </div>
+                <div class="projects-container">
                     <div class="project-card">
-                        <h3 style="color: var(--neon-yellow); font-family: 'Orbitron', monospace; margin-bottom: 15px;">FULL-STACK APPLICATION SYSTEM</h3>
-                        <p style="margin-bottom: 20px;">Designed and developed a full-stack application using Django for backend and modern frontend 
+                        <h3 style="color: var(--accent); margin-bottom: 15px;">Full-Stack Application System</h3>
+                        <p>Designed and developed a full-stack application using Django for backend and modern frontend 
                            technologies. Integrated real-time data processing and authentication systems.</p>
-                        <div>
-                            <span class="tech-tag">DJANGO</span>
-                            <span class="tech-tag">PYTHON</span>
+                        <div class="project-tech">
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">Python</span>
                             <span class="tech-tag">REST API</span>
-                            <span class="tech-tag">POSTGRESQL</span>
+                            <span class="tech-tag">PostgreSQL</span>
                         </div>
                     </div>
-
                     <div class="project-card">
-                        <h3 style="color: var(--neon-yellow); font-family: 'Orbitron', monospace; margin-bottom: 15px;">MACHINE LEARNING IMPLEMENTATION</h3>
-                        <p style="margin-bottom: 20px;">Implemented machine learning algorithms to enhance system functionality. 
+                        <h3 style="color: var(--accent); margin-bottom: 15px;">Machine Learning Implementation</h3>
+                        <p>Implemented machine learning algorithms to enhance system functionality. 
                            Developed predictive models and automated decision-making processes.</p>
-                        <div>
-                            <span class="tech-tag">MACHINE LEARNING</span>
-                            <span class="tech-tag">PYTHON</span>
-                            <span class="tech-tag">TENSORFLOW</span>
-                            <span class="tech-tag">DATA SCIENCE</span>
+                        <div class="project-tech">
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Data Science</span>
                         </div>
                     </div>
-
                     <div class="project-card">
-                        <h3 style="color: var(--neon-yellow); font-family: 'Orbitron', monospace; margin-bottom: 15px;">DATABASE ARCHITECTURE</h3>
-                        <p style="margin-bottom: 20px;">Designed and structured databases with PostgreSQL. Theoretical modeling conducted 
+                        <h3 style="color: var(--accent); margin-bottom: 15px;">Database Architecture</h3>
+                        <p>Designed and structured databases with PostgreSQL. Theoretical modeling conducted 
                            using Entity-Relationship (ER) diagrams for optimal performance.</p>
-                        <div>
-                            <span class="tech-tag">POSTGRESQL</span>
-                            <span class="tech-tag">ER DIAGRAMS</span>
+                        <div class="project-tech">
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">ER Diagrams</span>
                             <span class="tech-tag">SQL</span>
-                            <span class="tech-tag">DATABASE DESIGN</span>
+                            <span class="tech-tag">Database Design</span>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- Education -->
+        <!-- Education Tab -->
         <div id="education" class="tab-content">
             <section class="section-container">
-                <h2 class="section-title">EDUCATION</h2>
-                
-                <div class="holo-card">
-                    <h3 style="color: var(--neon-cyan); font-family: 'Orbitron', monospace; font-size: 32px; margin-bottom: 20px;">İNÖNÜ UNIVERSITY</h3>
-                    <p style="font-size: 24px; color: var(--neon-magenta); margin-bottom: 10px; text-shadow: 0 0 10px var(--neon-magenta);">COMPUTER ENGINEERING STUDENT</p>
-                    <p style="color: var(--neon-yellow); font-size: 20px; margin-bottom: 30px;">2019 - PRESENT</p>
-                    
-                    <h4 style="color: var(--neon-green); font-family: 'Orbitron', monospace; margin-bottom: 30px; font-size: 24px;">RELEVANT COURSES</h4>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                        <div class="holo-card">
-                            <h5 style="color: var(--neon-cyan); font-weight: bold; margin-bottom: 15px;">CORE CS</h5>
-                            <ul style="list-style: none;">
+                <div class="section-header">
+                    <h2 class="section-title">Education</h2>
+                    <p class="section-subtitle">Academic Background</p>
+                </div>
+                <div style="max-width: 1000px; margin: 0 auto;">
+                    <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(240, 147, 251, 0.05)); border-radius: 20px; padding: 40px; border: 2px solid rgba(102, 126, 234, 0.3);">
+                        <h3 style="color: var(--accent); font-size: 28px; margin-bottom: 20px;">İnönü University</h3>
+                        <p style="font-size: 20px; color: var(--primary); margin-bottom: 10px;">Computer Engineering Student</p>
+                        <p style="color: rgba(255,255,255,0.7); margin-bottom: 30px;">2019 - Present</p>
+                        
+                        <h4 style="color: var(--primary); margin-bottom: 20px;">Relevant Courses</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                            <ul style="list-style: none; background: rgba(0, 212, 255, 0.05); padding: 15px; border-radius: 10px;">
+                                <li style="color: var(--accent); font-weight: bold; margin-bottom: 10px;">Core CS</li>
                                 <li>• Algorithms</li>
                                 <li>• Data Structures</li>
                                 <li>• Compilers</li>
                                 <li>• Principles of Programming</li>
                                 <li>• Object Oriented Programming</li>
                             </ul>
-                        </div>
-                        
-                        <div class="holo-card">
-                            <h5 style="color: var(--neon-magenta); font-weight: bold; margin-bottom: 15px;">AI & ML</h5>
-                            <ul style="list-style: none;">
+                            <ul style="list-style: none; background: rgba(0, 212, 255, 0.05); padding: 15px; border-radius: 10px;">
+                                <li style="color: var(--accent); font-weight: bold; margin-bottom: 10px;">AI & ML</li>
                                 <li>• Artificial Intelligence</li>
                                 <li>• Machine Learning</li>
                                 <li>• Natural Language Processing</li>
                                 <li>• Data Mining</li>
                                 <li>• Image Processing</li>
                             </ul>
-                        </div>
-                        
-                        <div class="holo-card">
-                            <h5 style="color: var(--neon-yellow); font-weight: bold; margin-bottom: 15px;">SYSTEMS</h5>
-                            <ul style="list-style: none;">
+                            <ul style="list-style: none; background: rgba(0, 212, 255, 0.05); padding: 15px; border-radius: 10px;">
+                                <li style="color: var(--accent); font-weight: bold; margin-bottom: 10px;">Systems</li>
                                 <li>• Database Management Systems</li>
                                 <li>• Computer Networks</li>
                                 <li>• Cyber Security</li>
                                 <li>• Internet Programming</li>
                                 <li>• Mobile Development</li>
                             </ul>
-                        </div>
-                        
-                        <div class="holo-card">
-                            <h5 style="color: var(--neon-green); font-weight: bold; margin-bottom: 15px;">MATHEMATICS</h5>
-                            <ul style="list-style: none;">
+                            <ul style="list-style: none; background: rgba(0, 212, 255, 0.05); padding: 15px; border-radius: 10px;">
+                                <li style="color: var(--accent); font-weight: bold; margin-bottom: 10px;">Mathematics</li>
                                 <li>• Engineering Mathematics</li>
                                 <li>• Statistics</li>
                                 <li>• Mathematical Modeling</li>
@@ -154,175 +1016,174 @@
             </section>
         </div>
 
-        <!-- Travel -->
+        <!-- Travel Tab -->
         <div id="travel" class="tab-content">
             <section class="section-container">
-                <h2 class="section-title">PLACES I VISITED IN TÜRKIYE</h2>
-                
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px;">
-                    <div class="holo-card" style="text-align: center;">
-                        <div style="font-size: 48px; font-weight: bold; color: var(--neon-cyan); text-shadow: 0 0 20px var(--neon-cyan);">17</div>
-                        <div>CITIES VISITED</div>
-                    </div>
-                    <div class="holo-card" style="text-align: center;">
-                        <div style="font-size: 48px; font-weight: bold; color: var(--neon-magenta); text-shadow: 0 0 20px var(--neon-magenta);">7</div>
-                        <div>DIFFERENT REGIONS</div>
-                    </div>
-                    <div class="holo-card" style="text-align: center;">
-                        <div style="font-size: 48px; font-weight: bold; color: var(--neon-yellow); text-shadow: 0 0 20px var(--neon-yellow);">∞</div>
-                        <div>MEMORIES MADE</div>
-                    </div>
+                <div class="section-header">
+                    <h2 class="section-title">Places I Visited in Türkiye</h2>
+                    <p class="section-subtitle">Cities I've Explored Across Turkey</p>
                 </div>
                 
-                <div class="holo-card">
-                    <h3 style="color: var(--neon-green); font-family: 'Orbitron', monospace; margin-bottom: 30px; text-align: center; font-size: 28px;">MY JOURNEY ACROSS TURKEY</h3>
-                    <div class="city-grid">
-                        <div class="city-card">
-                            <div style="font-size: 30px;">🌺</div>
-                            <div style="font-weight: bold;">AYDIN</div>
-                            <div style="font-size: 12px; margin-top: 5px;">Aegean Region</div>
+                <div style="max-width: 1000px; margin: 0 auto;">
+                    <!-- Statistics -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px;">
+                        <div style="background: rgba(102, 126, 234, 0.1); padding: 25px; border-radius: 15px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3);">
+                            <div style="font-size: 42px; font-weight: bold; color: var(--primary); margin-bottom: 10px;">17</div>
+                            <div style="color: rgba(255,255,255,0.8); font-size: 16px;">Cities Visited</div>
                         </div>
-                        <div class="city-card">
-                            <div style="font-size: 30px;">🏖️</div>
-                            <div style="font-weight: bold;">MUĞLA</div>
-                            <div style="font-size: 12px; margin-top: 5px;">Aegean Region</div>
+                        <div style="background: rgba(0, 255, 136, 0.1); padding: 25px; border-radius: 15px; text-align: center; border: 1px solid rgba(0, 255, 136, 0.3);">
+                            <div style="font-size: 42px; font-weight: bold; color: var(--accent); margin-bottom: 10px;">7</div>
+                            <div style="color: rgba(255,255,255,0.8); font-size: 16px;">Different Regions</div>
                         </div>
-                        <div class="city-card">
-                            <div style="font-size: 30px;">🌊</div>
-                            <div style="font-weight: bold;">İZMİR</div>
-                            <div style="font-size: 12px; margin-top: 5px;">Aegean Region</div>
-                        </div>
-                        <div class="city-card">
-                            <div style="font-size: 30px;">🕌</div>
-                            <div style="font-weight: bold;">KONYA</div>
-                            <div style="font-size: 12px; margin-top: 5px;">Central Anatolia</div>
-                        </div>
-                        <div class="city-card">
-                            <div style="font-size: 30px;">🏛️</div>
-                            <div style="font-weight: bold;">ANKARA</div>
-                            <div style="font-size: 12px; margin-top: 5px;">Central Anatolia</div>
-                        </div>
-                        <div class="city-card">
-                            <div style="font-size: 30px;">🎨</div>
-                            <div style="font-weight: bold;">ESKİŞEHİR</div>
-                            <div style="font-size: 12px; margin-top: 5px;">Central Anatolia</div>
-                        </div>
-                        <div class="city-card">
-                            <div style="font-size: 30px;">🏔️</div>
-                            <div style="font-weight: bold;">KAYSERİ</div>
-                            <div style="font-size: 12px; margin-top: 5px;">Central Anatolia</div>
-                        </div>
-                        <div class="city-card">
-                            <div style="font-size: 30px;">🍑</div>
-                            <div style="font-weight: bold;">MALATYA</div>
-                            <div style="font-size: 12px; margin-top: 5px;">Eastern Anatolia</div>
-                        </div>
-                        <div class="city-card">
-                            <div style="font-size: 30px;">🏺</div>
-                            <div style="font-weight: bold;">ŞANLIURFA</div>
-                            <div style="font-size: 12px; margin-top: 5px;">Southeastern Anatolia</div>
-                        </div>
-                        <div class="city-card">
-                            <div style="font-size: 30px;">🌿</div>
-                            <div style="font-weight: bold;">BURSA</div>
-                            <div style="font-size: 12px; margin-top: 5px;">Marmara Region</div>
-                        </div>
-                        <div class="city-card">
-                            <div style="font-size: 30px;">🕌</div>
-                            <div style="font-weight: bold;">İSTANBUL</div>
-                            <div style="font-size: 12px; margin-top: 5px;">Marmara Region</div>
-                        </div>
-                        <div class="city-card">
-                            <div style="font-size: 30px;">⚡</div>
-                            <div style="font-weight: bold;">ELAZIĞ</div>
-                            <div style="font-size: 12px; margin-top: 5px;">Eastern Anatolia</div>
-                        </div>
-                        <div class="city-card">
-                            <div style="font-size: 30px;">💎</div>
-                            <div style="font-weight: bold;">DENİZLİ</div>
-                            <div style="font-size: 12px; margin-top: 5px;">Aegean Region</div>
-                        </div>
-                        <div class="city-card">
-                            <div style="font-size: 30px;">🌸</div>
-                            <div style="font-weight: bold;">AFYON</div>
-                            <div style="font-size: 12px; margin-top: 5px;">Aegean Region</div>
-                        </div>
-                        <div class="city-card">
-                            <div style="font-size: 30px;">🏔️</div>
-                            <div style="font-weight: bold;">KAHRAMANMARAŞ</div>
-                            <div style="font-size: 12px; margin-top: 5px;">Mediterranean Region</div>
-                        </div>
-                        <div class="city-card">
-                            <div style="font-size: 30px;">❄️</div>
-                            <div style="font-weight: bold;">SİVAS</div>
-                            <div style="font-size: 12px; margin-top: 5px;">Central Anatolia</div>
-                        </div>
-                        <div class="city-card">
-                            <div style="font-size: 30px;">🍇</div>
-                            <div style="font-weight: bold;">MANİSA</div>
-                            <div style="font-size: 12px; margin-top: 5px;">Aegean Region</div>
+                        <div style="background: rgba(255, 0, 255, 0.1); padding: 25px; border-radius: 15px; text-align: center; border: 1px solid rgba(255, 0, 255, 0.3);">
+                            <div style="font-size: 42px; font-weight: bold; color: var(--secondary); margin-bottom: 10px;">∞</div>
+                            <div style="color: rgba(255,255,255,0.8); font-size: 16px;">Memories Made</div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="holo-card" style="margin-top: 30px; text-align: center;">
-                    <h3 style="color: var(--neon-cyan); margin-bottom: 15px;">MORE ADVENTURES AWAIT</h3>
-                    <p style="line-height: 1.6;">
-                        Every journey tells a story, and every destination adds a new chapter to my life. 
-                        From the bustling streets of İstanbul to the ancient history of Şanlıurfa, 
-                        Turkey's diverse beauty continues to inspire my curiosity and love for exploration.
-                    </p>
-                    <p style="font-size: 18px; color: var(--neon-green); margin-top: 20px; font-style: italic; text-shadow: 0 0 10px var(--neon-green);">
-                        "Travel is the only thing you buy that makes you richer."
-                    </p>
+                    
+                    <!-- Visited Cities Grid -->
+                    <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(0, 212, 255, 0.05)); border-radius: 20px; padding: 40px; border: 2px solid rgba(102, 126, 234, 0.3);">
+                        <h3 style="color: var(--primary); margin-bottom: 30px; text-align: center; font-size: 24px;">My Journey Across Turkey</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px;">
+                            <div class="city-tag" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🌺</div>
+                                <div style="font-weight: bold; font-size: 16px;">Aydın</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px;">Aegean Region</div>
+                            </div>
+                            <div class="city-tag" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🏖️</div>
+                                <div style="font-weight: bold; font-size: 16px;">Muğla</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px;">Aegean Region</div>
+                            </div>
+                            <div class="city-tag" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🌊</div>
+                                <div style="font-weight: bold; font-size: 16px;">İzmir</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px;">Aegean Region</div>
+                            </div>
+                            <div class="city-tag" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🕌</div>
+                                <div style="font-weight: bold; font-size: 16px;">Konya</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px;">Central Anatolia</div>
+                            </div>
+                            <div class="city-tag" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🏛️</div>
+                                <div style="font-weight: bold; font-size: 16px;">Ankara</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px;">Central Anatolia</div>
+                            </div>
+                            <div class="city-tag" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🎨</div>
+                                <div style="font-weight: bold; font-size: 16px;">Eskişehir</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px;">Central Anatolia</div>
+                            </div>
+                            <div class="city-tag" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🏔️</div>
+                                <div style="font-weight: bold; font-size: 16px;">Kayseri</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px;">Central Anatolia</div>
+                            </div>
+                            <div class="city-tag" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🍑</div>
+                                <div style="font-weight: bold; font-size: 16px;">Malatya</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px;">Eastern Anatolia</div>
+                            </div>
+                            <div class="city-tag" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🏺</div>
+                                <div style="font-weight: bold; font-size: 16px;">Şanlıurfa</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px;">Southeastern Anatolia</div>
+                            </div>
+                            <div class="city-tag" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🌿</div>
+                                <div style="font-weight: bold; font-size: 16px;">Bursa</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px;">Marmara Region</div>
+                            </div>
+                            <div class="city-tag" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🕌</div>
+                                <div style="font-weight: bold; font-size: 16px;">İstanbul</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px;">Marmara Region</div>
+                            </div>
+                            <div class="city-tag" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">⚡</div>
+                                <div style="font-weight: bold; font-size: 16px;">Elazığ</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px;">Eastern Anatolia</div>
+                            </div>
+                            <div class="city-tag" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">💎</div>
+                                <div style="font-weight: bold; font-size: 16px;">Denizli</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px;">Aegean Region</div>
+                            </div>
+                            <div class="city-tag" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🌸</div>
+                                <div style="font-weight: bold; font-size: 16px;">Afyon</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px;">Aegean Region</div>
+                            </div>
+                            <div class="city-tag" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🏔️</div>
+                                <div style="font-weight: bold; font-size: 16px;">Kahramanmaraş</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px;">Mediterranean Region</div>
+                            </div>
+                            <div class="city-tag" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">❄️</div>
+                                <div style="font-weight: bold; font-size: 16px;">Sivas</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px;">Central Anatolia</div>
+                            </div>
+                            <div class="city-tag" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🍇</div>
+                                <div style="font-weight: bold; font-size: 16px;">Manisa</div>
+                                <div style="font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 5px;">Aegean Region</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Travel Quote -->
+                    <div style="text-align: center; margin-top: 40px; padding: 30px; background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(102, 126, 234, 0.05)); border-radius: 20px; border: 1px solid rgba(0, 255, 136, 0.3);">
+                        <h3 style="color: var(--accent); margin-bottom: 15px;">More Adventures Await</h3>
+                        <p style="font-size: 16px; color: rgba(255, 255, 255, 0.8); line-height: 1.6;">
+                            Every journey tells a story, and every destination adds a new chapter to my life. 
+                            From the bustling streets of İstanbul to the ancient history of Şanlıurfa, 
+                            Turkey's diverse beauty continues to inspire my curiosity and love for exploration.
+                        </p>
+                        <p style="font-size: 14px; color: var(--primary); margin-top: 20px; font-style: italic;">
+                            "Travel is the only thing you buy that makes you richer."
+                        </p>
+                    </div>
                 </div>
             </section>
         </div>
 
-        <!-- Contact -->
+        <!-- Contact Tab -->
         <div id="contact" class="tab-content">
             <section class="section-container">
-                <h2 class="section-title">ESTABLISH CONNECTION</h2>
-                
-                <div class="holo-card" style="text-align: center; margin-bottom: 50px;">
-                    <p style="font-size: 24px; color: var(--neon-green); font-family: 'Orbitron', monospace; letter-spacing: 2px; text-shadow: 0 0 20px var(--neon-green);">
-                        OPEN FOR NEW OPPORTUNITIES!
-                    </p>
-                    <p style="font-size: 18px; margin-top: 20px;">
-                        I am actively seeking collaborations with innovative research teams and exciting projects. 
-                        Let's build the future of AI together!
-                    </p>
+                <div class="section-header">
+                    <h2 class="section-title">Let's Connect</h2>
+                    <p class="section-subtitle">Get in touch for collaborations and opportunities</p>
                 </div>
-
-                <div class="contact-grid">
-                    <div class="contact-card">
-                        <div style="font-size: 40px; margin-bottom: 15px;">📧</div>
-                        <h4 style="color: var(--neon-cyan); font-family: 'Orbitron', monospace; margin-bottom: 10px;">EMAIL</h4>
-                        <a href="mailto:muhammetaslan.ai@gmail.com" style="color: var(--neon-green); text-decoration: none;">muhammetaslan.ai@gmail.com</a>
+                <div class="contact-container">
+                    <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(0, 255, 136, 0.1)); 
+                                padding: 25px; border-radius: 15px; margin-bottom: 30px;">
+                        <p style="font-size: 22px; font-weight: bold; color: var(--accent); margin-bottom: 10px;">
+                            Open for New Opportunities!
+                        </p>
+                        <p style="font-size: 18px;">
+                            I am actively seeking collaborations with innovative research teams and exciting projects. 
+                            Let's build the future of AI together!
+                        </p>
                     </div>
                     
-                    <div class="contact-card">
-                        <div style="font-size: 40px; margin-bottom: 15px;">💼</div>
-                        <h4 style="color: var(--neon-cyan); font-family: 'Orbitron', monospace; margin-bottom: 10px;">LINKEDIN</h4>
-                        <a href="https://linkedin.com/in/muhammet-aslan-1911a8209" target="_blank" style="color: var(--neon-green); text-decoration: none;">Connect</a>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div style="font-size: 40px; margin-bottom: 15px;">🚀</div>
-                        <h4 style="color: var(--neon-cyan); font-family: 'Orbitron', monospace; margin-bottom: 10px;">GITHUB</h4>
-                        <a href="https://github.com/muho497" target="_blank" style="color: var(--neon-green); text-decoration: none;">View Code</a>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div style="font-size: 40px; margin-bottom: 15px;">📚</div>
-                        <h4 style="color: var(--neon-cyan); font-family: 'Orbitron', monospace; margin-bottom: 10px;">1000 KİTAP</h4>
-                        <a href="https://1000kitap.com/Muho497" target="_blank" style="color: var(--neon-green); text-decoration: none;">Book Profile</a>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div style="font-size: 40px; margin-bottom: 15px;">📱</div>
-                        <h4 style="color: var(--neon-cyan); font-family: 'Orbitron', monospace; margin-bottom: 10px;">PHONE</h4>
-                        <a href="tel:+905399396783" style="color: var(--neon-green); text-decoration: none;">+90 539 939 67 83</a>
+                    <div class="contact-links">
+                        <a href="mailto:muhammetaslan.ai@gmail.com" class="contact-link">
+                            muhammetaslan.ai@gmail.com
+                        </a>
+                        <a href="https://linkedin.com/in/muhammet-aslan-1911a8209" target="_blank" class="contact-link">
+                            LinkedIn
+                        </a>
+                        <a href="https://github.com/muho497" target="_blank" class="contact-link">
+                            GitHub
+                        </a>
+                        <a href="https://1000kitap.com/Muho497" target="_blank" class="contact-link">
+                            1000 Kitap
+                        </a>
+                        <a href="tel:+905399396783" class="contact-link">
+                            +90 539 939 67 83
+                        </a>
                     </div>
                 </div>
             </section>
@@ -330,56 +1191,7 @@
     </div>
 
     <script>
-        // Matrix Rain Effect
-        function createMatrixRain() {
-            const matrixBg = document.getElementById('matrixBg');
-            const columns = Math.floor(window.innerWidth / 20);
-            
-            for (let i = 0; i < columns; i++) {
-                const column = document.createElement('div');
-                column.className = 'matrix-column';
-                column.style.left = i * 20 + 'px';
-                column.style.animationDuration = Math.random() * 5 + 5 + 's';
-                column.style.animationDelay = Math.random() * 5 + 's';
-                
-                const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-                let text = '';
-                for (let j = 0; j < 40; j++) {
-                    text += chars[Math.floor(Math.random() * chars.length)] + '<br>';
-                }
-                column.innerHTML = text;
-                matrixBg.appendChild(column);
-            }
-        }
-
-        // Floating Particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 20;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.width = Math.random() * 4 + 2 + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.background = `var(--neon-${['cyan', 'magenta', 'yellow', 'green'][Math.floor(Math.random() * 4)]})`;
-                particle.style.boxShadow = `0 0 10px ${particle.style.background}`;
-                particle.style.animationDuration = Math.random() * 10 + 10 + 's';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Mouse tracking for background effect
-        document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth) * 100;
-            const y = (e.clientY / window.innerHeight) * 100;
-            document.body.style.setProperty('--mouse-x', x + '%');
-            document.body.style.setProperty('--mouse-y', y + '%');
-        });
-
-        // Tab switching
+        // Tab switching functionality
         function showTab(tabName, element) {
             // Hide all tabs
             const tabs = document.querySelectorAll('.tab-content');
@@ -394,15 +1206,13 @@
             });
             
             // Show selected tab
-            setTimeout(() => {
-                const selectedTab = document.getElementById(tabName);
-                if (selectedTab) {
-                    selectedTab.classList.add('active');
-                }
-            }, 100);
+            const selectedTab = document.getElementById(tabName);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
             
-            // Add active class to clicked nav link
-            if (element && element.classList) {
+            // Add active class to clicked nav link if element is provided
+            if (element) {
                 element.classList.add('active');
             }
             
@@ -412,7 +1222,7 @@
             // Scroll to top
             window.scrollTo(0, 0);
         }
-
+        
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             const hamburger = document.querySelector('.hamburger');
@@ -443,1041 +1253,18 @@
                 closeMenu();
             }
         });
-
-        // Initialize
+        
+        // Set home tab as active on load
         window.onload = function() {
-            createMatrixRain();
-            createParticles();
-            
-            // Set home tab as active
             const homeTab = document.getElementById('home');
             if (homeTab) {
                 homeTab.classList.add('active');
             }
-            
-            // Add glitch effect to all cards on hover
-            const cards = document.querySelectorAll('.holo-card, .project-card, .contact-card');
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.animation = 'glitch 0.3s';
-                });
-                card.addEventListener('mouseleave', function() {
-                    this.style.animation = '';
-                });
-            });
-        }
-
-        // Add typing effect to title
-        const title = document.querySelector('.cyber-title');
-        if (title) {
-            const text = title.textContent;
-            title.textContent = '';
-            let i = 0;
-            const typeInterval = setInterval(() => {
-                if (i < text.length) {
-                    title.textContent += text[i];
-                    title.setAttribute('data-text', title.textContent);
-                    i++;
-                } else {
-                    clearInterval(typeInterval);
-                }
-            }, 100);
+            const firstNavLink = document.querySelector('.nav-links a');
+            if (firstNavLink) {
+                firstNavLink.classList.add('active');
+            }
         }
     </script>
 </body>
 </html>
-                <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammet Aslan - AI Engineer | Cyberpunk Portfolio</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --neon-cyan: #00a8cc;
-            --neon-magenta: #d63aff;
-            --neon-yellow: #ffa500;
-            --neon-green: #00ff88;
-            --neon-pink: #ff1493;
-            --dark-bg: #000000;
-            --card-bg: rgba(10, 10, 30, 0.8);
-            --hologram: linear-gradient(45deg, #00a8cc, #d63aff, #00ff88, #ffa500);
-        }
-
-        body {
-            font-family: 'Exo 2', sans-serif;
-            background: #000;
-            color: rgba(255, 255, 255, 0.95);
-            overflow-x: hidden;
-            cursor: crosshair;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-        }
-
-        /* Cursor Effects */
-        body::before {
-            content: '';
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-                rgba(0, 255, 255, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Matrix Rain Background */
-        .matrix-bg {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            opacity: 0.15;
-        }
-
-        .matrix-column {
-            position: absolute;
-            font-family: 'Courier New';
-            font-size: 20px;
-            color: var(--neon-green);
-            text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
-            animation: matrix-rain linear infinite;
-        }
-
-        @keyframes matrix-rain {
-            to { transform: translateY(100vh); }
-        }
-
-        /* Animated Cyber Grid */
-        .cyber-grid {
-            position: fixed;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            z-index: -1;
-            background-image: 
-                linear-gradient(rgba(0, 168, 204, 0.8) 2px, transparent 2px),
-                linear-gradient(90deg, rgba(0, 168, 204, 0.8) 2px, transparent 2px);
-            background-size: 100px 100px;
-            animation: grid-scroll 20s linear infinite;
-            transform: perspective(1000px) rotateX(60deg);
-            opacity: 0.1;
-        }
-
-        @keyframes grid-scroll {
-            0% { transform: perspective(1000px) rotateX(60deg) translateZ(0); }
-            100% { transform: perspective(1000px) rotateX(60deg) translateZ(100px); }
-        }
-
-        /* Holographic Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 50px;
-            background: linear-gradient(90deg, 
-                rgba(0, 100, 120, 0.08), 
-                rgba(100, 0, 120, 0.08), 
-                rgba(0, 100, 120, 0.08));
-            backdrop-filter: blur(20px) brightness(0.9);
-            z-index: 1000;
-            border-bottom: 2px solid;
-            border-image: linear-gradient(90deg, rgba(0, 168, 204, 0.5), rgba(214, 58, 255, 0.5)) 1;
-            animation: nav-glow 3s ease-in-out infinite;
-        }
-
-        @keyframes nav-glow {
-            0%, 100% { box-shadow: 0 5px 20px rgba(0, 168, 204, 0.2); }
-            50% { box-shadow: 0 5px 30px rgba(214, 58, 255, 0.2); }
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Orbitron', monospace;
-            font-size: 32px;
-            font-weight: 900;
-            background: var(--hologram);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: logo-shift 3s ease-in-out infinite;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            text-decoration: none;
-        }
-
-        @keyframes logo-shift {
-            0%, 100% { filter: hue-rotate(0deg); }
-            50% { filter: hue-rotate(180deg); }
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        /* Navigation Links - Sharper */
-        .nav-links a {
-            position: relative;
-            color: var(--neon-cyan);
-            text-decoration: none;
-            text-transform: uppercase;
-            font-family: 'Orbitron', monospace;
-            font-weight: 700;
-            letter-spacing: 2.5px;
-            padding: 10px 20px;
-            overflow: hidden;
-            transition: all 0.3s;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
-            transition: left 0.5s;
-        }
-
-        .nav-links a:hover::before {
-            left: 100%;
-        }
-
-        .nav-links a:hover {
-            color: var(--neon-magenta);
-            text-shadow: 0 0 20px var(--neon-magenta);
-        }
-
-        .nav-links a.active {
-            background: linear-gradient(45deg, 
-                rgba(0, 255, 255, 0.2), 
-                rgba(255, 0, 255, 0.2));
-            border: 1px solid var(--neon-cyan);
-            box-shadow: 
-                0 0 20px var(--neon-cyan),
-                inset 0 0 20px rgba(0, 255, 255, 0.1);
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
-            padding: 5px;
-            z-index: 1001;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--neon-cyan);
-            transition: all 0.3s;
-            border-radius: 3px;
-            box-shadow: 0 0 10px var(--neon-cyan);
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-top: 70px;
-            min-height: calc(100vh - 70px);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 10;
-            position: relative;
-            max-width: 1000px;
-        }
-
-        /* Cyber Title - Sharper */
-        .cyber-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 100px;
-            font-weight: 900;
-            text-transform: uppercase;
-            position: relative;
-            animation: glitch 2s infinite;
-            letter-spacing: 3px;
-            color: #ffffff;
-            text-shadow: 
-                1px 1px 0 #000,
-                -1px -1px 0 #000,
-                1px -1px 0 #000,
-                -1px 1px 0 #000,
-                0 0 5px rgba(0, 168, 204, 0.5);
-        }
-
-        .cyber-title::before,
-        .cyber-title::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .cyber-title::before {
-            animation: glitch-1 0.5s infinite;
-            color: var(--neon-cyan);
-            z-index: -1;
-        }
-
-        .cyber-title::after {
-            animation: glitch-2 0.5s infinite;
-            color: var(--neon-magenta);
-            z-index: -2;
-        }
-
-        @keyframes glitch {
-            0%, 100% { text-shadow: 
-                0 0 10px var(--neon-cyan),
-                0 0 20px var(--neon-cyan),
-                0 0 30px var(--neon-cyan); }
-            20% { text-shadow: 
-                0 0 10px var(--neon-magenta),
-                0 0 20px var(--neon-magenta),
-                0 0 30px var(--neon-magenta); }
-        }
-
-        @keyframes glitch-1 {
-            0%, 100% { clip: rect(42px, 9999px, 44px, 0); }
-            20% { clip: rect(12px, 9999px, 59px, 0); }
-            40% { clip: rect(76px, 9999px, 2px, 0); }
-            60% { clip: rect(25px, 9999px, 78px, 0); }
-            80% { clip: rect(15px, 9999px, 95px, 0); }
-        }
-
-        @keyframes glitch-2 {
-            0%, 100% { clip: rect(25px, 9999px, 99px, 0); transform: translate(-2px); }
-            20% { clip: rect(45px, 9999px, 20px, 0); transform: translate(2px); }
-            40% { clip: rect(85px, 9999px, 40px, 0); transform: translate(-2px); }
-            60% { clip: rect(5px, 9999px, 85px, 0); transform: translate(2px); }
-            80% { clip: rect(60px, 9999px, 15px, 0); transform: translate(-2px); }
-        }
-
-        /* Holographic Badge */
-        .holo-badge {
-            display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(45deg, 
-                var(--neon-cyan), var(--neon-magenta), 
-                var(--neon-yellow), var(--neon-green));
-            background-size: 400% 400%;
-            animation: holo-shift 3s ease-in-out infinite;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            transform: skewX(-10deg);
-            margin-bottom: 30px;
-            font-family: 'Orbitron', monospace;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        @keyframes holo-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .holo-badge::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, 
-                transparent, rgba(255, 255, 255, 0.3), transparent);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        /* Cyber Buttons */
-        .cyber-btn {
-            padding: 20px 40px;
-            background: transparent;
-            border: 2px solid var(--neon-cyan);
-            color: var(--neon-cyan);
-            font-family: 'Orbitron', monospace;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin: 10px;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .cyber-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--neon-cyan);
-            transition: left 0.3s;
-            z-index: -1;
-        }
-
-        .cyber-btn:hover::before {
-            left: 0;
-        }
-
-        .cyber-btn:hover {
-            color: #000;
-            box-shadow: 
-                0 0 30px var(--neon-cyan),
-                inset 0 0 30px rgba(0, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        /* Sections */
-        .section-container {
-            padding: 150px 50px 100px 50px;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .section-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 60px;
-            font-weight: 900;
-            text-align: center;
-            margin-bottom: 50px;
-            margin-top: 20px;
-            background: var(--hologram);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            position: relative;
-        }
-
-        /* Holographic Cards - Sharper Text */
-        .holo-card {
-            background: linear-gradient(135deg, 
-                rgba(0, 255, 255, 0.1), 
-                rgba(255, 0, 255, 0.1));
-            border: 2px solid;
-            border-image: var(--hologram) 1;
-            padding: 30px;
-            margin: 20px 0;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-        
-        .holo-card p, .holo-card li {
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            line-height: 1.8;
-            color: #ffffff;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-        }
-        
-        .holo-card h3, .holo-card h4, .holo-card h5 {
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-shadow: 
-                1px 1px 0 rgba(0, 0, 0, 0.8),
-                0 0 3px rgba(0, 168, 204, 0.3);
-        }
-
-        .holo-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: var(--hologram);
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s;
-            filter: blur(10px);
-        }
-
-        .holo-card:hover::before {
-            opacity: 1;
-        }
-
-        .holo-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 
-                0 20px 40px rgba(0, 255, 255, 0.3),
-                0 20px 40px rgba(255, 0, 255, 0.3);
-        }
-
-        /* Skills Grid - Sharper Text */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .skill-chip {
-            padding: 15px;
-            background: rgba(0, 255, 255, 0.1);
-            border: 1px solid var(--neon-cyan);
-            text-align: center;
-            font-family: 'Orbitron', monospace;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: #ffffff;
-            font-weight: 600;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-        }
-
-        .skill-chip::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--neon-cyan);
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-
-        .skill-chip:hover::after {
-            transform: scaleX(1);
-        }
-
-        .skill-chip:hover {
-            background: rgba(0, 255, 255, 0.2);
-            color: var(--neon-yellow);
-            text-shadow: 0 0 10px var(--neon-yellow);
-            transform: scale(1.05);
-        }
-
-        /* Project Cards */
-        .project-card {
-            background: linear-gradient(135deg, 
-                rgba(0, 0, 0, 0.8), 
-                rgba(0, 255, 255, 0.1));
-            border: 2px solid rgba(0, 255, 255, 0.3);
-            padding: 30px;
-            margin: 20px 0;
-            position: relative;
-            overflow: hidden;
-            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-            transition: all 0.3s;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(0, 255, 255, 0.3), 
-                transparent);
-            animation: scan 3s infinite;
-        }
-
-        @keyframes scan {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .project-card:hover {
-            transform: translateX(10px);
-            border-color: var(--neon-magenta);
-            box-shadow: 
-                -10px 0 30px rgba(255, 0, 255, 0.5),
-                0 0 50px rgba(0, 255, 255, 0.3);
-        }
-
-        /* Tech Tags */
-        .tech-tag {
-            display: inline-block;
-            padding: 5px 15px;
-            margin: 5px;
-            background: transparent;
-            border: 1px solid var(--neon-green);
-            color: var(--neon-green);
-            font-family: 'Courier New', monospace;
-            font-size: 12px;
-            text-transform: uppercase;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .tech-tag:hover {
-            color: #000;
-            background: var(--neon-green);
-            box-shadow: 0 0 20px var(--neon-green);
-        }
-
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-
-        .contact-card {
-            background: rgba(0, 0, 0, 0.8);
-            border: 2px solid var(--neon-cyan);
-            padding: 30px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
-            clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
-        }
-
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, 
-                var(--neon-cyan) 0%, 
-                transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .contact-card:hover::before {
-            opacity: 0.3;
-        }
-
-        .contact-card:hover {
-            transform: scale(1.05);
-            border-color: var(--neon-magenta);
-            box-shadow: 0 0 30px var(--neon-magenta);
-        }
-
-        /* Tab Content */
-        .tab-content {
-            display: none;
-            opacity: 0;
-            transform: translateY(50px);
-            animation: tab-in 0.5s forwards;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes tab-in {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Floating Particles */
-        .particle {
-            position: fixed;
-            pointer-events: none;
-            opacity: 0.5;
-            animation: float-particle 20s infinite linear;
-        }
-
-        @keyframes float-particle {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.5;
-            }
-            90% {
-                opacity: 0.5;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* City Cards for Travel Section */
-        .city-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .city-card {
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.05));
-            border: 2px solid var(--neon-cyan);
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .city-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .city-card:hover::after {
-            left: 100%;
-        }
-
-        .city-card:hover {
-            transform: translateY(-5px) scale(1.05);
-            border-color: var(--neon-magenta);
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.1));
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .cyber-title { font-size: 60px; }
-            .section-title { font-size: 40px; }
-            nav { padding: 15px 20px; }
-            
-            .hamburger {
-                display: flex;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 60px;
-                right: -100%;
-                background: rgba(0, 0, 0, 0.98);
-                flex-direction: column;
-                padding: 30px;
-                width: 250px;
-                height: 100vh;
-                transition: right 0.3s ease;
-                border-left: 2px solid var(--neon-cyan);
-                gap: 15px;
-            }
-            
-            .nav-links.active {
-                right: 0;
-            }
-            
-            .section-container { padding: 50px 20px; }
-        }
-
-        /* Loading Screen */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: fade-out 1s 2s forwards;
-        }
-
-        @keyframes fade-out {
-            to {
-                opacity: 0;
-                pointer-events: none;
-            }
-        }
-
-        .loading-text {
-            font-family: 'Orbitron', monospace;
-            font-size: 30px;
-            color: var(--neon-cyan);
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            animation: pulse 1s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-    </style>
-</head>
-<body>
-    <!-- Loading Screen -->
-    <div class="loading-screen">
-        <div class="loading-text">Initializing...</div>
-    </div>
-
-    <!-- Matrix Rain Background -->
-    <div class="matrix-bg" id="matrixBg"></div>
-    
-    <!-- Cyber Grid -->
-    <div class="cyber-grid"></div>
-
-    <!-- Floating Particles -->
-    <div id="particles"></div>
-
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="javascript:void(0)" onclick="showTab('home', this)" class="logo">MA.AI</a>
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="javascript:void(0)" onclick="showTab('home', this)" class="active">HOME</a></li>
-                <li><a href="javascript:void(0)" onclick="showTab('about', this)">ABOUT</a></li>
-                <li><a href="javascript:void(0)" onclick="showTab('skills', this)">SKILLS</a></li>
-                <li><a href="javascript:void(0)" onclick="showTab('projects', this)">PROJECTS</a></li>
-                <li><a href="javascript:void(0)" onclick="showTab('education', this)">EDUCATION</a></li>
-                <li><a href="javascript:void(0)" onclick="showTab('travel', this)">TRAVEL</a></li>
-                <li><a href="javascript:void(0)" onclick="showTab('contact', this)">CONTACT</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Home -->
-        <div id="home" class="tab-content active">
-            <section class="hero">
-                <div class="hero-content">
-                    <div class="holo-badge">AI SPECIALIST • MACHINE LEARNING EXPERT • DEEP LEARNING EXPERT • RESEARCHER</div>
-                    <h1 class="cyber-title" data-text="MUHAMMET ASLAN">MUHAMMET ASLAN</h1>
-                    <p style="font-size: 28px; margin: 30px 0; font-family: 'Orbitron', monospace; letter-spacing: 3px; background: var(--hologram); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                        AI ENGINEER, RESEARCHER AND CURIOUS EXPLORER
-                    </p>
-                    <p style="font-size: 20px; margin: 20px 0; color: var(--neon-cyan);">
-                        <span style="text-shadow: 0 0 10px var(--neon-cyan);">İNÖNÜ UNIVERSITY - COMPUTER ENGINEERING</span>
-                    </p>
-                    <p style="font-size: 18px; margin: 20px 0; line-height: 1.6;">
-                        SPECIALIZING IN <span style="color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green);">ARTIFICIAL INTELLIGENCE</span>, 
-                        <span style="color: var(--neon-magenta); text-shadow: 0 0 10px var(--neon-magenta);">MACHINE LEARNING</span> & 
-                        <span style="color: var(--neon-yellow); text-shadow: 0 0 10px var(--neon-yellow);">DEEP LEARNING</span>
-                    </p>
-                    <p style="font-size: 16px; margin: 20px 0; color: rgba(255, 255, 255, 0.8);">
-                        Building the future with intelligent algorithms and innovative solutions
-                    </p>
-                    <div style="margin-top: 50px;">
-                        <a href="javascript:void(0)" onclick="showTab('contact', this)" class="cyber-btn">LET'S COLLABORATE</a>
-                        <a href="javascript:void(0)" onclick="showTab('projects', this)" class="cyber-btn">VIEW MY PROJECTS</a>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- About -->
-        <div id="about" class="tab-content">
-            <section class="section-container">
-                <h2 class="section-title">ABOUT ME AND MY IDEAS</h2>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
-                    <div>
-                        <div class="holo-card">
-                            <h3 style="color: var(--neon-cyan); font-family: 'Orbitron', monospace; margin-bottom: 20px;">AI ENGINEER & CURIOUS EXPLORER</h3>
-                            <p style="line-height: 1.8; color: rgba(255, 255, 255, 0.9);">
-                                I strive to learn about artificial intelligence both in-depth and from a broad perspective.
-                            </p>
-                        </div>
-                        
-                        <div class="holo-card" style="margin-top: 20px;">
-                            <p style="line-height: 1.8;">
-                                In this process, I also explore other subjects that interest me and integrate some of them into the field of AI. 
-                                My primary areas of reading span a wide range, starting from popular science to neuroscience, robotics, physics, biology, 
-                                philosophy, chemistry, materials science, astronomy, mathematics, art, literature, ecology, architecture, and economics. 
-                                In short, I am deeply fascinated by the working principles and mechanisms of anything that has a design.
-                            </p>
-                            <p style="line-height: 1.8; margin-top: 20px;">
-                                I love nature and believe it enhances my creativity. I enjoy asking questions like, "How can we do this better?" 
-                                and "How can we optimize this further?" I prefer creating over consuming and embrace the idea of using consumption 
-                                as a means of production.
-                            </p>
-                            <p style="line-height: 1.8; margin-top: 20px; color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green); font-style: italic;">
-                                "The idea of building the future together excites me, and I take great pleasure in the innovations it will bring. 
-                                Let's design the future together as humanity!"
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <div class="holo-card">
-                            <h3 style="color: var(--neon-magenta); font-family: 'Orbitron', monospace; margin-bottom: 20px;">🔬 RESEARCH INTERESTS & AREAS</h3>
-                            <div class="skills-grid">
-                                <div class="skill-chip">🤖 GENERATIVE AI</div>
-                                <div class="skill-chip">🎮 REINFORCEMENT LEARNING</div>
-                                <div class="skill-chip">👁️ COMPUTER VISION</div>
-                                <div class="skill-chip">💬 NLP</div>
-                                <div class="skill-chip">🎯 EXPERT SYSTEMS</div>
-                                <div class="skill-chip">🔮 PREDICTIVE ANALYTICS</div>
-                                <div class="skill-chip">🕸️ NEURAL NETWORKS</div>
-                                <div class="skill-chip">🧬 COMPUTATIONAL BIOLOGY</div>
-                                <div class="skill-chip">⚗️ COMPUTATIONAL SCIENCE</div>
-                                <div class="skill-chip">🚀 SPACE TECHNOLOGY</div>
-                                <div class="skill-chip">🦾 ROBOTICS</div>
-                                <div class="skill-chip">🧠 NEURO-SCIENCE</div>
-                                <div class="skill-chip">🧩 PSYCHOLOGY</div>
-                                <div class="skill-chip">💡 STARTUP ECOSYSTEM</div>
-                                <div class="skill-chip">🔧 HARDWARE DESIGN</div>
-                                <div class="skill-chip">💾 EMBEDDED SYSTEMS</div>
-                                <div class="skill-chip">⚡ CIRCUIT DESIGN</div>
-                                <div class="skill-chip">⚙️ MACHINE PRINCIPLES</div>
-                                <div class="skill-chip">📚 LITERATURE & PHILOSOPHY</div>
-                                <div class="skill-chip">🎨 ART & DESIGN</div>
-                                <div class="skill-chip">🌍 ECOLOGY & SUSTAINABILITY</div>
-                                <div class="skill-chip">🏛️ ARCHITECTURE</div>
-                                <div class="skill-chip">💹 ECONOMICS</div>
-                                <div class="skill-chip">🧪 MATERIALS SCIENCE</div>
-                                <div class="skill-chip">⚛️ PHYSICS & CHEMISTRY</div>
-                                <div class="skill-chip">🌌 ASTRONOMY</div>
-                                <div class="skill-chip">📜 HISTORY</div>
-                                <div class="skill-chip">✨ EVERYTHING I WONDER!</div>
-                            </div>
-                        </div>
-                        
-                        <div class="holo-card" style="margin-top: 20px;">
-                            <h3 style="color: var(--neon-yellow); font-family: 'Orbitron', monospace; margin-bottom: 20px;">🛠️ PERIODIC WORK EXPERIENCE</h3>
-                            <div class="skills-grid">
-                                <div class="skill-chip">🌾 FARMING</div>
-                                <div class="skill-chip">🐄 ANIMAL HUSBANDRY</div>
-                                <div class="skill-chip">🚗 AUTO BODY REPAIR</div>
-                                <div class="skill-chip">🔨 CARPENTRY</div>
-                                <div class="skill-chip">⚙️ ASSEMBLY</div>
-                                <div class="skill-chip">🏗️ CONSTRUCTION</div>
-                                <div class="skill-chip">🚲 BICYCLE REPAIR</div>
-                                <div class="skill-chip">🌲 FORESTRY</div>
-                                <div class="skill-chip">🔧 PLUMBING</div>
-                                <div class="skill-chip">📦 PORTER</div>
-                                <div class="skill-chip">🍽️ BUSBOY</div>
-                                <div class="skill-chip">👨‍🍳 WAITER</div>
-                                <div class="skill-chip">🍳 COOK</div>
-                                <div class="skill-chip">🍸 BARTENDER</div>
-                            </div>
-                        </div>
-                        
-                        <div class="holo-card" style="margin-top: 20px;">
-                            <h3 style="color: var(--neon-cyan); font-family: 'Orbitron', monospace; margin-bottom: 20px;">🌐 LANGUAGES</h3>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 20px;">
-                                <div style="text-align: center;">
-                                    <div style="font-size: 32px; font-weight: bold; color: var(--neon-green); text-shadow: 0 0 20px var(--neon-green);">75%</div>
-                                    <div>TURKISH (NATIVE)</div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <div style="font-size: 32px; font-weight: bold; color: var(--neon-cyan); text-shadow: 0 0 20px var(--neon-cyan);">20%</div>
-                                    <div>ENGLISH</div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <div style="font-size: 32px; font-weight: bold; color: var(--neon-magenta); text-shadow: 0 0 20px var(--neon-magenta);">3%</div>
-                                    <div>DEUTSCH</div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <div style="font-size: 32px; font-weight: bold; color: var(--neon-yellow); text-shadow: 0 0 20px var(--neon-yellow);">1%</div>
-                                    <div>中文</div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <div style="font-size: 32px; font-weight: bold; color: var(--neon-pink); text-shadow: 0 0 20px var(--neon-pink);">1%</div>
-                                    <div>РУССКИЙ</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="holo-card" style="margin-top: 30px;">
-                    <h3 style="color: var(--neon-green); font-family: 'Orbitron', monospace; margin-bottom: 20px;">🎯 CURRENT & FUTURE HOBBIES</h3>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
-                        <div>
-                            <h4 style="color: var(--neon-cyan); margin-bottom: 15px;">CURRENT ACTIVITIES</h4>
-                            <ul style="list-style: none; line-height: 2;">
-                                <li>📖 Reading books about anything I'm curious about</li>
-                                <li>🎬 Watching movies, series, and documentaries</li>
-                                <li>🎨 Origami</li>
-                                <li>✈️ Traveling</li>
-                                <li>🤝 Meeting and talking with different people</li>
-                                <li>💪 Fitness & Stretching exercises</li>
-                                <li>🏕️ Scouting</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 style="color: var(--neon-magenta); margin-bottom: 15px;">FUTURE GOALS</h4>
-                            <ul style="list-style: none; line-height: 2;">
-                                <li>♟️ Chess - Strategic thinking and planning</li>
-                                <li>🎲 Backgammon (Tavla) - Traditional strategy game</li>
-                                <li>⚫ Go - Ancient strategic board game</li>
-                                <li>🥋 MMA & Martial Arts - Self-discipline and physical mastery</li>
-                                <li>🎹 Piano - Musical expression and creativity</li>
-                                <li>🎻 Violin - Classical musical artistry</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
