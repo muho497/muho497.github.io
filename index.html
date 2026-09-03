@@ -62,16 +62,13 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--cyan);outline-offse
 .nav .links::-webkit-scrollbar{display:none}
 .nav .links a{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;color:var(--dim);text-decoration:none;white-space:nowrap;transition:color .2s}
 .nav .links a:hover{color:var(--cyan)}
-.modes{margin-left:auto;display:flex;border:1px solid var(--lineS);flex:none}
-.modes label{
+.modes{margin-left:auto;display:flex;border:1px solid var(--red);flex:none}
+.modes a.inv{background:var(--redG);color:var(--red)}
+.modes a.inv:hover{background:var(--red);color:#fff}
+.modes a{text-decoration:none;
   font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;padding:.5rem .85rem;
   background:transparent;color:var(--dim);border:0;cursor:pointer;transition:all .2s;user-select:none;
 }
-#modePub:checked ~ .nav .modes label[for="modePub"]{background:var(--cyan);color:var(--bg)}
-#modeInv:checked ~ .nav .modes label[for="modeInv"]{background:var(--red);color:#fff}
-#modeInv:checked ~ .nav .links{visibility:hidden}
-#modeInv:checked ~ main #pubView{display:none}
-#modeInv:checked ~ main #invView{display:block}
 
 /* ── layout ── */
 main{padding-top:6.6rem}
@@ -240,37 +237,6 @@ h2.big em{font-style:normal;color:var(--cyan)}
 .chan .cardx:hover{border-color:var(--amber)}
 .handle{font-family:var(--mono);font-size:.76rem;color:var(--cyan);letter-spacing:.04em}
 
-/* ── investor view ── */
-#invView{display:block}
-#modePub:checked ~ main #invView{display:none}
-.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);left:-9999px}
-.confband{
-  position:sticky;top:5.05rem;z-index:40;display:flex;gap:1rem;align-items:center;
-  background:repeating-linear-gradient(-45deg,var(--redG),var(--redG) 12px,rgba(255,51,102,.16) 12px,rgba(255,51,102,.16) 24px);
-  border:1px solid var(--red);padding:.6rem 1.1rem;margin-top:1.2rem;
-  font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;color:var(--red);
-}
-.tbl{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:1.2rem}
-.tbl th{font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;color:var(--faint);text-align:left;padding:.6rem .7rem;border-bottom:1px solid var(--lineS)}
-.tbl td{padding:.6rem .7rem;border-bottom:1px solid var(--line);color:var(--dim)}
-.tbl tr.hl td{color:var(--w);background:var(--cyanG)}
-.tbl td.g{color:var(--green)}.tbl td.r{color:var(--red)}
-.tblwrap{overflow-x:auto}
-.wave{display:grid;grid-template-columns:56px 1fr auto;gap:1rem;align-items:baseline;padding:.85rem .3rem;border-bottom:1px solid var(--line)}
-.wave .n{font-family:var(--orb);font-weight:700;color:var(--cyan);font-size:1rem}
-.wave h3{font-size:1rem;font-weight:700}
-.wave p{color:var(--dim);font-size:.82rem}
-.wave .rev{font-family:var(--mono);font-size:.64rem;color:var(--amber);white-space:nowrap}
-@media(max-width:660px){.wave{grid-template-columns:44px 1fr}.wave .rev{grid-column:2}}
-.fin{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:1.4rem}
-.fin .y{background:var(--bg2);padding:1rem}
-.fin .yy{font-family:var(--mono);font-size:.6rem;color:var(--faint);letter-spacing:.14em}
-.fin .vv{font-family:var(--orb);font-weight:700;font-size:1.25rem;color:var(--green);margin:.2rem 0}
-.fin .dd{font-size:.76rem;color:var(--dim)}
-.ask{display:grid;grid-template-columns:1fr auto;gap:.8rem;padding:.6rem 0;border-bottom:1px dotted var(--line);font-size:.9rem;color:var(--dim)}
-.ask b{font-family:var(--mono);font-size:.72rem;color:var(--amber);font-weight:400}
-.vroad{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.1rem;margin-top:1.4rem}
-
 /* ── etkinlik / blog / feed ── */
 .evrow{display:grid;grid-template-columns:160px 1fr auto;gap:1.1rem;align-items:baseline;padding:.9rem .25rem;border-bottom:1px solid var(--line)}
 .evrow .d{font-family:var(--mono);font-size:.62rem;color:var(--cyan);letter-spacing:.08em}
@@ -300,32 +266,6 @@ h2.big em{font-style:normal;color:var(--cyan)}
 /* ── beta chip ── */
 .beta{font-family:var(--mono);font-size:.5rem;letter-spacing:.22em;color:var(--amber);border:1px solid var(--amber);padding:.15rem .4rem;margin-left:.55rem;background:var(--amberG)}
 
-/* ── document catalog ── */
-.dtools{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:.6rem;align-items:center}
-.dsearch{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;background:var(--bg2);border:1px solid var(--line);color:var(--w);padding:.55rem .8rem;min-width:230px;flex:1}
-.dsearch:focus{outline:none;border-color:var(--cyan)}
-.dcount{font-family:var(--mono);font-size:.56rem;color:var(--faint);letter-spacing:.14em;margin:.4rem 0 1rem}
-.docrow{grid-template-columns:78px 1fr auto auto}
-.docrow .cat{font-family:var(--mono);font-size:.5rem;letter-spacing:.12em;padding:.22rem .45rem;border:1px solid var(--line);color:var(--dim);white-space:nowrap}
-.docrow .cat.hs{color:var(--cyan);border-color:rgba(0,229,255,.35)}.docrow .cat.pp{color:var(--amber);border-color:rgba(255,179,0,.35)}.docrow .cat.sr{color:var(--green);border-color:rgba(0,255,136,.35)}.docrow .cat.fo{color:var(--purple);border-color:rgba(139,92,246,.4)}.docrow .cat.pw{color:var(--red);border-color:rgba(255,51,102,.35)}
-.docrow .t .ok{color:var(--green);font-family:var(--mono);font-size:.62rem;margin-left:.35rem}
-@media(max-width:660px){.docrow{grid-template-columns:1fr}.docrow .cat,.docrow .fmt{justify-self:start}}
-
-/* ── phases ── */
-.phgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
-.phase{border:1px solid var(--line);background:var(--bg2);padding:1.2rem 1.1rem;border-top:3px solid var(--cyan);display:flex;flex-direction:column;gap:.5rem;transition:transform .3s}
-.phase:hover{transform:translateY(-3px)}
-.phase .code{font-family:var(--orb);font-weight:700;font-size:.72rem;letter-spacing:.16em}
-.phase h3{font-size:1.06rem;font-weight:700}
-.phase .per{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;color:var(--faint)}
-.phase .q{font-size:.86rem;color:var(--dim);font-style:italic;flex:1}
-.phase .nums{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem;font-family:var(--mono);font-size:.52rem;letter-spacing:.06em;color:var(--faint)}
-.phase .nums div{border:1px solid var(--line);padding:.35rem .4rem}
-.phase .nums b{display:block;font-size:.7rem;font-weight:400;margin-top:.15rem;color:var(--w)}
-.phase .gate{font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;color:var(--amber);border-left:2px solid var(--amber);padding-left:.55rem;line-height:1.5}
-.loop{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--dim);align-items:center}
-.loop span.s{border:1px solid var(--line);padding:.4rem .75rem;color:var(--cyan)}
-.loop span.ar{color:var(--faint)}
 /* ── language bars ── */
 .langs{display:flex;flex-direction:column;gap:.6rem;max-width:580px}
 .lang{display:grid;grid-template-columns:160px 1fr 96px;gap:.8rem;align-items:center;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--w)}
@@ -333,38 +273,6 @@ h2.big em{font-style:normal;color:var(--cyan)}
 .lang .bar i{display:block;height:100%;background:var(--cyan)}
 .lang .lv{color:var(--dim);text-align:right}
 @media(max-width:560px){.lang{grid-template-columns:110px 1fr 76px}}
-
-/* ── pinboard paper ── */
-.paper{background:#f5f1e8;color:#1a1a1a;border:1px solid #c4bdab;padding:2.1rem 2.2rem 2.4rem;position:relative;transform:rotate(-.35deg);box-shadow:0 22px 60px rgba(0,0,0,.55);font-family:"Fraunces",Georgia,serif;line-height:1.45}
-.paper::before{content:"";position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:17px;height:17px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffd9a0,#b8531c 60%,#5e2708);box-shadow:0 3px 7px rgba(0,0,0,.5)}
-.paper .pmono{font-family:"JetBrains Mono",var(--mono);}
-.paper .pk{font-family:"JetBrains Mono",var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.22em;color:#555;text-transform:uppercase;margin-bottom:.5rem}
-.paper .pt{font-weight:800;font-style:italic;font-size:clamp(1.7rem,4.5vw,2.7rem);line-height:.98;letter-spacing:-.02em;color:#1a1a1a}
-.paper .pt .amp{color:#b8531c;font-weight:400}
-.paper .phead{border-bottom:2px solid #1a1a1a;padding-bottom:1.1rem;margin-bottom:1.2rem;display:flex;flex-wrap:wrap;gap:1.2rem;justify-content:space-between;align-items:flex-end}
-.paper .pmeta{display:flex;flex-wrap:wrap;gap:.9rem;font-family:"JetBrains Mono",var(--mono);font-size:.58rem;letter-spacing:.08em;color:#555}
-.paper .pmeta b{color:#888;font-weight:600;letter-spacing:.16em;margin-right:.3rem}
-.paper .p0{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;align-items:center;background:#1a1a1a;color:#f5f1e8;padding:.75rem 1rem;font-family:"JetBrains Mono",var(--mono);font-size:.62rem;letter-spacing:.08em}
-.paper .p0 .p0k{color:#d9a86c;letter-spacing:.2em}
-.paper .prules{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;margin:.7rem 0 1.6rem;font-family:"JetBrains Mono",var(--mono);font-size:.56rem;letter-spacing:.1em;color:#8a2727}
-.paper .psec{display:flex;align-items:baseline;gap:.8rem;border-bottom:1px solid #c4bdab;margin:1.7rem 0 1rem;padding-bottom:.4rem}
-.paper .psec .rn2{font-style:italic;font-weight:800;font-size:1.5rem;color:#b8531c}
-.paper .psec h4{font-weight:800;font-size:1.15rem;letter-spacing:-.01em}
-.paper .psec .pc{font-family:"JetBrains Mono",var(--mono);font-size:.56rem;letter-spacing:.14em;color:#888;margin-left:auto}
-.paper .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.3rem}
-.paper .pgroup h5{font-family:"JetBrains Mono",var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#1a1a1a;border-bottom:1px solid #1a1a1a;padding-bottom:.3rem;margin-bottom:.5rem;display:flex;justify-content:space-between}
-.paper .pgroup h5 i{font-style:normal;color:#b8531c}
-.paper .pgroup ul{list-style:none}
-.paper .pgroup li{font-size:.8rem;color:#333;padding:.28rem 0;border-bottom:1px dotted #c4bdab}
-.paper .pgroup li b{font-weight:600;color:#1a1a1a}
-.paper .pgroup li em{font-style:normal;font-family:"JetBrains Mono",var(--mono);font-size:.56rem;letter-spacing:.06em;color:#8a2727;white-space:nowrap}
-.paper .pgroup li em.ok{color:#4a6b3e}
-.paper .pfoot{margin-top:1.9rem;border-top:2px solid #1a1a1a;padding-top:1.1rem;text-align:center}
-.paper .pfoot .big{font-style:italic;font-weight:800;font-size:1.25rem}
-.paper .pfoot .big span{color:#b8531c}
-.paper .pfoot .rules{display:flex;flex-wrap:wrap;gap:.5rem 1.8rem;justify-content:center;margin:.9rem 0 .7rem;font-family:"JetBrains Mono",var(--mono);font-size:.56rem;letter-spacing:.08em;color:#555;text-align:left}
-.paper .pfoot .stamp{font-family:"JetBrains Mono",var(--mono);font-size:.54rem;letter-spacing:.2em;color:#888}
-@media(max-width:660px){.paper{padding:1.4rem 1.1rem 1.8rem;transform:none}}
 
 /* ── footer ── */
 footer{padding:2.8rem 0 4rem;color:var(--faint)}
@@ -384,11 +292,7 @@ html.js-reveal .rv.in{opacity:1;transform:none}
   .hero{min-height:auto;padding:2.6rem 0 4rem}
 }
 </style>
-</head>
-<body>
-<input type="radio" name="viewmode" id="modePub" class="vh" checked hidden>
-<input type="radio" name="viewmode" id="modeInv" class="vh" hidden>
-
+</head><body>
 <!-- ══ TELEMETRY ══ -->
 <div class="tele">
   <span class="dot"></span><span>NEXUS·APEX // ONLINE</span>
@@ -406,20 +310,19 @@ html.js-reveal .rv.in{opacity:1;transform:none}
     <a href="#platforms">PRODUCT</a>
     <a href="#vision">TECHNOLOGY</a>
     <a href="#divisions">DIVISIONS</a>
-    <a href="#phases">ROADMAP</a>
+    <a href="nexus-apex-roadmap.html">ROADMAP</a>
     <a href="#projects">PROJECTS</a>
-    <a href="#events">EVENTS</a>
+    <a href="nexus-apex-events.html">EVENTS</a>
     <a href="#team">TEAM</a>
     <a href="#careers">CAREERS</a>
     <a href="#blog">JOURNAL</a>
     <a href="#gallery">GALLERY</a>
-    <a href="#docs">DOCS</a>
+    <a href="nexus-apex-docs.html">DOCS</a>
     <a href="#opendoor">OPEN DOOR</a>
     <a href="#social">CONTACT</a>
   </div>
   <div class="modes" role="group" aria-label="View mode">
-    <label for="modePub" id="btnPub">SHOWCASE</label>
-    <label for="modeInv" id="btnInv" class="inv">INVESTOR</label>
+    <a class="inv" href="nexus-apex-investor.html">INVESTOR →</a>
   </div>
 </nav>
 
@@ -614,56 +517,10 @@ html.js-reveal .rv.in{opacity:1;transform:none}
 <!-- ══ PHASES ══ -->
 <section id="phases">
   <div class="wrap">
-    <p class="eyebrow rv">// COMPANY ROADMAP — LEAN PHASES</p>
+    <p class="eyebrow rv">// COMPANY ROADMAP</p>
     <h2 class="big rv">SIX PHASES — <em>EACH GATE EARNS THE NEXT</em></h2>
-    <p class="lede rv">The holding is not built at once. It is built as a lean machine: <b>minimum cost, maximum speed, maximum profit, maximum learning, focused failure.</b> No phase opens until the previous gate condition is met.</p>
-    <div class="chips rv" style="margin-bottom:1.6rem">
-      <span class="chip c">⚡ MIN COST — every cent on learning, not buildings</span>
-      <span class="chip c">🚀 MAX SPEED — 2-week sprints, MVP in 6 weeks</span>
-      <span class="chip c">💰 MAX PROFIT — a revenue path from day one, sell software first</span>
-      <span class="chip c">🧠 MAX LEARNING — every decision produces data, data updates decisions</span>
-      <span class="chip c">💥 FOCUSED FAILURE — make the cheap mistake early, the expensive one never</span>
-    </div>
-    <div class="phgrid rv" id="phaseGrid">
-      <div class="phase" style="border-top-color:#00E5FF"><span class="code" style="color:#00E5FF">FAZ 0</span><h3>Zero-Capital Lab</h3><span class="per">Months 1–3</span><p class="q">"Don't buy hardware. Write a simulator. Find a customer."</p><div class="nums"><div>COST<b>$0–5K</b></div><div>REVENUE<b>$0</b></div><div>BREAK-EVEN<b>—</b></div></div><div class="gate">GATE → At least one customer says yes → Phase 1</div></div>
-      <div class="phase" style="border-top-color:#3B82F6"><span class="code" style="color:#3B82F6">FAZ 1</span><h3>Paid MVP</h3><span class="per">Months 4–12</span><p class="q">"Don't build before you sell. The user pays → then you build."</p><div class="nums"><div>COST<b>$30–80K</b></div><div>REVENUE<b>$20–60K</b></div><div>BREAK-EVEN<b>Mo 10–12</b></div></div><div class="gate">GATE → $20K MRR or a $200K project contract → Phase 2</div></div>
-      <div class="phase" style="border-top-color:#8B5CF6"><span class="code" style="color:#8B5CF6">FAZ 2</span><h3>Product-Market Fit</h3><span class="per">Months 13–30</span><p class="q">"Carry the first three divisions to profit, fund the rest."</p><div class="nums"><div>COST<b>$150–400K</b></div><div>REVENUE<b>$200K–1M</b></div><div>BREAK-EVEN<b>Mo 22–26</b></div></div><div class="gate">GATE → 3 profitable divisions + $1M ARR → Phase 3</div></div>
-      <div class="phase" style="border-top-color:#00FF88"><span class="code" style="color:#00FF88">FAZ 3</span><h3>Scale Machine</h3><span class="per">Months 31–54</span><p class="q">"Copy the profitable division's playbook. The system funds itself."</p><div class="nums"><div>COST<b>$1–5M</b></div><div>REVENUE<b>$3–15M</b></div><div>BREAK-EVEN<b>Mo 40–44</b></div></div><div class="gate">GATE → $10M ARR + NX-EDGE chip ready → Phase 4</div></div>
-      <div class="phase" style="border-top-color:#FFB300"><span class="code" style="color:#FFB300">FAZ 4</span><h3>Platform & Ecosystem</h3><span class="per">Months 55–84</span><p class="q">"Rivals end up having to use Nexus OS. Platform network effect."</p><div class="nums"><div>COST<b>$5–20M</b></div><div>REVENUE<b>$20–100M</b></div><div>BREAK-EVEN<b>Mo 66–72</b></div></div><div class="gate">GATE → $50M ARR + proven ecosystem network effect → Phase 5</div></div>
-      <div class="phase" style="border-top-color:#A78BFA"><span class="code" style="color:#A78BFA">FAZ 5</span><h3>Civilization Infrastructure</h3><span class="per">2032+</span><p class="q">"From Türkiye to the world. From the world to the universe."</p><div class="nums"><div>COST<b>$50M+</b></div><div>REVENUE<b>$200M+</b></div><div>BREAK-EVEN<b>Self-funding</b></div></div><div class="gate">GATE → Humanity becomes a multi-planetary species</div></div>
-    </div>
-    <div class="loop rv"><span class="s">01 TRY</span><span class="ar">▸</span><span class="s">02 MEASURE</span><span class="ar">▸</span><span class="s">03 LEARN</span><span class="ar">▸</span><span class="s">04 PIVOT</span><span class="ar">▸</span><span class="s">05 REPEAT</span><span style="margin-left:auto">BUILD → MEASURE → LEARN → PIVOT · one cycle every two weeks</span></div>
-
-    <div class="fh rv" style="margin-top:2.8rem">// RESEARCH NETWORK — MATERIALS LAB · POST-PHASE 3 (2030+)</div>
-    <p class="lede rv" style="font-size:.95rem">Deliberately late: a material takes 8–12 years from lab to product, so the lab opens once every division is an internal customer and the holding funds its own R&amp;D. Model: <b>PhD scholarships + equipment funding to universities, in return for IP sharing and output rights.</b></p>
-    <div class="grid g4 rv">
-      <div class="cardx"><span class="k" style="color:var(--amber)">FOCUS 01</span><h3>Aerospace Composites</h3><p>CFRP + graphene hybrids (40% lighter), ceramic-matrix composites to 1600°C, bamboo-carbon hybrids, ablative re-entry coatings.</p></div>
-      <div class="cardx"><span class="k" style="color:var(--amber)">FOCUS 02</span><h3>Energy Storage</h3><p>Solid-state batteries (2× UAV flight time), supercapacitors for robot actuators, hydrogen storage, thermal batteries for Mars nights.</p></div>
-      <div class="cardx"><span class="k" style="color:var(--amber)">FOCUS 03</span><h3>Biomaterials &amp; Medical</h3><p>Biocompatible robot coatings, piezoelectric bone implants, antimicrobial surfaces for space, 3D bio-printed scaffolds.</p></div>
-      <div class="cardx"><span class="k" style="color:var(--amber)">FOCUS 04</span><h3>Smart &amp; Programmable Matter</h3><p>Shape-memory alloys, self-healing polymers, piezo sensor skin — and the far horizon: morphology-changing vehicles (ATOMOS).</p></div>
-    </div>
-    <div class="chips rv" style="margin-top:1rem">
-      <span class="chip">İTÜ Materials Eng.</span><span class="chip">ODTÜ METU-MEMS</span><span class="chip">MIT DMSE</span><span class="chip">ETH Zürich</span><span class="chip">Tsinghua IMP-MSE</span><span class="chip">KTH Stockholm · ESA link</span><span class="chip a">TÜBİTAK MAM Gebze — external lab first</span>
-    </div>
-
-    <div class="fh rv" style="margin-top:2.8rem">// FRONTIER SCIENCE CENTER — QUANTUM &amp; EXPERIMENTAL TECHNOLOGIES · POST-PHASE 3 (2030+)</div>
-    <p class="lede rv" style="font-size:.95rem">A physical center for the technologies that don't fit a product roadmap yet. It opens alongside the Materials Lab, shares its university network, and runs on one rule: <b>every bench has a named division as its customer.</b></p>
-    <div class="grid g4 rv">
-      <div class="cardx"><span class="k" style="color:var(--purple)">LAB 01</span><h3>Quantum</h3><p>Quantum sensing for navigation without GPS, QKD links toward the NX-Quantum network vision, cloud-quantum access for materials simulation, NX-QUANTUM silicon as the far target.</p></div>
-      <div class="cardx"><span class="k" style="color:var(--purple)">LAB 02</span><h3>Experimental Matter</h3><p>ATOMOS testbeds: shape-memory, self-healing and programmable structures — sitting between the Materials Lab and the 3D AM Center.</p></div>
-      <div class="cardx"><span class="k" style="color:var(--purple)">LAB 03</span><h3>Neuro &amp; BCI Bench</h3><p>The neuroscience pillar made physical: non-invasive BCI, attention and learning studies feeding SHEPHERD-1 and KAIROS·FLUX.</p></div>
-      <div class="cardx"><span class="k" style="color:var(--purple)">LAB 04</span><h3>Swarm &amp; Autonomy Arena</h3><p>A physical testbed for NX-SWM-001: quadrotor and ground-robot swarms, emergence experiments, sim-to-real for SENTINEL, POSEIDON and ORBITAL-1.</p></div>
-    </div>
-
-    <div class="fh rv" style="margin-top:2.8rem">// HELIOS — FROM EARTH ORBIT TO THE SOLAR SYSTEM · 2030 → 2050+</div>
-    <p class="lede rv" style="font-size:.95rem">The endgame of Phase 5, written as stages so it can be audited: an Earth-orbit defense shield, then data centers in orbit, on the Moon, and across the solar system — <b>powered by the Sun</b>. Not first-of-a-kind: orbital compute is already being flown by others. Nexus Apex's claim is the integrated stack — surveillance, shield, silicon, energy.</p>
-    <div class="grid g4 rv">
-      <div class="cardx" style="border-top:2px solid var(--cyan)"><span class="k" style="color:var(--cyan)">H-1 · 2030–2035</span><h3>Earth-Orbit Defense Shield</h3><p>ORBITAL-1's detection layer grows into active protection: debris/MMOD tracking, collision avoidance and interceptor cueing for allied assets — KALKAN's fifth layer, in orbit.</p><div class="foot">CUSTOMER → SPACE SYSTEMS · KALKAN · TUA · CONSOLE → NX-EODS-001</div></div>
-      <div class="cardx" style="border-top:2px solid var(--amber)"><span class="k" style="color:var(--amber)">H-2 · 2032–2038</span><h3>Orbital Data Center</h3><p>Solar-powered compute satellites on NX-SPACE radiation-hardened silicon, radiative cooling, laser interlinks — protected by the shield above it, running NX-DC-001's software stack from below.</p><div class="foot">CUSTOMER → NEXUS AI LAB · MaaS · ALLIED CLOUD</div></div>
-      <div class="cardx" style="border-top:2px solid var(--green)"><span class="k" style="color:var(--green)">H-3 · 2038–2045</span><h3>Lunar Data Center</h3><p>Polar-ridge sites for near-permanent sunlight, lava-tube or regolith shielding against radiation, SMR power through the lunar night — the Space Colony Center's first paying tenant.</p><div class="foot">CUSTOMER → SPACE COLONY CENTER · ENERGY DIVISION</div></div>
-      <div class="cardx" style="border-top:2px solid var(--purple)"><span class="k" style="color:var(--purple)">H-4 · 2045+</span><h3>Solar-System Compute Network</h3><p>Sun-powered nodes at Sun–Earth L1/L2, Mars orbit and asteroid-belt relays, laser-linked, running on space-based solar power at commercial scale — the complete solar system as one machine.</p><div class="foot">CUSTOMER → EVERY DIVISION · CIVILIZATION INFRASTRUCTURE</div></div>
-    </div>
-    <div class="chips rv" style="margin-top:1rem"><span class="chip a">GATE: nothing leaves Earth before ORBITAL-1 ships and NX-DC-001 runs</span><span class="chip">Prior art: Starcloud-1 — GPU in orbit (2025)</span><span class="chip">Google Project Suncatcher (prototypes ~2027)</span><span class="chip">China's Three-Body Computing Constellation (2025)</span><span class="chip">Lonestar lunar data-storage payload (2025)</span></div>
+    <p class="lede rv">The lean phase machine FAZ 0 → FAZ 5 with costs, revenues and gates; the Materials Lab research network; the Frontier Science Center; and HELIOS — from Earth orbit to the solar system.</p>
+    <div class="cta rv"><a class="btn primary" href="nexus-apex-roadmap.html">OPEN THE ROADMAP →</a></div>
   </div>
 </section>
 
@@ -773,41 +630,8 @@ html.js-reveal .rv.in{opacity:1;transform:none}
   <div class="wrap">
     <p class="eyebrow rv">// WHERE TO FIND US</p>
     <h2 class="big rv">EVENTS &amp; <em>FAIRS</em></h2>
-    <p class="lede rv">Attendance record + radar. <b>A fair log is the raw material of a reference network</b> — file every attendance with the contacts it produced.</p>
-
-    <div class="fh rv">// ATTENDANCE RECORD — LOGGED</div>
-    <div class="rv">
-      <div class="evrow slot"><span class="d">+ DATE</span><div><h3>Log an event you attended here</h3><p>Event name · city · booth/session · contacts gained</p></div><span class="tagx">SLOT</span></div>
-      <div class="evrow slot"><span class="d">+ DATE</span><div><h3>One more record</h3><p>Conferences, hackathons, scout camps, field visits — everything counts</p></div><span class="tagx">SLOT</span></div>
-      <div class="evrow slot"><span class="d">+ DATE</span><div><h3>One more record</h3><p>Link its photo to the Gallery, its write-up to the Blog</p></div><span class="tagx">SLOT</span></div>
-    </div>
-
-    <div class="fh rv" style="margin-top:2.4rem">// RADAR — TARGET CALENDAR 2026–27</div>
-    <div class="rv">
-      <div class="evrow hot"><span class="d">9 – 10 SEP 2026</span><div><h3>GITEX Ai Türkiye — Istanbul</h3><p>Istanbul Expo Center · inaugural edition, hosted by Invest in Türkiye · 500+ exhibitors, investors, policymakers; Google Cloud, HPE &amp; NVIDIA, Huawei confirmed. Investor-visibility play — bring the deck.</p></div><span class="tagx">TARGET · 9 DAYS</span></div>
-      <div class="evrow"><span class="d">17 – 19 SEP 2026</span><div><h3>Expo3D İstanbul — Additive Manufacturing</h3><p>Istanbul Expo Center · Türkiye's only AM / 3D-printing fair + 5th Int'l 3D Printing &amp; AM Conference (Yıldız Technical University). Feeds the 3D AM Center division and the ASCENT-1 materials track.</p></div><span class="tagx">TARGET</span></div>
-      <div class="evrow"><span class="d">30 SEP – 4 OCT 2026</span><div><h3>TEKNOFEST 2026 — Şanlıurfa</h3><p>GAP Airport · Türkiye's aerospace &amp; tech festival. The Steel Dome air-defense and secure satcom competition tracks speak the KALKAN/ORBITAL language.</p></div><span class="tagx">TARGET</span></div>
-      <div class="evrow hot"><span class="d">5 – 9 OCT 2026</span><div><h3>IAC 2026 — Antalya ★</h3><p>77th International Astronautical Congress · NEST Congress Center · first ever in Türkiye. ORBITAL-1 Session A6.3 stage target — abstract accepted, full paper in progress.</p></div><span class="tagx">PRIME TARGET</span></div>
-      <div class="evrow"><span class="d">14 – 17 OCT 2026</span><div><h3>AgroGreen Bursa — 2nd Agriculture &amp; Livestock Fair</h3><p>Bursa Fair Center · 2025 edition drew 400+ exhibitors and 247K+ visitors. Field for the agri-tech / PLF exploration and a livestock-CV extension of ÇobanAI.</p></div><span class="tagx">TARGET</span></div>
-      <div class="evrow"><span class="d">17 – 20 NOV 2026</span><div><h3>Formnext 2026 — Frankfurt</h3><p>Messe Frankfurt · the global AM hub: 800+ exhibitors, 38,000 visitors. Materials Lab / 3D AM benchmark; European AM contacts for the D-05 track.</p></div><span class="tagx">RADAR</span></div>
-      <div class="evrow"><span class="d">26 – 28 NOV 2026</span><div><h3>CHTF 2026 — China Hi-Tech Fair, Shenzhen</h3><p>Shenzhen World Exhibition &amp; Convention Center · 28th edition, 500K+ visitors. Asia Advanced Materials expo (rare earths, energy storage) + Commercial Space Expo — the Tsinghua / ASCENT-1 China corridor.</p></div><span class="tagx">RADAR</span></div>
-      <div class="evrow"><span class="d">6 – 9 JAN 2027</span><div><h3>CES 2027 — Las Vegas</h3><p>Las Vegas Convention Center · Eureka Park startup floor; investor and media exposure. Only worth it with a shipped product in hand.</p></div><span class="tagx">RADAR</span></div>
-      <div class="evrow"><span class="d">18 – 22 JAN 2027</span><div><h3>World Economic Forum — Annual Meeting, Davos</h3><p>Davos Congress Centre, Davos-Klosters · 57th edition, 3,000+ leaders from government, business, academia and the arts. Main venue is invitation-only — realistic doors are WEF UpLink, the Technology Pioneers programme, Global Shapers (under-30) and Promenade side events. The "humanity forward" mandate is the pitch here.</p></div><span class="tagx">RADAR · LONG SHOT</span></div>
-      <div class="evrow"><span class="d">18 – 22 JAN 2027</span><div><h3>World Economic Forum — Annual Meeting, Davos</h3><p>57th Annual Meeting · Davos Congress Centre, Davos-Klosters · 3,000+ leaders from government, business, academia, civil society and the arts. Access is by invitation — the realistic door for a startup is the WEF Technology Pioneers cohort or an UpLink challenge, which makes this a Phase 3–4 target, not a 2027 trip. Fits the "humanity forward" mandate exactly.</p></div><span class="tagx">LONG-RANGE TARGET</span></div>
-      <div class="evrow"><span class="d">18 – 22 JAN 2027</span><div><h3>World Economic Forum — Annual Meeting, Davos</h3><p>Davos Congress Centre, Davos-Klosters · 57th edition, 3,000+ leaders from government, business, academia and the arts. Main badge is invitation-only; realistic routes are the Open Forum public sessions and the Promenade houses in 2027, then the Technology Pioneers / Global Innovators community and the June "Summer Davos" (AMNC, China) once revenue exists. The "humanity forward" mandate is the story to tell there.</p></div><span class="tagx">RADAR → TARGET 2028</span></div>
-      <div class="evrow"><span class="d">2027</span><div><h3>NATO DIANA — Application Window</h3><p>Dual-use technology accelerator · the gate into Western defense ecosystems.</p></div><span class="tagx">GATE</span></div>
-      <div class="evrow"><span class="d">2027 · ISTANBUL</span><div><h3>IDEF 2027</h3><p>International Defence Industry Fair (biennial) · SSB contact ground.</p></div><span class="tagx">RADAR</span></div>
-      <div class="evrow"><span class="d">27 SEP – 1 OCT 2027</span><div><h3>IAC 2027 — Poznań, Poland ★</h3><p>78th International Astronautical Congress · Poznań International Fair · theme "One Space. Shared Future." · ~10,000 attendees from 120+ countries; Poland's first hosting in 60+ years. Goal: paper #2 — the Antalya follow-up; the abstract window opens within months of IAC 2026.</p></div><span class="tagx">TARGET</span></div>
-      <div class="evrow"><span class="d">2028 · ISTANBUL</span><div><h3>SAHA EXPO 2028</h3><p>Biennial defense-aerospace-space fair · SAHA Istanbul is also co-host of IAC 2026.</p></div><span class="tagx">RADAR</span></div>
-      <div class="evrow"><span class="d">~1 – 5 SEP 2028</span><div><h3>IAC 2028 — Samarkand, Uzbekistan</h3><p>79th Congress · the first IAC ever held in Central Asia, hosted with Uzcosmos — Samarkand won the vote at IAC 2025 Sydney over bids from India and Bahrain. Ulugh Beg's observatory city; dates provisional.</p></div><span class="tagx">RADAR</span></div>
-    </div>
-    <p class="lede rv" style="margin-top:1rem;font-size:.9rem">Note: September is stacked — GITEX (9–10) → <b>IAC paper deadline (14)</b> → Expo3D (17–19). Then Şanlıurfa ends Oct 4 and Antalya begins Oct 5 — <b>two weeks back to back.</b> Protect the paper window; plan the logistics now.</p>
-
-    <div class="fh rv" style="margin-top:1.8rem">// 2026 SEASON — PASSED</div>
-    <div class="rv">
-      <div class="evrow past"><span class="d">5 – 9 MAY 2026</span><div><h3>SAHA EXPO 2026 — Istanbul</h3><p>Istanbul Expo Center · 120+ countries, 1,700+ exhibitors. Biennial — next edition 2028. If you attended, move it up to the Record.</p></div><span class="tagx">PASSED</span></div>
-      <div class="evrow past"><span class="d">20 – 23 AUG 2026</span><div><h3>TEKNOFEST Blue Homeland — Gölcük</h3><p>Gölcük Naval Shipyard · maritime and underwater technologies, unmanned surface vehicles — POSEIDON's showcase domain.</p></div><span class="tagx">PASSED</span></div>
-    </div>
+    <p class="lede rv">Twenty-one dated waypoints — from GITEX Ai Türkiye (9–10 Sep) and the IAC 2026 stage in Antalya (5–9 Oct) to Formnext, CHTF, CES, Davos and IAC 2027–2028 — with an attendance log and a target radar.</p>
+    <div class="cta rv"><a class="btn primary" href="nexus-apex-events.html">OPEN THE EVENTS RADAR →</a></div>
   </div>
 </section>
 
@@ -921,60 +745,116 @@ html.js-reveal .rv.in{opacity:1;transform:none}
 <!-- ══ DOCUMENTATION ══ -->
 <section id="docs">
   <div class="wrap">
-    <p class="eyebrow rv">// ARCHIVE INDEX · FULL CATALOG</p>
+    <p class="eyebrow rv">// ARCHIVE INDEX</p>
     <h2 class="big rv">DOCUMENTATION — <em>THE WRITTEN RECORD</em></h2>
-    <p class="lede rv">The company's written record, March–August 2026 — architectures, papers, guides, decks, code. <b>✓ marks files currently in hand</b>; the rest must be re-downloaded or regenerated before linking. The founder's personal systems archive lives on the personal page. Search or filter below.</p>
-    <div class="dtools rv">
-      <input class="dsearch" id="dSearch" type="search" placeholder="search title · format · source…" aria-label="Search documents">
+    <p class="lede rv">94 artifacts, March–September 2026 — architectures, papers, guides, decks, code — catalogued with search and category filters on a dedicated page.</p>
+    <div class="cta rv"><a class="btn primary" href="nexus-apex-docs.html">OPEN THE FULL CATALOG →</a></div>
+  </div>
+</section>
+
+<!-- ══ OPEN DOOR ══ -->
+<section id="opendoor">
+  <div class="wrap">
+    <p class="eyebrow rv">// BETA · OPEN DOOR</p>
+    <h2 class="big rv">THIS SITE IS IN <em>BETA</em>. SO ARE WE.</h2>
+    <p class="lede rv">Everything here is a working draft — the numbers, the plans, even the mandate. <b>Don't hesitate.</b> Tell us what's wrong, unclear, over-promised or missing; blunt is welcome and anonymous is fine. And if anything here sparks a thought, the door is open on every front below — ideas, collaboration, brainstorming, investment.</p>
+    <div class="grid g4 rv">
+      <div class="cardx" style="border-top:2px solid var(--red)"><span class="k" style="color:var(--red)">01 // FEEDBACK</span><h3>Say it plainly</h3><p>A broken link, a wrong figure, a weak argument, a page that doesn't read on your phone — every note improves the next version.</p><div class="foot">→ SUBJECT: "BETA FEEDBACK"</div></div>
+      <div class="cardx" style="border-top:2px solid var(--cyan)"><span class="k" style="color:var(--cyan)">02 // IDEAS &amp; BRAINSTORMING</span><h3>Half-formed is fine</h3><p>We think in public. Bring a sketch, a what-if, a paper worth reading, a market we're missing. Credit is given where ideas are used.</p><div class="foot">→ SUBJECT: "IDEA"</div></div>
+      <div class="cardx" style="border-top:2px solid var(--green)"><span class="k" style="color:var(--green)">03 // COLLABORATION</span><h3>Build or publish with us</h3><p>Researchers, engineers, universities, labs, fair organisers, fellow founders — co-author a paper, co-build a bench, share a booth.</p><div class="foot">→ SUBJECT: "COLLAB"</div></div>
+      <div class="cardx" style="border-top:2px solid var(--amber)"><span class="k" style="color:var(--amber)">04 // INVESTMENT</span><h3>Pre-seed is open</h3><p>$850K on a SAFE / convertible note, 18-month runway; grants, accelerators and strategic partners equally welcome. Full numbers on the Investor page.</p><div class="foot">→ SUBJECT: "INVEST"</div></div>
     </div>
-    <div class="dfilters rv" id="docFilters"></div>
-    <div class="dcount rv" id="dCount">94 / 94 ARTIFACTS · 7 IN HAND · MAR–SEP 2026</div>
-    <div class="docs rv" id="docList">
-      <div class="docrow"><span class="id">HS-01</span><div class="t">Nexus Apex — Full Architecture Dashboard<small>Apr 2026 · holding-architecture chat</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-02</span><div class="t">22-Division Dashboard v3 (28 cards)<span class="ok">✓</span><small>Apr 2026 · holding-architecture chat</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-03</span><div class="t">Lean Phase Dashboard — FAZ 0 → FAZ 5<small>Apr 2026 · holding-architecture chat</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-04</span><div class="t">Türkiye Roadmap Dashboard<small>Apr 2026 · holding-architecture chat</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-05</span><div class="t">Unified Vision — Four Pillars · One Table<span class="ok">✓</span><small>10 May 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-06</span><div class="t">Needs Analysis (three projects, plain text)<small>24 Apr 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">MD</span></div>
-      <div class="docrow"><span class="id">HS-07</span><div class="t">Needs-Analysis Dashboard Prompt (10 sections)<small>26 Apr 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">MD</span></div>
-      <div class="docrow"><span class="id">HS-08</span><div class="t">Türkiye Structural Gap Analysis — State Support Map (24 programs)<small>4 May 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-09</span><div class="t">Defense Software Intelligence Briefing — post-SAHA 2026<small>11 May 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-10</span><div class="t">Nexus Apex Events 2026 (three priorities)<small>12 May 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-11</span><div class="t">All-Domains Events 2026 — 14 events · GO/WATCH/SKIP<small>12 May 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-12</span><div class="t">Five-Division Backbone — D-01–D-05 thermal states<small>12 Jun 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-13</span><div class="t">Global Funding & Innovation Support Structures (15 pp)<small>8 Jun 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">PDF</span></div>
-      <div class="docrow"><span class="id">HS-14</span><div class="t">Valuation Ladder — $100M target · VC method<small>9 Jun 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">JSX</span></div>
-      <div class="docrow"><span class="id">HS-15</span><div class="t">Capability Dashboard — NATO DIANA / ESA channels<small>21 Jun 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-16</span><div class="t">Strategic Roadmap — four capital gates<small>21 Jun 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-17</span><div class="t">Pentagon Pathway — FOCI/ITAR routes 01–04<small>28 Jun 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-18</span><div class="t">US Space Force Reference<small>12 Jul 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-19</span><div class="t">D-04 Reframe — Space-Domain Awareness<small>12 Jul 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-20</span><div class="t">SIPRI Top-100 Defense Companies<small>10 Aug 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-21</span><div class="t">A&D Top-100 by Market Cap<small>10 Aug 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-22</span><div class="t">AI-in-Space VC Landscape<small>10 Aug 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-23</span><div class="t">Global AI Investor Landscape<small>10 Aug 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-24</span><div class="t">NX-FTP-001 — Future-Tech Productization (FT-01…05)<small>28 Aug 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-25</span><div class="t">$100M Nexus Apex Protocol<small>29 Mar 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-26</span><div class="t">$100M Global Methods<small>29 Mar 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-27</span><div class="t">Terafab Analysis<small>Mar 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">HS-28</span><div class="t">US Talent Visa Dashboard — O-1A / EB-1A<small>22 Jun 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-01</span><div class="t">ORBITAL-1 IAC Paper Draft v1 (11 pp)<small>11 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">DOCX</span></div>
-      <div class="docrow"><span class="id">PP-02</span><div class="t">ORBITAL-1 IAC Paper Draft v2 (16 pp · Section 8 roadmap)<small>11 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">DOCX</span></div>
-      <div class="docrow"><span class="id">PP-03</span><div class="t">IAC Presentation Guide — 8 sections<small>21 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-04</span><div class="t">Long-Horizon Strategic Outlook — cislunar → interstellar (11 pp)<small>11 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">DOCX</span></div>
-      <div class="docrow"><span class="id">PP-05</span><div class="t">KALKAN — Air Defense Dashboard<small>Apr 2026 · holding-architecture chat</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-06</span><div class="t">LUNA KALKAN — Lunar Defense Concept (TRL 1)<small>20 Jun 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-07</span><div class="t">ALEV-1 Mission Control — fire suppression<small>21 Jun 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-08</span><div class="t">POSEIDON — Turtle Anatomy & Naval Crosswalk<small>26 Apr 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-09</span><div class="t">UAV-ALPHA NX-UAV-001 — Quadrotor MVP<small>11 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-10</span><div class="t">NX-SWM-001 — Swarm Intelligence Substrate<small>4 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-11</span><div class="t">5-Platform Software Architecture (9 layers)<small>1 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-12</span><div class="t">5-Platform Hardware Architecture<small>1 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-13</span><div class="t">System Interaction Dashboard — 9 defense layers<small>1 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-14</span><div class="t">Product Documentation — Türkiye & Somalia markets<small>1 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-15</span><div class="t">44-Prompt Image Generation Library<small>1 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-16</span><div class="t">KVKK / GDPR Compliance Framework v2.0<small>24 Apr 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">DOCX</span></div>
-      <div class="docrow"><span class="id">PP-17</span><div class="t">JARVIS Voice Assistant — Qwen3 · faster-whisper · Kokoro<small>15 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">ZIP</span></div>
-      <div class="docrow"><span class="id">PP-18</span><div class="t">PRAXIS-1 — ST-01…ST-08 pipeline<small>22 Aug 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-19</span><div class="t">PAIDEIA-1 — founding guideline (10 sections)<small>23 Aug 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-20</span><div class="t">ENTELEKHEIA-1 — PAIDEIA + PRAXIS merged<small>23 Aug 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt"
+    <div class="cta rv">
+      <a class="btn primary" href="mailto:muhammetaslan.ai@gmail.com?subject=BETA%20FEEDBACK">SEND FEEDBACK</a>
+      <a class="btn" href="mailto:muhammetaslan.ai@gmail.com?subject=IDEA">SHARE AN IDEA</a>
+      <a class="btn" href="mailto:muhammetaslan.ai@gmail.com?subject=COLLAB">PROPOSE A COLLABORATION</a>
+      <a class="btn" href="mailto:muhammetaslan.ai@gmail.com?subject=INVEST">TALK INVESTMENT</a>
+    </div>
+    <p class="lede rv" style="margin:1.4rem 0 0;font-size:.9rem">One inbox, no forms, no gatekeeping: <b style="color:var(--cyan)">muhammetaslan.ai@gmail.com</b> · LinkedIn messages work too. We reply to everyone who writes.</p>
+  </div>
+</section>
+
+<!-- ══ SOCIAL ══ -->
+<section id="social">
+  <div class="wrap">
+    <p class="eyebrow rv">// CONTACT &amp; CHANNELS</p>
+    <h2 class="big rv">CONTACT &amp; <em>SOCIAL</em></h2>
+    <p class="lede rv">The venture is built in public — field notes, bench logs, mission countdowns. Instagram and YouTube handles are placeholders; the rest are live.</p>
+    <div class="grid g3 chan rv">
+      <a class="cardx" href="https://instagram.com/" target="_blank" rel="noopener">
+        <span class="k" style="color:var(--amber)">INSTAGRAM</span>
+        <h3>Field Notes &amp; Frames</h3>
+        <p>Bench photos, origami, Aegean travels, milestone cards.</p>
+        <div class="foot"><span class="handle">@nexusapex — set your handle</span></div>
+      </a>
+      <a class="cardx" href="https://youtube.com/" target="_blank" rel="noopener">
+        <span class="k" style="color:var(--amber)">YOUTUBE</span>
+        <h3>Mission Logs</h3>
+        <p>Long form: ORBITAL-1 demos, JARVIS fully offline, the road to Antalya.</p>
+        <div class="foot"><span class="handle">@nexusapex — set your channel</span></div>
+      </a>
+      <a class="cardx" href="https://github.com/muho497" target="_blank" rel="noopener">
+        <span class="k" style="color:var(--amber)">GITHUB</span>
+        <h3>Code Base</h3>
+        <p>Open repositories, pipelines and technical experiments.</p>
+        <div class="foot"><span class="handle">github.com/muho497</span></div>
+      </a>
+      <a class="cardx" href="https://linkedin.com/in/muhammet-aslan-1911a8209" target="_blank" rel="noopener">
+        <span class="k" style="color:var(--amber)">LINKEDIN</span>
+        <h3>Professional Network</h3>
+        <p>Investor visibility, the SSB/DIANA ecosystem, IAC contacts — the deck circulates from here.</p>
+        <div class="foot"><span class="handle">linkedin.com/in/muhammet-aslan-1911a8209</span></div>
+      </a>
+      <a class="cardx" href="https://1000kitap.com/Muho497" target="_blank" rel="noopener">
+        <span class="k" style="color:var(--amber)">1000KİTAP</span>
+        <h3>Reading Log — 266+ Books</h3>
+        <p>The public library behind the polymath range: notes, quotes, shelves.</p>
+        <div class="foot"><span class="handle">1000kitap.com/Muho497</span></div>
+      </a>
+      <a class="cardx" href="mailto:muhammetaslan.ai@gmail.com">
+        <span class="k" style="color:var(--amber)">EMAIL / X / NEWSLETTER</span>
+        <h3>Direct Line</h3>
+        <p>muhammetaslan.ai@gmail.com · +90 539 939 67 83 · X handle and newsletter service to be added.</p>
+        <div class="foot"><span class="handle">open for new opportunities</span></div>
+      </a>
+    </div>
+    <div class="fh rv" style="margin-top:2.2rem">// CONTENT RHYTHM — SUGGESTED</div>
+    <div class="chips rv">
+      <span class="chip c">MON — Bench log (IG)</span>
+      <span class="chip c">WED — Division card / chart (X)</span>
+      <span class="chip c">FRI — Field note (IG)</span>
+      <span class="chip c">MONTH END — Mission report (YT + Blog)</span>
+    </div>
+    <div class="feed rv" aria-label="Instagram feed placeholders">
+      <div class="cell">POST · 01</div><div class="cell">POST · 02</div><div class="cell">POST · 03</div>
+      <div class="cell">POST · 04</div><div class="cell">POST · 05</div><div class="cell">POST · 06</div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /pubView -->
+</main>
+<footer>
+  <div class="wrap">
+    <span class="fm">⬡ NEXUS<span>·</span>APEX — © 2026 MUHAMMET ASLAN</span>
+    <span class="fm">SCIENCE · R&amp;D · DEFENSE · ART &amp; LETTERS — HUMANITY FORWARD</span>
+    <span class="fm">STATUS: <span>BETA</span> — FEEDBACK WELCOME</span>
+    <span class="fm">TÜRKİYE + SOMALIA · IAC 2026 → <span>ANTALYA</span></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  try{var tc=document.getElementById('tClock');function clk(){tc.textContent=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Istanbul',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date())}clk();setInterval(clk,1000)}catch(e){}
+  try{var target=new Date('2026-10-05T09:00:00+03:00').getTime(),hc=document.getElementById('heroCount'),sc=document.getElementById('tCount');function pad(n){return String(n).padStart(2,'0')}
+  function cd(){var d=target-Date.now();if(d<=0){if(hc)hc.textContent='GO — ANTALYA STAGE';sc.textContent='LIVE';return}var D=Math.floor(d/864e5),H=Math.floor(d%864e5/36e5),M=Math.floor(d%36e5/6e4),S=Math.floor(d%6e4/1e3);if(hc)hc.textContent=pad(D)+'D : '+pad(H)+'H : '+pad(M)+'M : '+pad(S)+'S';sc.textContent='T\u2013 '+D+'D '+pad(H)+'H '+pad(M)+'M'}cd();setInterval(cd,1000)}catch(e){}
+  try{var fb=document.querySelectorAll('#divFilters .fb'),cards=document.querySelectorAll('#divGrid .cardx');fb.forEach(function(b){b.addEventListener('click',function(){fb.forEach(function(x){x.classList.remove('on')});b.classList.add('on');var f=b.dataset.f;cards.forEach(function(c){c.style.display=(f==='all'||c.dataset.c===f)?'':'none'})})})}catch(e){}
+  try{var els=document.querySelectorAll('.rv');function showAll(){els.forEach(function(el){el.classList.add('in')})}
+  if('IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-reveal');
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0,rootMargin:'0px 0px 15% 0px'});els.forEach(function(el){io.observe(el)});
+  var vh=window.innerHeight||800;els.forEach(function(el){if(el.getBoundingClientRect().top<vh*1.25)el.classList.add('in')});setTimeout(showAll,1500);
+  ['scroll','touchstart','keydown','pointerdown'].forEach(function(ev){window.addEventListener(ev,showAll,{once:true,passive:true})})}else{showAll()}}catch(e){}
+})();
+</script>
+</body>
+</html>
