@@ -62,13 +62,16 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--cyan);outline-offse
 .nav .links::-webkit-scrollbar{display:none}
 .nav .links a{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;color:var(--dim);text-decoration:none;white-space:nowrap;transition:color .2s}
 .nav .links a:hover{color:var(--cyan)}
-.modes{margin-left:auto;display:flex;border:1px solid var(--red);flex:none}
-.modes a.inv{background:var(--redG);color:var(--red)}
-.modes a.inv:hover{background:var(--red);color:#fff}
-.modes a{text-decoration:none;
+.modes{margin-left:auto;display:flex;border:1px solid var(--lineS);flex:none}
+.modes label{
   font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;padding:.5rem .85rem;
   background:transparent;color:var(--dim);border:0;cursor:pointer;transition:all .2s;user-select:none;
 }
+#modePub:checked ~ .nav .modes label[for="modePub"]{background:var(--cyan);color:var(--bg)}
+#modeInv:checked ~ .nav .modes label[for="modeInv"]{background:var(--red);color:#fff}
+#modeInv:checked ~ .nav .links{visibility:hidden}
+#modeInv:checked ~ main #pubView{display:none}
+#modeInv:checked ~ main #invView{display:block}
 
 /* ── layout ── */
 main{padding-top:6.6rem}
@@ -237,6 +240,37 @@ h2.big em{font-style:normal;color:var(--cyan)}
 .chan .cardx:hover{border-color:var(--amber)}
 .handle{font-family:var(--mono);font-size:.76rem;color:var(--cyan);letter-spacing:.04em}
 
+/* ── investor view ── */
+#invView{display:block}
+#modePub:checked ~ main #invView{display:none}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);left:-9999px}
+.confband{
+  position:sticky;top:5.05rem;z-index:40;display:flex;gap:1rem;align-items:center;
+  background:repeating-linear-gradient(-45deg,var(--redG),var(--redG) 12px,rgba(255,51,102,.16) 12px,rgba(255,51,102,.16) 24px);
+  border:1px solid var(--red);padding:.6rem 1.1rem;margin-top:1.2rem;
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;color:var(--red);
+}
+.tbl{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:1.2rem}
+.tbl th{font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;color:var(--faint);text-align:left;padding:.6rem .7rem;border-bottom:1px solid var(--lineS)}
+.tbl td{padding:.6rem .7rem;border-bottom:1px solid var(--line);color:var(--dim)}
+.tbl tr.hl td{color:var(--w);background:var(--cyanG)}
+.tbl td.g{color:var(--green)}.tbl td.r{color:var(--red)}
+.tblwrap{overflow-x:auto}
+.wave{display:grid;grid-template-columns:56px 1fr auto;gap:1rem;align-items:baseline;padding:.85rem .3rem;border-bottom:1px solid var(--line)}
+.wave .n{font-family:var(--orb);font-weight:700;color:var(--cyan);font-size:1rem}
+.wave h3{font-size:1rem;font-weight:700}
+.wave p{color:var(--dim);font-size:.82rem}
+.wave .rev{font-family:var(--mono);font-size:.64rem;color:var(--amber);white-space:nowrap}
+@media(max-width:660px){.wave{grid-template-columns:44px 1fr}.wave .rev{grid-column:2}}
+.fin{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:1.4rem}
+.fin .y{background:var(--bg2);padding:1rem}
+.fin .yy{font-family:var(--mono);font-size:.6rem;color:var(--faint);letter-spacing:.14em}
+.fin .vv{font-family:var(--orb);font-weight:700;font-size:1.25rem;color:var(--green);margin:.2rem 0}
+.fin .dd{font-size:.76rem;color:var(--dim)}
+.ask{display:grid;grid-template-columns:1fr auto;gap:.8rem;padding:.6rem 0;border-bottom:1px dotted var(--line);font-size:.9rem;color:var(--dim)}
+.ask b{font-family:var(--mono);font-size:.72rem;color:var(--amber);font-weight:400}
+.vroad{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.1rem;margin-top:1.4rem}
+
 /* ── etkinlik / blog / feed ── */
 .evrow{display:grid;grid-template-columns:160px 1fr auto;gap:1.1rem;align-items:baseline;padding:.9rem .25rem;border-bottom:1px solid var(--line)}
 .evrow .d{font-family:var(--mono);font-size:.62rem;color:var(--cyan);letter-spacing:.08em}
@@ -266,6 +300,32 @@ h2.big em{font-style:normal;color:var(--cyan)}
 /* ── beta chip ── */
 .beta{font-family:var(--mono);font-size:.5rem;letter-spacing:.22em;color:var(--amber);border:1px solid var(--amber);padding:.15rem .4rem;margin-left:.55rem;background:var(--amberG)}
 
+/* ── document catalog ── */
+.dtools{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:.6rem;align-items:center}
+.dsearch{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;background:var(--bg2);border:1px solid var(--line);color:var(--w);padding:.55rem .8rem;min-width:230px;flex:1}
+.dsearch:focus{outline:none;border-color:var(--cyan)}
+.dcount{font-family:var(--mono);font-size:.56rem;color:var(--faint);letter-spacing:.14em;margin:.4rem 0 1rem}
+.docrow{grid-template-columns:78px 1fr auto auto}
+.docrow .cat{font-family:var(--mono);font-size:.5rem;letter-spacing:.12em;padding:.22rem .45rem;border:1px solid var(--line);color:var(--dim);white-space:nowrap}
+.docrow .cat.hs{color:var(--cyan);border-color:rgba(0,229,255,.35)}.docrow .cat.pp{color:var(--amber);border-color:rgba(255,179,0,.35)}.docrow .cat.sr{color:var(--green);border-color:rgba(0,255,136,.35)}.docrow .cat.fo{color:var(--purple);border-color:rgba(139,92,246,.4)}.docrow .cat.pw{color:var(--red);border-color:rgba(255,51,102,.35)}
+.docrow .t .ok{color:var(--green);font-family:var(--mono);font-size:.62rem;margin-left:.35rem}
+@media(max-width:660px){.docrow{grid-template-columns:1fr}.docrow .cat,.docrow .fmt{justify-self:start}}
+
+/* ── phases ── */
+.phgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
+.phase{border:1px solid var(--line);background:var(--bg2);padding:1.2rem 1.1rem;border-top:3px solid var(--cyan);display:flex;flex-direction:column;gap:.5rem;transition:transform .3s}
+.phase:hover{transform:translateY(-3px)}
+.phase .code{font-family:var(--orb);font-weight:700;font-size:.72rem;letter-spacing:.16em}
+.phase h3{font-size:1.06rem;font-weight:700}
+.phase .per{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;color:var(--faint)}
+.phase .q{font-size:.86rem;color:var(--dim);font-style:italic;flex:1}
+.phase .nums{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem;font-family:var(--mono);font-size:.52rem;letter-spacing:.06em;color:var(--faint)}
+.phase .nums div{border:1px solid var(--line);padding:.35rem .4rem}
+.phase .nums b{display:block;font-size:.7rem;font-weight:400;margin-top:.15rem;color:var(--w)}
+.phase .gate{font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;color:var(--amber);border-left:2px solid var(--amber);padding-left:.55rem;line-height:1.5}
+.loop{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--dim);align-items:center}
+.loop span.s{border:1px solid var(--line);padding:.4rem .75rem;color:var(--cyan)}
+.loop span.ar{color:var(--faint)}
 /* ── language bars ── */
 .langs{display:flex;flex-direction:column;gap:.6rem;max-width:580px}
 .lang{display:grid;grid-template-columns:160px 1fr 96px;gap:.8rem;align-items:center;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--w)}
@@ -273,6 +333,38 @@ h2.big em{font-style:normal;color:var(--cyan)}
 .lang .bar i{display:block;height:100%;background:var(--cyan)}
 .lang .lv{color:var(--dim);text-align:right}
 @media(max-width:560px){.lang{grid-template-columns:110px 1fr 76px}}
+
+/* ── pinboard paper ── */
+.paper{background:#f5f1e8;color:#1a1a1a;border:1px solid #c4bdab;padding:2.1rem 2.2rem 2.4rem;position:relative;transform:rotate(-.35deg);box-shadow:0 22px 60px rgba(0,0,0,.55);font-family:"Fraunces",Georgia,serif;line-height:1.45}
+.paper::before{content:"";position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:17px;height:17px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffd9a0,#b8531c 60%,#5e2708);box-shadow:0 3px 7px rgba(0,0,0,.5)}
+.paper .pmono{font-family:"JetBrains Mono",var(--mono);}
+.paper .pk{font-family:"JetBrains Mono",var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.22em;color:#555;text-transform:uppercase;margin-bottom:.5rem}
+.paper .pt{font-weight:800;font-style:italic;font-size:clamp(1.7rem,4.5vw,2.7rem);line-height:.98;letter-spacing:-.02em;color:#1a1a1a}
+.paper .pt .amp{color:#b8531c;font-weight:400}
+.paper .phead{border-bottom:2px solid #1a1a1a;padding-bottom:1.1rem;margin-bottom:1.2rem;display:flex;flex-wrap:wrap;gap:1.2rem;justify-content:space-between;align-items:flex-end}
+.paper .pmeta{display:flex;flex-wrap:wrap;gap:.9rem;font-family:"JetBrains Mono",var(--mono);font-size:.58rem;letter-spacing:.08em;color:#555}
+.paper .pmeta b{color:#888;font-weight:600;letter-spacing:.16em;margin-right:.3rem}
+.paper .p0{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;align-items:center;background:#1a1a1a;color:#f5f1e8;padding:.75rem 1rem;font-family:"JetBrains Mono",var(--mono);font-size:.62rem;letter-spacing:.08em}
+.paper .p0 .p0k{color:#d9a86c;letter-spacing:.2em}
+.paper .prules{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;margin:.7rem 0 1.6rem;font-family:"JetBrains Mono",var(--mono);font-size:.56rem;letter-spacing:.1em;color:#8a2727}
+.paper .psec{display:flex;align-items:baseline;gap:.8rem;border-bottom:1px solid #c4bdab;margin:1.7rem 0 1rem;padding-bottom:.4rem}
+.paper .psec .rn2{font-style:italic;font-weight:800;font-size:1.5rem;color:#b8531c}
+.paper .psec h4{font-weight:800;font-size:1.15rem;letter-spacing:-.01em}
+.paper .psec .pc{font-family:"JetBrains Mono",var(--mono);font-size:.56rem;letter-spacing:.14em;color:#888;margin-left:auto}
+.paper .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.3rem}
+.paper .pgroup h5{font-family:"JetBrains Mono",var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#1a1a1a;border-bottom:1px solid #1a1a1a;padding-bottom:.3rem;margin-bottom:.5rem;display:flex;justify-content:space-between}
+.paper .pgroup h5 i{font-style:normal;color:#b8531c}
+.paper .pgroup ul{list-style:none}
+.paper .pgroup li{font-size:.8rem;color:#333;padding:.28rem 0;border-bottom:1px dotted #c4bdab}
+.paper .pgroup li b{font-weight:600;color:#1a1a1a}
+.paper .pgroup li em{font-style:normal;font-family:"JetBrains Mono",var(--mono);font-size:.56rem;letter-spacing:.06em;color:#8a2727;white-space:nowrap}
+.paper .pgroup li em.ok{color:#4a6b3e}
+.paper .pfoot{margin-top:1.9rem;border-top:2px solid #1a1a1a;padding-top:1.1rem;text-align:center}
+.paper .pfoot .big{font-style:italic;font-weight:800;font-size:1.25rem}
+.paper .pfoot .big span{color:#b8531c}
+.paper .pfoot .rules{display:flex;flex-wrap:wrap;gap:.5rem 1.8rem;justify-content:center;margin:.9rem 0 .7rem;font-family:"JetBrains Mono",var(--mono);font-size:.56rem;letter-spacing:.08em;color:#555;text-align:left}
+.paper .pfoot .stamp{font-family:"JetBrains Mono",var(--mono);font-size:.54rem;letter-spacing:.2em;color:#888}
+@media(max-width:660px){.paper{padding:1.4rem 1.1rem 1.8rem;transform:none}}
 
 /* ── footer ── */
 footer{padding:2.8rem 0 4rem;color:var(--faint)}
@@ -292,7 +384,11 @@ html.js-reveal .rv.in{opacity:1;transform:none}
   .hero{min-height:auto;padding:2.6rem 0 4rem}
 }
 </style>
-</head><body>
+</head>
+<body>
+<input type="radio" name="viewmode" id="modePub" class="vh" checked hidden>
+<input type="radio" name="viewmode" id="modeInv" class="vh" hidden>
+
 <!-- ══ TELEMETRY ══ -->
 <div class="tele">
   <span class="dot"></span><span>NEXUS·APEX // ONLINE</span>
@@ -310,19 +406,20 @@ html.js-reveal .rv.in{opacity:1;transform:none}
     <a href="#vision">VISION</a>
     <a href="#platforms">PLATFORMS</a>
     <a href="#divisions">DIVISIONS</a>
-    <a href="nexus-apex-roadmap.html">ROADMAP</a>
+    <a href="#phases">PHASES</a>
     <a href="#projects">PROJECTS</a>
-    <a href="nexus-apex-events.html">EVENTS</a>
+    <a href="#events">EVENTS</a>
     <a href="#founder">FOUNDER</a>
-    <a href="nexus-apex-founder-pinboard.html">PINBOARD</a>
+    <a href="#pinboard">PINBOARD</a>
     <a href="#blog">BLOG</a>
     <a href="#gallery">GALLERY</a>
-    <a href="nexus-apex-founder-docs.html">DOCS</a>
+    <a href="#docs">DOCS</a>
     <a href="#opendoor">OPEN DOOR</a>
     <a href="#social">SOCIAL</a>
   </div>
   <div class="modes" role="group" aria-label="View mode">
-    <a class="inv" href="nexus-apex-investor.html">INVESTOR →</a>
+    <label for="modePub" id="btnPub">SHOWCASE</label>
+    <label for="modeInv" id="btnInv" class="inv">INVESTOR</label>
   </div>
 </nav>
 
@@ -512,10 +609,56 @@ html.js-reveal .rv.in{opacity:1;transform:none}
 <!-- ══ PHASES ══ -->
 <section id="phases">
   <div class="wrap">
-    <p class="eyebrow rv">// COMPANY ROADMAP</p>
+    <p class="eyebrow rv">// LEAN PHASE ROADMAP</p>
     <h2 class="big rv">SIX PHASES — <em>EACH GATE EARNS THE NEXT</em></h2>
-    <p class="lede rv">The lean phase machine FAZ 0 → FAZ 5 with costs, revenues and gates; the Materials Lab research network; the Frontier Science Center; and HELIOS — from Earth orbit to the solar system.</p>
-    <div class="cta rv"><a class="btn primary" href="nexus-apex-roadmap.html">OPEN THE ROADMAP →</a></div>
+    <p class="lede rv">The holding is not built at once. It is built as a lean machine: <b>minimum cost, maximum speed, maximum profit, maximum learning, focused failure.</b> No phase opens until the previous gate condition is met.</p>
+    <div class="chips rv" style="margin-bottom:1.6rem">
+      <span class="chip c">⚡ MIN COST — every cent on learning, not buildings</span>
+      <span class="chip c">🚀 MAX SPEED — 2-week sprints, MVP in 6 weeks</span>
+      <span class="chip c">💰 MAX PROFIT — a revenue path from day one, sell software first</span>
+      <span class="chip c">🧠 MAX LEARNING — every decision produces data, data updates decisions</span>
+      <span class="chip c">💥 FOCUSED FAILURE — make the cheap mistake early, the expensive one never</span>
+    </div>
+    <div class="phgrid rv" id="phaseGrid">
+      <div class="phase" style="border-top-color:#00E5FF"><span class="code" style="color:#00E5FF">FAZ 0</span><h3>Zero-Capital Lab</h3><span class="per">Months 1–3</span><p class="q">"Don't buy hardware. Write a simulator. Find a customer."</p><div class="nums"><div>COST<b>$0–5K</b></div><div>REVENUE<b>$0</b></div><div>BREAK-EVEN<b>—</b></div></div><div class="gate">GATE → At least one customer says yes → Phase 1</div></div>
+      <div class="phase" style="border-top-color:#3B82F6"><span class="code" style="color:#3B82F6">FAZ 1</span><h3>Paid MVP</h3><span class="per">Months 4–12</span><p class="q">"Don't build before you sell. The user pays → then you build."</p><div class="nums"><div>COST<b>$30–80K</b></div><div>REVENUE<b>$20–60K</b></div><div>BREAK-EVEN<b>Mo 10–12</b></div></div><div class="gate">GATE → $20K MRR or a $200K project contract → Phase 2</div></div>
+      <div class="phase" style="border-top-color:#8B5CF6"><span class="code" style="color:#8B5CF6">FAZ 2</span><h3>Product-Market Fit</h3><span class="per">Months 13–30</span><p class="q">"Carry the first three divisions to profit, fund the rest."</p><div class="nums"><div>COST<b>$150–400K</b></div><div>REVENUE<b>$200K–1M</b></div><div>BREAK-EVEN<b>Mo 22–26</b></div></div><div class="gate">GATE → 3 profitable divisions + $1M ARR → Phase 3</div></div>
+      <div class="phase" style="border-top-color:#00FF88"><span class="code" style="color:#00FF88">FAZ 3</span><h3>Scale Machine</h3><span class="per">Months 31–54</span><p class="q">"Copy the profitable division's playbook. The system funds itself."</p><div class="nums"><div>COST<b>$1–5M</b></div><div>REVENUE<b>$3–15M</b></div><div>BREAK-EVEN<b>Mo 40–44</b></div></div><div class="gate">GATE → $10M ARR + NX-EDGE chip ready → Phase 4</div></div>
+      <div class="phase" style="border-top-color:#FFB300"><span class="code" style="color:#FFB300">FAZ 4</span><h3>Platform & Ecosystem</h3><span class="per">Months 55–84</span><p class="q">"Rivals end up having to use Nexus OS. Platform network effect."</p><div class="nums"><div>COST<b>$5–20M</b></div><div>REVENUE<b>$20–100M</b></div><div>BREAK-EVEN<b>Mo 66–72</b></div></div><div class="gate">GATE → $50M ARR + proven ecosystem network effect → Phase 5</div></div>
+      <div class="phase" style="border-top-color:#A78BFA"><span class="code" style="color:#A78BFA">FAZ 5</span><h3>Civilization Infrastructure</h3><span class="per">2032+</span><p class="q">"From Türkiye to the world. From the world to the universe."</p><div class="nums"><div>COST<b>$50M+</b></div><div>REVENUE<b>$200M+</b></div><div>BREAK-EVEN<b>Self-funding</b></div></div><div class="gate">GATE → Humanity becomes a multi-planetary species</div></div>
+    </div>
+    <div class="loop rv"><span class="s">01 TRY</span><span class="ar">▸</span><span class="s">02 MEASURE</span><span class="ar">▸</span><span class="s">03 LEARN</span><span class="ar">▸</span><span class="s">04 PIVOT</span><span class="ar">▸</span><span class="s">05 REPEAT</span><span style="margin-left:auto">BUILD → MEASURE → LEARN → PIVOT · one cycle every two weeks</span></div>
+
+    <div class="fh rv" style="margin-top:2.8rem">// RESEARCH NETWORK — MATERIALS LAB · POST-PHASE 3 (2030+)</div>
+    <p class="lede rv" style="font-size:.95rem">Deliberately late: a material takes 8–12 years from lab to product, so the lab opens once every division is an internal customer and the holding funds its own R&amp;D. Model: <b>PhD scholarships + equipment funding to universities, in return for IP sharing and output rights.</b></p>
+    <div class="grid g4 rv">
+      <div class="cardx"><span class="k" style="color:var(--amber)">FOCUS 01</span><h3>Aerospace Composites</h3><p>CFRP + graphene hybrids (40% lighter), ceramic-matrix composites to 1600°C, bamboo-carbon hybrids, ablative re-entry coatings.</p></div>
+      <div class="cardx"><span class="k" style="color:var(--amber)">FOCUS 02</span><h3>Energy Storage</h3><p>Solid-state batteries (2× UAV flight time), supercapacitors for robot actuators, hydrogen storage, thermal batteries for Mars nights.</p></div>
+      <div class="cardx"><span class="k" style="color:var(--amber)">FOCUS 03</span><h3>Biomaterials &amp; Medical</h3><p>Biocompatible robot coatings, piezoelectric bone implants, antimicrobial surfaces for space, 3D bio-printed scaffolds.</p></div>
+      <div class="cardx"><span class="k" style="color:var(--amber)">FOCUS 04</span><h3>Smart &amp; Programmable Matter</h3><p>Shape-memory alloys, self-healing polymers, piezo sensor skin — and the far horizon: morphology-changing vehicles (ATOMOS).</p></div>
+    </div>
+    <div class="chips rv" style="margin-top:1rem">
+      <span class="chip">İTÜ Materials Eng.</span><span class="chip">ODTÜ METU-MEMS</span><span class="chip">MIT DMSE</span><span class="chip">ETH Zürich</span><span class="chip">Tsinghua IMP-MSE</span><span class="chip">KTH Stockholm · ESA link</span><span class="chip a">TÜBİTAK MAM Gebze — external lab first</span>
+    </div>
+
+    <div class="fh rv" style="margin-top:2.8rem">// FRONTIER SCIENCE CENTER — QUANTUM &amp; EXPERIMENTAL TECHNOLOGIES · POST-PHASE 3 (2030+)</div>
+    <p class="lede rv" style="font-size:.95rem">A physical center for the technologies that don't fit a product roadmap yet. It opens alongside the Materials Lab, shares its university network, and runs on one rule: <b>every bench has a named division as its customer.</b></p>
+    <div class="grid g4 rv">
+      <div class="cardx"><span class="k" style="color:var(--purple)">LAB 01</span><h3>Quantum</h3><p>Quantum sensing for navigation without GPS, QKD links toward the NX-Quantum network vision, cloud-quantum access for materials simulation, NX-QUANTUM silicon as the far target.</p></div>
+      <div class="cardx"><span class="k" style="color:var(--purple)">LAB 02</span><h3>Experimental Matter</h3><p>ATOMOS testbeds: shape-memory, self-healing and programmable structures — sitting between the Materials Lab and the 3D AM Center.</p></div>
+      <div class="cardx"><span class="k" style="color:var(--purple)">LAB 03</span><h3>Neuro &amp; BCI Bench</h3><p>The neuroscience pillar made physical: non-invasive BCI, attention and learning studies feeding SHEPHERD-1 and KAIROS·FLUX.</p></div>
+      <div class="cardx"><span class="k" style="color:var(--purple)">LAB 04</span><h3>Swarm &amp; Autonomy Arena</h3><p>A physical testbed for NX-SWM-001: quadrotor and ground-robot swarms, emergence experiments, sim-to-real for SENTINEL, POSEIDON and ORBITAL-1.</p></div>
+    </div>
+
+    <div class="fh rv" style="margin-top:2.8rem">// HELIOS — FROM EARTH ORBIT TO THE SOLAR SYSTEM · 2030 → 2050+</div>
+    <p class="lede rv" style="font-size:.95rem">The endgame of Phase 5, written as stages so it can be audited: an Earth-orbit defense shield, then data centers in orbit, on the Moon, and across the solar system — <b>powered by the Sun</b>. Not first-of-a-kind: orbital compute is already being flown by others. Nexus Apex's claim is the integrated stack — surveillance, shield, silicon, energy.</p>
+    <div class="grid g4 rv">
+      <div class="cardx" style="border-top:2px solid var(--cyan)"><span class="k" style="color:var(--cyan)">H-1 · 2030–2035</span><h3>Earth-Orbit Defense Shield</h3><p>ORBITAL-1's detection layer grows into active protection: debris/MMOD tracking, collision avoidance and interceptor cueing for allied assets — KALKAN's fifth layer, in orbit.</p><div class="foot">CUSTOMER → SPACE SYSTEMS · KALKAN · TUA · CONSOLE → NX-EODS-001</div></div>
+      <div class="cardx" style="border-top:2px solid var(--amber)"><span class="k" style="color:var(--amber)">H-2 · 2032–2038</span><h3>Orbital Data Center</h3><p>Solar-powered compute satellites on NX-SPACE radiation-hardened silicon, radiative cooling, laser interlinks — protected by the shield above it, running NX-DC-001's software stack from below.</p><div class="foot">CUSTOMER → NEXUS AI LAB · MaaS · ALLIED CLOUD</div></div>
+      <div class="cardx" style="border-top:2px solid var(--green)"><span class="k" style="color:var(--green)">H-3 · 2038–2045</span><h3>Lunar Data Center</h3><p>Polar-ridge sites for near-permanent sunlight, lava-tube or regolith shielding against radiation, SMR power through the lunar night — the Space Colony Center's first paying tenant.</p><div class="foot">CUSTOMER → SPACE COLONY CENTER · ENERGY DIVISION</div></div>
+      <div class="cardx" style="border-top:2px solid var(--purple)"><span class="k" style="color:var(--purple)">H-4 · 2045+</span><h3>Solar-System Compute Network</h3><p>Sun-powered nodes at Sun–Earth L1/L2, Mars orbit and asteroid-belt relays, laser-linked, running on space-based solar power at commercial scale — the complete solar system as one machine.</p><div class="foot">CUSTOMER → EVERY DIVISION · CIVILIZATION INFRASTRUCTURE</div></div>
+    </div>
+    <div class="chips rv" style="margin-top:1rem"><span class="chip a">GATE: nothing leaves Earth before ORBITAL-1 ships and NX-DC-001 runs</span><span class="chip">Prior art: Starcloud-1 — GPU in orbit (2025)</span><span class="chip">Google Project Suncatcher (prototypes ~2027)</span><span class="chip">China's Three-Body Computing Constellation (2025)</span><span class="chip">Lonestar lunar data-storage payload (2025)</span></div>
   </div>
 </section>
 
@@ -623,10 +766,43 @@ html.js-reveal .rv.in{opacity:1;transform:none}
 <!-- ══ EVENTS & FAIRS ══ -->
 <section id="events">
   <div class="wrap">
-    <p class="eyebrow rv">// WHERE TO FIND US</p>
+    <p class="eyebrow rv">// MISSION LOG</p>
     <h2 class="big rv">EVENTS &amp; <em>FAIRS</em></h2>
-    <p class="lede rv">Twenty-one dated waypoints — from GITEX Ai Türkiye (9–10 Sep) and the IAC 2026 stage in Antalya (5–9 Oct) to Formnext, CHTF, CES, Davos and IAC 2027–2028 — with an attendance log and a target radar.</p>
-    <div class="cta rv"><a class="btn primary" href="nexus-apex-events.html">OPEN THE EVENTS RADAR →</a></div>
+    <p class="lede rv">Attendance record + radar. <b>A fair log is the raw material of a reference network</b> — file every attendance with the contacts it produced.</p>
+
+    <div class="fh rv">// ATTENDANCE RECORD — LOGGED</div>
+    <div class="rv">
+      <div class="evrow slot"><span class="d">+ DATE</span><div><h3>Log an event you attended here</h3><p>Event name · city · booth/session · contacts gained</p></div><span class="tagx">SLOT</span></div>
+      <div class="evrow slot"><span class="d">+ DATE</span><div><h3>One more record</h3><p>Conferences, hackathons, scout camps, field visits — everything counts</p></div><span class="tagx">SLOT</span></div>
+      <div class="evrow slot"><span class="d">+ DATE</span><div><h3>One more record</h3><p>Link its photo to the Gallery, its write-up to the Blog</p></div><span class="tagx">SLOT</span></div>
+    </div>
+
+    <div class="fh rv" style="margin-top:2.4rem">// RADAR — TARGET CALENDAR 2026–27</div>
+    <div class="rv">
+      <div class="evrow hot"><span class="d">9 – 10 SEP 2026</span><div><h3>GITEX Ai Türkiye — Istanbul</h3><p>Istanbul Expo Center · inaugural edition, hosted by Invest in Türkiye · 500+ exhibitors, investors, policymakers; Google Cloud, HPE &amp; NVIDIA, Huawei confirmed. Investor-visibility play — bring the deck.</p></div><span class="tagx">TARGET · 9 DAYS</span></div>
+      <div class="evrow"><span class="d">17 – 19 SEP 2026</span><div><h3>Expo3D İstanbul — Additive Manufacturing</h3><p>Istanbul Expo Center · Türkiye's only AM / 3D-printing fair + 5th Int'l 3D Printing &amp; AM Conference (Yıldız Technical University). Feeds the 3D AM Center division and the ASCENT-1 materials track.</p></div><span class="tagx">TARGET</span></div>
+      <div class="evrow"><span class="d">30 SEP – 4 OCT 2026</span><div><h3>TEKNOFEST 2026 — Şanlıurfa</h3><p>GAP Airport · Türkiye's aerospace &amp; tech festival. The Steel Dome air-defense and secure satcom competition tracks speak the KALKAN/ORBITAL language.</p></div><span class="tagx">TARGET</span></div>
+      <div class="evrow hot"><span class="d">5 – 9 OCT 2026</span><div><h3>IAC 2026 — Antalya ★</h3><p>77th International Astronautical Congress · NEST Congress Center · first ever in Türkiye. ORBITAL-1 Session A6.3 stage target — abstract accepted, full paper in progress.</p></div><span class="tagx">PRIME TARGET</span></div>
+      <div class="evrow"><span class="d">14 – 17 OCT 2026</span><div><h3>AgroGreen Bursa — 2nd Agriculture &amp; Livestock Fair</h3><p>Bursa Fair Center · 2025 edition drew 400+ exhibitors and 247K+ visitors. Field for the agri-tech / PLF exploration and a livestock-CV extension of ÇobanAI.</p></div><span class="tagx">TARGET</span></div>
+      <div class="evrow"><span class="d">17 – 20 NOV 2026</span><div><h3>Formnext 2026 — Frankfurt</h3><p>Messe Frankfurt · the global AM hub: 800+ exhibitors, 38,000 visitors. Materials Lab / 3D AM benchmark; European AM contacts for the D-05 track.</p></div><span class="tagx">RADAR</span></div>
+      <div class="evrow"><span class="d">26 – 28 NOV 2026</span><div><h3>CHTF 2026 — China Hi-Tech Fair, Shenzhen</h3><p>Shenzhen World Exhibition &amp; Convention Center · 28th edition, 500K+ visitors. Asia Advanced Materials expo (rare earths, energy storage) + Commercial Space Expo — the Tsinghua / ASCENT-1 China corridor.</p></div><span class="tagx">RADAR</span></div>
+      <div class="evrow"><span class="d">6 – 9 JAN 2027</span><div><h3>CES 2027 — Las Vegas</h3><p>Las Vegas Convention Center · Eureka Park startup floor; investor and media exposure. Only worth it with a shipped product in hand.</p></div><span class="tagx">RADAR</span></div>
+      <div class="evrow"><span class="d">18 – 22 JAN 2027</span><div><h3>World Economic Forum — Annual Meeting, Davos</h3><p>Davos Congress Centre, Davos-Klosters · 57th edition, 3,000+ leaders from government, business, academia and the arts. Main venue is invitation-only — realistic doors are WEF UpLink, the Technology Pioneers programme, Global Shapers (under-30) and Promenade side events. The "humanity forward" mandate is the pitch here.</p></div><span class="tagx">RADAR · LONG SHOT</span></div>
+      <div class="evrow"><span class="d">18 – 22 JAN 2027</span><div><h3>World Economic Forum — Annual Meeting, Davos</h3><p>57th Annual Meeting · Davos Congress Centre, Davos-Klosters · 3,000+ leaders from government, business, academia, civil society and the arts. Access is by invitation — the realistic door for a startup is the WEF Technology Pioneers cohort or an UpLink challenge, which makes this a Phase 3–4 target, not a 2027 trip. Fits the "humanity forward" mandate exactly.</p></div><span class="tagx">LONG-RANGE TARGET</span></div>
+      <div class="evrow"><span class="d">18 – 22 JAN 2027</span><div><h3>World Economic Forum — Annual Meeting, Davos</h3><p>Davos Congress Centre, Davos-Klosters · 57th edition, 3,000+ leaders from government, business, academia and the arts. Main badge is invitation-only; realistic routes are the Open Forum public sessions and the Promenade houses in 2027, then the Technology Pioneers / Global Innovators community and the June "Summer Davos" (AMNC, China) once revenue exists. The "humanity forward" mandate is the story to tell there.</p></div><span class="tagx">RADAR → TARGET 2028</span></div>
+      <div class="evrow"><span class="d">2027</span><div><h3>NATO DIANA — Application Window</h3><p>Dual-use technology accelerator · the gate into Western defense ecosystems.</p></div><span class="tagx">GATE</span></div>
+      <div class="evrow"><span class="d">2027 · ISTANBUL</span><div><h3>IDEF 2027</h3><p>International Defence Industry Fair (biennial) · SSB contact ground.</p></div><span class="tagx">RADAR</span></div>
+      <div class="evrow"><span class="d">27 SEP – 1 OCT 2027</span><div><h3>IAC 2027 — Poznań, Poland ★</h3><p>78th International Astronautical Congress · Poznań International Fair · theme "One Space. Shared Future." · ~10,000 attendees from 120+ countries; Poland's first hosting in 60+ years. Goal: paper #2 — the Antalya follow-up; the abstract window opens within months of IAC 2026.</p></div><span class="tagx">TARGET</span></div>
+      <div class="evrow"><span class="d">2028 · ISTANBUL</span><div><h3>SAHA EXPO 2028</h3><p>Biennial defense-aerospace-space fair · SAHA Istanbul is also co-host of IAC 2026.</p></div><span class="tagx">RADAR</span></div>
+      <div class="evrow"><span class="d">~1 – 5 SEP 2028</span><div><h3>IAC 2028 — Samarkand, Uzbekistan</h3><p>79th Congress · the first IAC ever held in Central Asia, hosted with Uzcosmos — Samarkand won the vote at IAC 2025 Sydney over bids from India and Bahrain. Ulugh Beg's observatory city; dates provisional.</p></div><span class="tagx">RADAR</span></div>
+    </div>
+    <p class="lede rv" style="margin-top:1rem;font-size:.9rem">Note: September is stacked — GITEX (9–10) → <b>IAC paper deadline (14)</b> → Expo3D (17–19). Then Şanlıurfa ends Oct 4 and Antalya begins Oct 5 — <b>two weeks back to back.</b> Protect the paper window; plan the logistics now.</p>
+
+    <div class="fh rv" style="margin-top:1.8rem">// 2026 SEASON — PASSED</div>
+    <div class="rv">
+      <div class="evrow past"><span class="d">5 – 9 MAY 2026</span><div><h3>SAHA EXPO 2026 — Istanbul</h3><p>Istanbul Expo Center · 120+ countries, 1,700+ exhibitors. Biennial — next edition 2028. If you attended, move it up to the Record.</p></div><span class="tagx">PASSED</span></div>
+      <div class="evrow past"><span class="d">20 – 23 AUG 2026</span><div><h3>TEKNOFEST Blue Homeland — Gölcük</h3><p>Gölcük Naval Shipyard · maritime and underwater technologies, unmanned surface vehicles — POSEIDON's showcase domain.</p></div><span class="tagx">PASSED</span></div>
+    </div>
   </div>
 </section>
 
@@ -762,8 +938,169 @@ html.js-reveal .rv.in{opacity:1;transform:none}
   <div class="wrap">
     <p class="eyebrow rv">// INTERNAL REFERENCE · PRINT &amp; PIN</p>
     <h2 class="big rv">THE <em>PINBOARD</em></h2>
-    <p class="lede rv">The founder's paper board — 24 projects, 60+ learning domains, 12 founders and 7 thinkers to study — lives on its own page, styled as the printed sheet it is.</p>
-    <div class="cta rv"><a class="btn primary" href="nexus-apex-founder-pinboard.html">OPEN THE PINBOARD →</a></div>
+    <p class="lede rv">The founder's paper board, pinned to the wall of mission control. <b>This list exists for remembering, not for discovering. Add nothing new. Finish what's here.</b></p>
+    <div class="paper rv">
+      <div class="phead">
+        <div>
+          <div class="pk">NEXUS APEX // PINBOARD REFERENCE v1.0 // 19 MAY 2026</div>
+          <h3 class="pt">What I'll Build <span class="amp">&amp;</span><br>What I'll Learn</h3>
+        </div>
+        <div class="pmeta">
+          <span><b>OPERATOR</b>MUHAMMET</span><span><b>LOCATION</b>AYDIN // AEGEAN</span><span><b>HORIZON</b>40–50 YEARS</span><span><b>DIVISIONS</b>22 PLANNED</span><span><b>SHIPPED</b>0 PRODUCTS</span>
+        </div>
+      </div>
+      <div class="p0">
+        <span class="p0k">P0 // NOW</span>
+        <span>ORBITAL-1 → IAC 2026 full paper</span>
+        <span>SHEPHERD-1 → working MVP screen</span>
+        <span>ASCENT-1 → SOP first paragraph</span>
+      </div>
+      <div class="prules">
+        <span>// RULE — NO NEW PROJECT UNTIL THE PRIOR ONE SHIPS.</span>
+        <span>// AUDIT — HIGH PLANNING. LOW SHIPPING. CORRECT IT.</span>
+      </div>
+
+      <div class="psec"><span class="rn2">I</span><h4>Projects, Products, Systems</h4><span class="pc">// 24 ENTRIES // NEXUS APEX HOLDING</span></div>
+      <div class="pgrid">
+        <div class="pgroup"><h5>Active Core — P0 <i>03</i></h5><ul>
+          <li><b>01 ORBITAL-1</b> — Space debris / MMOD detection. YOLOv11 · Orin NX · INT8 · 88% mAP. <em>paper unwritten · due Sep 14</em></li>
+          <li><b>02 SHEPHERD-1 / ÇobanAI</b> — YKS exam prep. Flutter + local Qwen. KVKK v2.0 ready. <em>no MVP · volunteer team</em></li>
+          <li><b>03 ASCENT-1</b> — Materials Informatics grad apps: IP Paris, İTÜ, ODTÜ, Tsinghua, HPU. <em>SOP unwritten</em></li>
+        </ul></div>
+        <div class="pgroup"><h5>Defense Systems — Frozen <i>04</i></h5><ul>
+          <li><b>04 POSEIDON</b> — Naval defense. USV/UUV, sonar AI, mine sweeping, coastal radar. <em>deck v6 · unsent</em></li>
+          <li><b>05 SENTINEL</b> — Land + aerial defense. 3D radar, anti-drone, acoustic perimeter, RCWS. <em>arch. draft</em></li>
+          <li><b>06 KALKAN</b> — Air defense umbrella + EW + cyber. AI fusion C2. <em>arch. draft</em></li>
+          <li><b>07 TERRA</b> — Underground detection. Seismic net, fiber DAS, GPR, AI fusion. <em>arch. draft</em></li>
+        </ul></div>
+        <div class="pgroup"><h5>Long Horizon + Infrastructure <i>07</i></h5><ul>
+          <li><b>08 ATOMOS</b> — Programmable matter. F0–F6 roadmap. <em>2035–2045</em></li>
+          <li><b>09 Nexus Apex Holding</b> — 22 divisions. AI, defense, space, materials, EdTech. <em>v6 manifesto · 14 slides</em></li>
+          <li><b>10 Robotics Nexus</b> — 6-DOF arm + humanoid R&amp;D. ~80% ORBITAL-1 stack overlap. <em>concept</em></li>
+          <li><b>11 NX-Swarm Substrate</b> — Horizontal swarm layer for SENTINEL/POSEIDON/ORBITAL-1. <em>14-day sprint planned</em></li>
+          <li><b>12 NX-Quantum</b> — QKD network vision. Türkiye as Asia–Europe bridge. <em>2050+</em></li>
+          <li><b>13 Nexus Foundation Model</b> — Engineering assistant LLM. <em>vision</em></li>
+          <li><b>14 Citadel Infinitum</b> — Mental resilience + ADHD productivity OS. <em class="ok">personal OS</em></li>
+        </ul></div>
+        <div class="pgroup"><h5>Near-Term Revenue + Physical Build <i>06</i></h5><ul>
+          <li><b>15 Botanical Extraction Pilot</b> — Aegean oregano essential oil. <em>untested</em></li>
+          <li><b>16 Drone Parts Sales</b> — FC + frame + custom mount micro-line. <em>optional</em></li>
+          <li><b>17 Somalia Base Master Plan</b> — Physical build + Indian Ocean foothold. <em>2030+</em></li>
+          <li><b>18 BIOSTRUCTURA</b> — Structural engineering with integrated greenery. <em class="ok">methodology</em></li>
+          <li><b>19 Naturae Methodus</b> — Principle extraction from living organisms · Naturae Codex. <em class="ok">90 min/week</em></li>
+          <li><b>20 Oriental Elektronik Sales</b> — PA, clock, patrol software. Aydın/Aegean field. <em class="ok">active part-time</em></li>
+        </ul></div>
+        <div class="pgroup"><h5>Publication + Institutional Output <i>04</i></h5><ul>
+          <li><b>21 IAC 2026 Full Paper</b> — Abstract accepted. <em>due Sep 14 · unwritten</em></li>
+          <li><b>22 Investor Deck v6</b> — 14 slides. Vision Manifesto + pitch. <em>ready · unsent</em></li>
+          <li><b>23 TÜBİTAK / KOSGEB / SSB</b> — 1512, NATO DIANA, Horizon Europe. <em>unsubmitted</em></li>
+          <li><b>24 GitHub Portfolio</b> — ORBITAL-1 pipeline + dashboard archive public. <em>piecemeal</em></li>
+        </ul></div>
+      </div>
+
+      <div class="psec"><span class="rn2">II</span><h4>What I Want to Learn</h4><span class="pc">// 60+ DOMAINS · LAYERED DEPTH</span></div>
+      <div class="pgrid">
+        <div class="pgroup"><h5>AI / ML — Core <i>10</i></h5><ul>
+          <li><b>Materials Informatics</b> — GNN, pymatgen, Materials Project API, GNoME</li>
+          <li><b>Foundation Models for Science</b> — MatBERT, ESM-3, AlphaFold, sci-LLM fine-tune</li>
+          <li><b>Physics-Informed NN</b> — PDE → neural net. DeepXDE, FEM acceleration</li>
+          <li><b>Generative AI for Materials</b> — Diffusion, SE(3)-equivariant, MatterGen, CDVAE</li>
+          <li><b>CV for Materials</b> — SEM/TEM segmentation, microstructure, U-Net + SAM</li>
+          <li><b>AI Agents + Self-Driving Lab</b> — LangGraph, lab robotics, Bayesian optimization</li>
+          <li><b>Computer Vision</b> — YOLO family, BEV, depth, point cloud, 3D detection</li>
+          <li><b>Reinforcement Learning</b> — PPO, SAC, MARL, sim2real, curriculum</li>
+          <li><b>Geometric DL + GNN</b> — Message passing, Graph Transformer, SchNet, MACE</li>
+          <li><b>LLM Stack</b> — Transformer → pre-train → fine-tune → RLHF → RAG</li>
+        </ul></div>
+        <div class="pgroup"><h5>Materials Science <i>06</i></h5><ul>
+          <li><b>Energy Storage Materials</b> — Solid-state, Li-S, Na-ion, redox flow</li>
+          <li><b>2D Materials + Heterostructures</b> — Graphene, MoS₂, h-BN, borophene</li>
+          <li><b>Composite + Smart Structural</b> — CFRP, SMA, self-healing polymer</li>
+          <li><b>Biomimetic Materials</b> — Nacre, lotus, spider silk, bone nanostructure</li>
+          <li><b>DFT + ab initio</b> — VASP, Quantum ESPRESSO, tight-binding</li>
+          <li><b>Türkiye Critical Minerals</b> — Boron, REE, lithium, thorium</li>
+        </ul></div>
+        <div class="pgroup"><h5>Engineering + Design <i>09</i></h5><ul>
+          <li><b>AutoCAD 2D → 3D</b> — Mechanical parts, plan-section</li>
+          <li><b>SolidWorks</b> — Parametric CAD, assembly, simulation</li>
+          <li><b>Fusion 360</b> — Integrated CAD/CAM</li>
+          <li><b>Revit + BIM</b> — Architecture + building info modeling</li>
+          <li><b>Rhino + Grasshopper</b> — Parametric architecture + Ladybug</li>
+          <li><b>Circuit + PCB Design</b> — KiCad, schematic, multi-layer, RF, power</li>
+          <li><b>3D Printing — Hobby → Pro</b> — FDM, SLA, SLS, material knowledge</li>
+          <li><b>EV System Engineering</b> — Battery, motor control, BMS, ADAS</li>
+          <li><b>Rocket Engineering</b> — Starship-class, propulsion economics</li>
+        </ul></div>
+        <div class="pgroup"><h5>Science + Core Disciplines <i>10</i></h5><ul>
+          <li><b>Physics — Applied Engineering</b> — Mechanics, EM, thermo, fluids</li>
+          <li><b>Neuroscience + Electroreception</b> — Shark ampullae, BCI principles</li>
+          <li><b>Materials Science Fundamentals</b> — Crystal, phase diagram, dislocation</li>
+          <li><b>Biomimicry Methodology</b> — Naturae Methodus, AskNature, BioTRIZ</li>
+          <li><b>Swarm Intelligence — Substrate</b> — Boids, ant colony, MARL, emergence</li>
+          <li><b>Space Access Economics</b> — Launch cost, payload economics</li>
+          <li><b>Precision Agriculture</b> — LaserWeeder, individual-animal CV tracking</li>
+          <li><b>Botanical Extraction</b> — Steam distillation, GC-MS, essential oil chem</li>
+          <li><b>Advanced Math (for AI)</b> — Linear alg., convex opt., probability, info theory</li>
+          <li><b>Engineering Thinking</b> — Systems engineering, V-model, MBSE</li>
+        </ul></div>
+        <div class="pgroup"><h5>Hand Skills + Trades <i>07</i></h5><ul>
+          <li><b>Blacksmithing</b> — Forge, heat treatment, microstructure atlas</li>
+          <li><b>Welding</b> — EN ISO 4063, WPS/PQR, NDT</li>
+          <li><b>Plumbing</b> — Water, waste, heating, underfloor</li>
+          <li><b>Carpentry</b> — Hand tools, joinery, finishing</li>
+          <li><b>Construction — Practical</b> — Concrete, formwork, steel framing</li>
+          <li><b>Farming</b> — Soil, irrigation, livestock basics</li>
+          <li><b>Automotive Repair</b> — Engine, electrical, diagnostics</li>
+        </ul></div>
+        <div class="pgroup"><h5>Language + Systemic Skills <i>08</i></h5><ul>
+          <li><b>English</b> — Native-level academic + business</li>
+          <li><b>German</b> — A1 → B2 (engineering literature)</li>
+          <li><b>Chinese</b> — Beginner → conversational (Tsinghua path)</li>
+          <li><b>Russian</b> — Beginner → reading (defense literature)</li>
+          <li><b>Scientific Writing + LaTeX</b> — IAC paper, journal manuscript</li>
+          <li><b>Grant Writing</b> — TÜBİTAK, Horizon, NATO DIANA</li>
+          <li><b>Negotiation + B2B Sales</b> — Oriental Elektronik expansion</li>
+          <li><b>Pitch + Investor Communication</b> — Deck v6 → first send</li>
+        </ul></div>
+      </div>
+
+      <div class="psec"><span class="rn2">III</span><h4>People to Study — Operational Reference</h4><span class="pc">// 12 FOUNDERS + 7 THINKERS</span></div>
+      <div class="pgrid">
+        <div class="pgroup"><h5>Founder Thinking Styles <i>12</i></h5><ul>
+          <li><b>Elon Musk</b> — First principles, vertical integration</li>
+          <li><b>Demis Hassabis</b> — Multi-lens thinking, 5 lenses</li>
+          <li><b>Jensen Huang</b> — Platform acceleration, GPU stack</li>
+          <li><b>Morris Chang</b> — Foundry model, precision</li>
+          <li><b>Dario Amodei</b> — Responsible scaling</li>
+          <li><b>Sam Altman</b> — Compounding, optionality</li>
+          <li><b>Wang Chuanfu (BYD)</b> — Vertical integration, blade battery</li>
+          <li><b>Ren Zhengfei (Huawei)</b> — Winter theory, survival</li>
+          <li><b>Ma Huateng (Tencent)</b> — Social graph, network</li>
+          <li><b>Lei Jun (Xiaomi)</b> — Typhoon timing theory</li>
+          <li><b>George Zhao (Honor)</b> — Constraint → opportunity</li>
+          <li><b>James Dyson</b> — Prototype culture, root cause</li>
+        </ul></div>
+        <div class="pgroup"><h5>Thinker + Author Core <i>07</i></h5><ul>
+          <li><b>Nassim Taleb</b> — Antifragility, applied</li>
+          <li><b>Marcus Aurelius</b> — Stoicism, operational</li>
+          <li><b>Epictetus</b> — Dichotomy of control</li>
+          <li><b>Lao Tzu / Zhuangzi</b> — Taoism, wu wei</li>
+          <li><b>Albert Camus</b> — Absurdism, meaning-making</li>
+          <li><b>Andrej Karpathy</b> — LLM pedagogy, "Let's Build GPT"</li>
+          <li><b>Markus Buehler (MIT)</b> — Materials informatics + biomimicry</li>
+        </ul></div>
+      </div>
+
+      <div class="pfoot">
+        <div class="big">Every dashboard is not motion; <span>shipping</span> is motion.</div>
+        <div class="rules">
+          <span>// STOICISM — Spend no energy on what's outside your control.</span>
+          <span>// ANTIFRAGILITY — Build systems that feed on stress. Optionality always.</span>
+          <span>// TAO + ABSURDISM — Move with the current. Meaning is made. Then ship.</span>
+        </div>
+        <div class="stamp">INTERNAL REFERENCE // PRINT &amp; PIN // NO EXPANSION WITHOUT SHIPPING · v1.0 · 19.05.2026 · MUHAMMET · AYDIN</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -823,10 +1160,138 @@ html.js-reveal .rv.in{opacity:1;transform:none}
 <!-- ══ DOCUMENTATION ══ -->
 <section id="docs">
   <div class="wrap">
-    <p class="eyebrow rv">// ARCHIVE INDEX</p>
+    <p class="eyebrow rv">// ARCHIVE INDEX · FULL CATALOG</p>
     <h2 class="big rv">DOCUMENTATION — <em>THE WRITTEN RECORD</em></h2>
-    <p class="lede rv">122 artifacts, March–September 2026 — architectures, papers, guides, decks, code — catalogued with search and category filters on a dedicated page.</p>
-    <div class="cta rv"><a class="btn primary" href="nexus-apex-founder-docs.html">OPEN THE FULL CATALOG →</a></div>
+    <p class="lede rv">Every artifact produced across the venture's conversation history, March–August 2026 — dashboards, papers, guides, decks, code. <b>✓ marks files currently in hand</b>; the rest live in past-chat outputs and must be re-downloaded or regenerated before linking. Search or filter below.</p>
+    <div class="dtools rv">
+      <input class="dsearch" id="dSearch" type="search" placeholder="search title · format · source…" aria-label="Search documents">
+    </div>
+    <div class="dfilters rv" id="docFilters"></div>
+    <div class="dcount rv" id="dCount">122 / 122 ARTIFACTS · 9 IN HAND · MAR–SEP 2026</div>
+    <div class="docs rv" id="docList">
+      <div class="docrow"><span class="id">HS-01</span><div class="t">Nexus Apex — Full Architecture Dashboard<small>Apr 2026 · holding-architecture chat</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-02</span><div class="t">22-Division Dashboard v3 (28 cards)<span class="ok">✓</span><small>Apr 2026 · holding-architecture chat</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-03</span><div class="t">Lean Phase Dashboard — FAZ 0 → FAZ 5<small>Apr 2026 · holding-architecture chat</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-04</span><div class="t">Türkiye Roadmap Dashboard<small>Apr 2026 · holding-architecture chat</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-05</span><div class="t">Unified Vision — Four Pillars · One Table<span class="ok">✓</span><small>10 May 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-06</span><div class="t">Needs Analysis (three projects, plain text)<small>24 Apr 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">MD</span></div>
+      <div class="docrow"><span class="id">HS-07</span><div class="t">Needs-Analysis Dashboard Prompt (10 sections)<small>26 Apr 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">MD</span></div>
+      <div class="docrow"><span class="id">HS-08</span><div class="t">Türkiye Structural Gap Analysis — State Support Map (24 programs)<small>4 May 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-09</span><div class="t">Defense Software Intelligence Briefing — post-SAHA 2026<small>11 May 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-10</span><div class="t">Nexus Apex Events 2026 (three priorities)<small>12 May 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-11</span><div class="t">All-Domains Events 2026 — 14 events · GO/WATCH/SKIP<small>12 May 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-12</span><div class="t">Five-Division Backbone — D-01–D-05 thermal states<small>12 Jun 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-13</span><div class="t">Global Funding & Innovation Support Structures (15 pp)<small>8 Jun 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">PDF</span></div>
+      <div class="docrow"><span class="id">HS-14</span><div class="t">Valuation Ladder — $100M target · VC method<small>9 Jun 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">JSX</span></div>
+      <div class="docrow"><span class="id">HS-15</span><div class="t">Capability Dashboard — NATO DIANA / ESA channels<small>21 Jun 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-16</span><div class="t">Strategic Roadmap — four capital gates<small>21 Jun 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-17</span><div class="t">Pentagon Pathway — FOCI/ITAR routes 01–04<small>28 Jun 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-18</span><div class="t">US Space Force Reference<small>12 Jul 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-19</span><div class="t">D-04 Reframe — Space-Domain Awareness<small>12 Jul 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-20</span><div class="t">SIPRI Top-100 Defense Companies<small>10 Aug 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-21</span><div class="t">A&D Top-100 by Market Cap<small>10 Aug 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-22</span><div class="t">AI-in-Space VC Landscape<small>10 Aug 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-23</span><div class="t">Global AI Investor Landscape<small>10 Aug 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-24</span><div class="t">NX-FTP-001 — Future-Tech Productization (FT-01…05)<small>28 Aug 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-25</span><div class="t">$100M Nexus Apex Protocol<small>29 Mar 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-26</span><div class="t">$100M Global Methods<small>29 Mar 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-27</span><div class="t">Terafab Analysis<small>Mar 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">HS-28</span><div class="t">US Talent Visa Dashboard — O-1A / EB-1A<small>22 Jun 2026</small></div><span class="cat hs">HOLDING & STRATEGY</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-01</span><div class="t">ORBITAL-1 IAC Paper Draft v1 (11 pp)<small>11 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">DOCX</span></div>
+      <div class="docrow"><span class="id">PP-02</span><div class="t">ORBITAL-1 IAC Paper Draft v2 (16 pp · Section 8 roadmap)<small>11 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">DOCX</span></div>
+      <div class="docrow"><span class="id">PP-03</span><div class="t">IAC Presentation Guide — 8 sections<small>21 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-04</span><div class="t">Long-Horizon Strategic Outlook — cislunar → interstellar (11 pp)<small>11 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">DOCX</span></div>
+      <div class="docrow"><span class="id">PP-05</span><div class="t">KALKAN — Air Defense Dashboard<small>Apr 2026 · holding-architecture chat</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-06</span><div class="t">LUNA KALKAN — Lunar Defense Concept (TRL 1)<small>20 Jun 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-07</span><div class="t">ALEV-1 Mission Control — fire suppression<small>21 Jun 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-08</span><div class="t">POSEIDON — Turtle Anatomy & Naval Crosswalk<small>26 Apr 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-09</span><div class="t">UAV-ALPHA NX-UAV-001 — Quadrotor MVP<small>11 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-10</span><div class="t">NX-SWM-001 — Swarm Intelligence Substrate<small>4 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-11</span><div class="t">5-Platform Software Architecture (9 layers)<small>1 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-12</span><div class="t">5-Platform Hardware Architecture<small>1 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-13</span><div class="t">System Interaction Dashboard — 9 defense layers<small>1 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-14</span><div class="t">Product Documentation — Türkiye & Somalia markets<small>1 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-15</span><div class="t">44-Prompt Image Generation Library<small>1 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-16</span><div class="t">KVKK / GDPR Compliance Framework v2.0<small>24 Apr 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">DOCX</span></div>
+      <div class="docrow"><span class="id">PP-17</span><div class="t">JARVIS Voice Assistant — Qwen3 · faster-whisper · Kokoro<small>15 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">ZIP</span></div>
+      <div class="docrow"><span class="id">PP-18</span><div class="t">PRAXIS-1 — ST-01…ST-08 pipeline<small>22 Aug 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-19</span><div class="t">PAIDEIA-1 — founding guideline (10 sections)<small>23 Aug 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-20</span><div class="t">ENTELEKHEIA-1 — PAIDEIA + PRAXIS merged<small>23 Aug 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-21</span><div class="t">AtomOS Nexus<small>Mar 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-22</span><div class="t">Nexus Apex Systems Engineer Guide (20 pp · TR)<small>18 Aug 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">DOCX</span></div>
+      <div class="docrow"><span class="id">PP-23</span><div class="t">SE Roadmap SVG set — IT · Space · Nexus career · hub-spoke<small>18 Aug 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">SVG</span></div>
+      <div class="docrow"><span class="id">PP-24</span><div class="t">Drone Taxonomy Dashboard<small>11 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-25</span><div class="t">Drone Foresight — 3 horizons · 14 technologies<small>11 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-26</span><div class="t">Knowledge Ingestion System — 90+ sources<small>11 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PP-27</span><div class="t">NX-EODS-001 — Earth-Orbit Defense Shield Mission Control (HELIOS H-1)<span class="ok">✓</span><small>3 Sep 2026</small></div><span class="cat pp">PLATFORMS &amp; PROJECTS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-01</span><div class="t">Formula Encyclopedia — physics · chemistry · math<small>Apr 2026 · holding-architecture chat</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-02</span><div class="t">Materials Encyclopedia<small>Apr 2026 · holding-architecture chat</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-03</span><div class="t">Concrete Technologies (13 sections)<small>25 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-04</span><div class="t">Naturae Methodus — Tomus I<small>26 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-05</span><div class="t">Physica Operativa — Tomus II<small>4 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-06</span><div class="t">Codex Sensorius NM-006 — electricity as a sixth sense<small>7 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-07</span><div class="t">BIOSTRUCTURA — biomimetic structural atlas<small>2 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-08</span><div class="t">MIKNATIS — magnets deep analysis (Beylikova REE)<small>2 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-09</span><div class="t">Quality Standards Atlas (11 sections)<small>2 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-10</span><div class="t">Engineering Thinking Systematics — spatial · mechanical · aero<small>1 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-11</span><div class="t">EV Engineering Guide (11 sections)<small>2 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-12</span><div class="t">EV Systems Engineer Role Map (SE-01…07)<small>13 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-13</span><div class="t">Humanoid Robotics Dashboard<small>9 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-14</span><div class="t">Starship-Class Rocket — Vol. 01<small>6 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-15</span><div class="t">Space Access Cost Alternatives — Vol. 02<small>6 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-16</span><div class="t">Systems Engineer Responsibilities — 14 sections (TR)<small>8 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-17</span><div class="t">Systems Engineer Responsibilities — B1 English<small>8 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-18</span><div class="t">MATERIA · INFORMATIO — Three Lenses on Matter<small>26 Jun 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-19</span><div class="t">Golden Dome — annotated dashboard<small>7 Aug 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-20</span><div class="t">Big Tech AI Investment Network<small>11 Jul 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-21</span><div class="t">CAD Suite — AutoCAD DOC-AC-001 (16 wk)<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">JSX</span></div>
+      <div class="docrow"><span class="id">SR-22</span><div class="t">CAD Suite — SolidWorks DOC-SW-001<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">JSX</span></div>
+      <div class="docrow"><span class="id">SR-23</span><div class="t">CAD Suite — Fusion 360 DOC-F360-001<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">JSX</span></div>
+      <div class="docrow"><span class="id">SR-24</span><div class="t">CAD AI Ecosystem DOC-ECO-001 (60+ tools)<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">JSX</span></div>
+      <div class="docrow"><span class="id">SR-25</span><div class="t">Architecture + Construction Curriculum<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">JSX</span></div>
+      <div class="docrow"><span class="id">SR-26</span><div class="t">Electronics + PCB DOC-EE-001<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">JSX</span></div>
+      <div class="docrow"><span class="id">SR-27</span><div class="t">Blacksmith — trade dashboard (12 sections)<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-28</span><div class="t">Welder — trade dashboard<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">SR-29</span><div class="t">Plumbing / Mechanical — trade dashboard<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">FO-01</span><div class="t">Life OS v2.1 — reality panel<span class="ok">✓</span><small>Apr 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">FO-02</span><div class="t">Pinboard Reference v1.0 (TR + EN · A3)<span class="ok">✓</span><small>19 May 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">FO-03</span><div class="t">Codex Inventoris Vol. I<small>4 May 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">FO-04</span><div class="t">Codex Inventoris Vol. II — Editio Augmentata<small>4 May 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">FO-05</span><div class="t">Codex Vol. 015 — Lifelong Learning × Value Creation<small>20 May 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">JSX</span></div>
+      <div class="docrow"><span class="id">FO-06</span><div class="t">Filtra Videndi — 20 perceptual filters<small>14 May 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">FO-07</span><div class="t">CORPUS — Thought · Body · Vision (TR + EN)<small>26 May 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">FO-08</span><div class="t">NX-PRS-001 PRAESENS — moment awareness<small>12 Jun 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">FO-09</span><div class="t">NX-RES-001 — Resilience guide (4 pp)<small>12 Jun 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">PDF</span></div>
+      <div class="docrow"><span class="id">FO-10</span><div class="t">KAIROS — Time Constraint Engine<small>2 May 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">JSX</span></div>
+      <div class="docrow"><span class="id">FO-11</span><div class="t">Tavsiyeler — Time Constraint Manual (25 techniques)<small>2 May 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">JSX</span></div>
+      <div class="docrow"><span class="id">FO-12</span><div class="t">Nexus Decision Engine — 8 workstreams<small>21 May 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">JSX</span></div>
+      <div class="docrow"><span class="id">FO-13</span><div class="t">Ship-Tracker — 14-day sprint<small>28 May 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">FO-14</span><div class="t">NEXUS APEX // LEDGER — three-domain tracker<small>4 Jun 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">FO-15</span><div class="t">AXIS-1 — personal capital instrument<small>25 Aug 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">JSX</span></div>
+      <div class="docrow"><span class="id">FO-16</span><div class="t">AXIS-1/G — six-stage field manual<small>25 Aug 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">JSX</span></div>
+      <div class="docrow"><span class="id">FO-17</span><div class="t">İFŞA KALKANI — disclosure shield<small>18 Aug 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">FO-18</span><div class="t">KATMAN — epistemic reform strategy<small>19 Aug 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">FO-19</span><div class="t">Guide to Behavioral Paralysis (11 pp · TR)<small>17 Aug 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">PDF</span></div>
+      <div class="docrow"><span class="id">FO-20</span><div class="t">Body–Mind Harmony Protocol (1 p)<small>3 Jun 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">PDF</span></div>
+      <div class="docrow"><span class="id">FO-21</span><div class="t">Guide for Smart Work<small>1 Jun 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">PDF</span></div>
+      <div class="docrow"><span class="id">FO-22</span><div class="t">Mental Citadel<small>Mar 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">FO-23</span><div class="t">Mental Citadel — Musk Style<small>Mar 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">FO-24</span><div class="t">Wealth Philosophy dashboard<small>29 Mar 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">FO-25</span><div class="t">ENG-ACQ-01 — English acquisition system<small>21 May 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">FO-26</span><div class="t">LINGUA MAXIMA — films & series atlas<small>21 May 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">FO-27</span><div class="t">MLBB English Series (6 React dashboards)<small>14 May 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">JSX</span></div>
+      <div class="docrow"><span class="id">FO-28</span><div class="t">Chaotic-Life Modular Planning diagram (TR + EN)<small>15 May 2026</small></div><span class="cat fo">FOUNDER OS</span><span class="fmt">SVG</span></div>
+      <div class="docrow"><span class="id">PW-01</span><div class="t">Logo + Investor Presentation — "Bağlantıların Zirvesi"<small>Mar 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">PPTX</span></div>
+      <div class="docrow"><span class="id">PW-02</span><div class="t">Cyberpunk Portfolio v1<span class="ok">✓</span><small>Mar 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PW-03</span><div class="t">Cyberpunk Portfolio v2 — Nexus Apex · Philosophy · Grad targets<small>4 Apr 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PW-04</span><div class="t">Investor Deck — from scratch<small>1 May 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PW-05</span><div class="t">Investor Deck — futuristic HUD<small>1 May 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PW-06</span><div class="t">NexusApex Website v3 — 12-slide investor site<span class="ok">✓</span><small>22 Apr 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PW-07</span><div class="t">NEXUS APEX — Mission Control pitch (1:1)<small>18 Jun 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PW-08</span><div class="t">Investor Deck v6 — 14 slides · ready, unsent<small>May 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">DECK</span></div>
+      <div class="docrow"><span class="id">PW-09</span><div class="t">Website v4 — two-mode showcase/investor (TR)<span class="ok">✓</span><small>26 Aug 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">HTML</span></div>
+      <div class="docrow"><span class="id">PW-10</span><div class="t">Website v5-EN — this site<span class="ok">✓</span><small>31 Aug 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">HTML</span></div>
+    </div>
   </div>
 </section>
 
@@ -840,7 +1305,7 @@ html.js-reveal .rv.in{opacity:1;transform:none}
       <div class="cardx" style="border-top:2px solid var(--red)"><span class="k" style="color:var(--red)">01 // FEEDBACK</span><h3>Say it plainly</h3><p>A broken link, a wrong figure, a weak argument, a page that doesn't read on your phone — every note improves the next version.</p><div class="foot">→ SUBJECT: "BETA FEEDBACK"</div></div>
       <div class="cardx" style="border-top:2px solid var(--cyan)"><span class="k" style="color:var(--cyan)">02 // IDEAS &amp; BRAINSTORMING</span><h3>Half-formed is fine</h3><p>I think in public. Bring a sketch, a what-if, a paper worth reading, a market I'm missing. Credit is given where ideas are used.</p><div class="foot">→ SUBJECT: "IDEA"</div></div>
       <div class="cardx" style="border-top:2px solid var(--green)"><span class="k" style="color:var(--green)">03 // COLLABORATION</span><h3>Build or publish with me</h3><p>Researchers, engineers, universities, labs, fair organisers, fellow founders — co-author a paper, co-build a bench, share a booth.</p><div class="foot">→ SUBJECT: "COLLAB"</div></div>
-      <div class="cardx" style="border-top:2px solid var(--amber)"><span class="k" style="color:var(--amber)">04 // INVESTMENT</span><h3>Pre-seed is open</h3><p>$850K on a SAFE / convertible note, 18-month runway; grants, accelerators and strategic partners equally welcome. Full numbers on the Investor page.</p><div class="foot">→ SUBJECT: "INVEST"</div></div>
+      <div class="cardx" style="border-top:2px solid var(--amber)"><span class="k" style="color:var(--amber)">04 // INVESTMENT</span><h3>Pre-seed is open</h3><p>$850K on a SAFE / convertible note, 18-month runway; grants, accelerators and strategic partners equally welcome. Full numbers in Investor mode.</p><div class="foot">→ SUBJECT: "INVEST"</div></div>
     </div>
     <div class="cta rv">
       <a class="btn primary" href="mailto:muhammetaslan.ai@gmail.com?subject=BETA%20FEEDBACK">SEND FEEDBACK</a>
@@ -911,7 +1376,182 @@ html.js-reveal .rv.in{opacity:1;transform:none}
 </section>
 
 </div><!-- /pubView -->
+
+<!-- ════════════════ INVESTOR VIEW ════════════════ -->
+<div id="invView">
+<div class="wrap">
+  <div class="confband">⚠ CONFIDENTIAL — INVESTOR SECTION · © 2025–2026 NEXUS APEX HOLDING<span style="margin-left:auto;color:var(--dim)">For real confidentiality, host this section separately / behind auth</span></div>
+  <p class="lede rv" style="margin:1.4rem 0 0;font-size:.95rem">Capital story: defense contracts are the first revenue engine of a science-first company. Every dollar below funds the shield — and the shield funds the four sciences, education and letters.</p>
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow rd rv">// PROBLEM</p>
+    <h2 class="big rv">MODERN THREATS ARE MULTI-DOMAIN. <em>DEFENSE SYSTEMS ARE SILOED.</em></h2>
+    <div class="grid g3 rv">
+      <div class="cardx"><span class="k" style="color:var(--red)">🌑 UNDERGROUND</span><p>Tunnel-network threat along a 2,628 km southern border. Sabotage risk on BOTAŞ's 8,800 km pipeline grid. Underground security gap at Akkuyu Nuclear.</p><div class="foot" style="color:var(--red)">NO DOMESTIC SEISMIC AI SYSTEM</div></div>
+      <div class="cardx"><span class="k" style="color:var(--red)">🏔️ LAND</span><p>Insufficient anti-drone coverage. Foreign systems dominate at SSB. No integrated sensor grid between Gendarmerie and Armed Forces.</p><div class="foot" style="color:var(--red)">NO DOMESTIC INTEGRATED LAND DEFENSE</div></div>
+      <div class="cardx"><span class="k" style="color:var(--red)">⚓ SEA</span><p>40+ mines reached Black Sea coasts. USV threat rising in the Aegean. TurkStream + EastMed energy lines at risk.</p><div class="foot" style="color:var(--red)">NO DOMESTIC USV/UUV SYSTEM</div></div>
+      <div class="cardx"><span class="k" style="color:var(--red)">✈️ AIR + CYBER</span><p>AI swarm UAVs: classic missile systems fail against thousands of coordinated drones. Radar deception, GPS jamming.</p><div class="foot" style="color:var(--red)">NO 100% DOMESTIC AI AIR DEFENSE</div></div>
+      <div class="cardx"><span class="k" style="color:var(--red)">🛰️ SPACE</span><p>27,000+ pieces of space debris require tracking. Türkiye has no space surveillance capacity.</p><div class="foot" style="color:var(--red)">NO DOMESTIC SSA SYSTEM</div></div>
+      <div class="cardx" style="border-color:var(--green)"><span class="k" style="color:var(--green)">💡 THE ONE SOLUTION</span><p>Five platforms integrated under Nexus OS: TERRA→SENTINEL · SENTINEL→KALKAN lock→kill · KALKAN→ALL EMP broadcast.</p><div class="foot" style="color:var(--green)">TAM $2.5T · SAM $220B · SOM 2030 $7.4B</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow rd rv">// MARKET ENTRY STRATEGY</p>
+    <h2 class="big rv">TWO MARKETS. <em>ASYMMETRIC ENTRY.</em></h2>
+    <div class="grid g2 rv">
+      <div class="cardx" style="border-color:rgba(0,255,136,.4)">
+        <span class="k" style="color:var(--green)">🇸🇴 SOMALIA — ENTRY MARKET · PRIORITY · 6–12 MO</span>
+        <p><b style="color:var(--w)">TSK Halane Base = decisions made in Turkish.</b> Turkish budget, Turkish chain of command. A contract is possible in 6 months — bypassing SSB's 18-month approval cycle. UN/AU/AFRICOM funding pool: $2.8B/yr.</p>
+        <div class="chips"><span class="chip a">First contract target: Q2 2026 · $800K</span><span class="chip">Competition ≈ zero</span><span class="chip">Turkish presence advantage at maximum</span></div>
+        <div class="foot" style="color:var(--green)">SOMALIA → SSB REFERENCE → SERIES A GATE</div>
+      </div>
+      <div class="cardx">
+        <span class="k" style="color:var(--cyan)">🇹🇷 TÜRKİYE — NATIONAL SCALE · 18–36 MO · SSB APPROVAL</span>
+        <p>2,628 km southern border · 8,800 km BOTAŞ grid · SSB annual budget ₺150B+. A working system in Somalia + a real customer = concrete proof in SSB talks. <b style="color:var(--w)">SSB won't talk without a reference; Somalia provides it.</b></p>
+        <div class="chips"><span class="chip">3 sea fronts: Aegean · Black Sea · Mediterranean</span><span class="chip">Akkuyu + BOTAŞ critical infrastructure</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow rd rv">// BUSINESS MODEL</p>
+    <h2 class="big rv">THREE REVENUE STREAMS. <em>THE REAL MONEY IS MaaS.</em></h2>
+    <div class="grid g3 rv">
+      <div class="cardx"><span class="k" style="color:var(--cyan)">STREAM 1 // HARDWARE SALES</span><p>One-time · per project. TERRA Full <b style="color:var(--w)">$650K</b> · SENTINEL Full <b style="color:var(--w)">$850K</b> · Integrated Package <b style="color:var(--w)">$1.35M</b>.</p><div class="foot">GROSS MARGIN ~52%</div></div>
+      <div class="cardx"><span class="k" style="color:var(--cyan)">STREAM 2 // SOFTWARE LICENSES</span><p>Annual · auto-renewing. AI Fusion Engine <b style="color:var(--w)">$60K/yr</b> · Command Dashboard <b style="color:var(--w)">$24K/yr</b> · Model Updates <b style="color:var(--w)">$18K/yr</b>.</p><div class="foot">GROSS MARGIN ~78%</div></div>
+      <div class="cardx" style="border-color:var(--amber)"><span class="k" style="color:var(--amber)">STREAM 3 // MaaS — THE REAL MONEY</span><p>Monthly · recurring · churn &lt;8%. TERRA Monitoring <b style="color:var(--w)">$45K/mo</b> · SENTINEL <b style="color:var(--w)">$55K/mo</b> · Integrated Full <b style="color:var(--w)">$90K/mo</b>. 10 customers × $90K = <b style="color:var(--amber)">$10.8M/yr ARR</b>.</p><div class="foot" style="color:var(--amber)">~82% GROSS MARGIN · 80% OF 2030 REVENUE RECURRING</div></div>
+    </div>
+    <p class="lede rv" style="margin-top:1.4rem">Recurring MaaS-style revenue is rare in defense — most firms sell one-time. The Nexus MaaS layer delivers <b>predictable ARR and a higher multiple</b>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow rd rv">// ACTIVATION SEQUENCE</p>
+    <h2 class="big rv">8 WAVES — <em>EACH ONE FUNDS THE NEXT</em></h2>
+    <div class="rv">
+      <div class="wave"><span class="n">01</span><div><h3>ZERO CAPITAL → FIRST REVENUE</h3><p>🏗️ Construction Drone SaaS · 🌾 Agri Drones · 🖨️ 3D AM Prototyping · Months 1–6</p></div><span class="rev">$5–15K/mo</span></div>
+      <div class="wave"><span class="n">02</span><div><h3>PUBLIC &amp; INFRASTRUCTURE REVENUE</h3><p>🏢 Smart Buildings · 🌉 KGM Bridges · 🔬 TÜBİTAK Grants · Months 3–9</p></div><span class="rev">$25–75K</span></div>
+      <div class="wave"><span class="n">03</span><div><h3>THE DEFENSE GATE</h3><p>✈️ SSB UAV Demo · ⚔️ Military Robots · 🚗 UGV · Months 6–15</p></div><span class="rev">$100K–2M</span></div>
+      <div class="wave"><span class="n">04</span><div><h3>MANUFACTURING &amp; ROBOTICS GROWTH</h3><p>🏭 Industrial Robots · 🤖 Humanoids · 🏥 Medical · Months 9–18</p></div><span class="rev">$28K + $2K/mo</span></div>
+      <div class="wave"><span class="n">05</span><div><h3>PLATFORM &amp; TECHNOLOGY</h3><p>⬡ Nexus OS SDK · 🚀 Space · Naval · Hypersonics · Months 12–24</p></div><span class="rev">$1M ARR</span></div>
+      <div class="wave"><span class="n">06</span><div><h3>CHIPS &amp; AI — NX-EDGE TAPEOUT</h3><p>🔲 NX-EDGE Chip Production · 🧠 NFM Foundation Model · Years 3–5</p></div><span class="rev">$10M ARR</span></div>
+      <div class="wave"><span class="n">07</span><div><h3>🛡️ KALKAN — AIR DEFENSE</h3><p>KALKAN Fully Operational · NATO Export License · Years 4–7</p></div><span class="rev">$50M ARR</span></div>
+      <div class="wave"><span class="n">08</span><div><h3>⚓ POSEIDON — NAVAL SOVEREIGNTY</h3><p>USV Patrols · UUV Underwater · Türkiye's 3 Seas · Somalia · Years 4–7</p></div><span class="rev">$50M ARR</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow rd rv">// TRACTION &amp; PROOF POINTS</p>
+    <h2 class="big rv">WHAT WE'VE DONE. <em>HONESTLY.</em></h2>
+    <div class="grid g2 rv">
+      <div class="cardx" style="border-color:rgba(0,255,136,.4)"><span class="k" style="color:var(--green)">✓ WORKING — 🛰️ ORBITAL-1</span><p>YOLOv11 space-debris detection: <b style="color:var(--w)">88% mAP@0.50, &lt;25ms inference</b>, Jetson Orin NX edge deployment. Submitted to IAC 2026 Session A6.3 — abstract accepted. This stack is the foundation of the TERRA seismic classifier and the SENTINEL AI engine.</p><div class="chips"><span class="chip c">88% mAP</span><span class="chip c">&lt;25ms</span><span class="chip c">IAC A6.3</span></div></div>
+      <div class="cardx" style="border-color:rgba(255,179,0,.4)"><span class="k" style="color:var(--amber)">⟳ IN DEVELOPMENT — 🐑 SHEPHERD-1</span><p>Flutter + local Qwen LLM exam-prep platform, KVKK documentation complete. <b style="color:var(--w)">No revenue yet — hiding that would be wrong.</b> But the LLM edge pipeline builds critical infrastructure experience for TERRA and KALKAN AI. ~10-person team.</p><div class="chips"><span class="chip a">Flutter + Qwen</span><span class="chip a">KVKK</span></div></div>
+      <div class="cardx" style="border-color:rgba(0,255,136,.4)"><span class="k" style="color:var(--green)">✓ COMPLETE — 🏗️ 5-PLATFORM ARCHITECTURE</span><p><b style="color:var(--w)">A 9-layer integrated systems architecture</b> is documented: sensor-to-decision chain, AI model stack, comms resilience protocols. The Nexus OS backbone: separate platforms, one brain.</p><div class="chips"><span class="chip c">9 Layers</span><span class="chip c">Resilient C2</span></div></div>
+      <div class="cardx" style="border-color:rgba(255,179,0,.4)"><span class="k" style="color:var(--amber)">⟳ ACTIVE — 📚 ASCENT-1</span><p>IP Paris · ITU · METU · Tsinghua — materials informatics graduate applications. The academic extension of ORBITAL-1 research; depth for the Materials Lab and 3D AM divisions.</p><div class="chips"><span class="chip a">IP Paris</span><span class="chip a">Tsinghua</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow rd rv">// FINANCIAL PROJECTIONS</p>
+    <h2 class="big rv">$800K → <em>$45M+</em> · 2026–2030</h2>
+    <div class="fin rv">
+      <div class="y"><div class="yy">2026</div><div class="vv">$800K</div><div class="dd">Somalia SENTINEL pilot</div></div>
+      <div class="y"><div class="yy">2027</div><div class="vv">$3.2M</div><div class="dd">TR + Somalia expansion</div></div>
+      <div class="y"><div class="yy">2028</div><div class="vv">$9.5M</div><div class="dd">BOTAŞ + Ports + POSEIDON</div></div>
+      <div class="y"><div class="yy">2029</div><div class="vv">$22M</div><div class="dd">Platform + MaaS dominant</div></div>
+      <div class="y"><div class="yy">2030</div><div class="vv">$45M+</div><div class="dd">Full ecosystem + regional</div></div>
+    </div>
+    <div class="chips rv" style="margin-top:1.1rem">
+      <span class="chip a">2030 MIX: 58% MaaS · 22% Licenses · 20% Hardware</span>
+      <span class="chip">MaaS margin ~82%</span>
+      <span class="chip">SSB TR pilot: Q4 2026 $1M+</span>
+      <span class="chip">2028 target: 5+ active MaaS customers</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow rd rv">// ENERGY DIVISION PLAN</p>
+    <h2 class="big rv">EVERY DIVISION HAS AN ENERGY PROBLEM. <em>THE ANSWER COMES FROM INSIDE.</em></h2>
+    <div class="tblwrap rv">
+      <table class="tbl">
+        <thead><tr><th>STAGE</th><th>WINDOW</th><th>INVESTMENT</th><th>EXPECTED RETURN</th><th>FEEDS</th></tr></thead>
+        <tbody>
+          <tr><td>Solar pilot plant (10 MW)</td><td>2027–28</td><td>~$8M (BOT model)</td><td class="g">~$1.2M/yr</td><td>Site power, NX-DC-001 compute, smart buildings, UAV charging</td></tr>
+          <tr><td>Smart-grid software SaaS</td><td>2027+</td><td>~$500K</td><td class="g">Subscription</td><td>Nexus OS energy layer</td></tr>
+          <tr><td>Hydrogen electrolysis facility</td><td>2028–30</td><td>~$5M</td><td class="g">Internal + external sales</td><td>Ground vehicles, hybrid UAVs, Mars ISRU fuel</td></tr>
+          <tr><td>SMR license &amp; integration</td><td>2030–32</td><td>~$2M R&amp;D</td><td>Project-based</td><td>Lunar/Mars colony, remote sites, military bases</td></tr>
+          <tr><td>SBSP demonstration</td><td>2035+</td><td>Joint with Space division</td><td>Licensing</td><td>HELIOS orbital &amp; lunar compute, shared satellites, global grid — commercial scale 2045+</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chips rv" style="margin-top:1rem"><span class="chip">Funding: YEKA tenders</span><span class="chip">EPDK license</span><span class="chip">IFC green-energy credit</span><span class="chip">EU Green Deal funds</span><span class="chip a">Materials Lab → domestic batteries, supercapacitors, H₂ storage alloys</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow rd rv">// COMPETITIVE ANALYSIS</p>
+    <h2 class="big rv">WE DON'T CLAIM NO RIVALS. <em>WE SHOW THE GAP.</em></h2>
+    <div class="tblwrap rv">
+      <table class="tbl">
+        <thead><tr><th>COMPANY</th><th>SCOPE</th><th>AI INTEGRATION</th><th>TÜRKİYE</th><th>SOMALIA</th><th>MaaS</th><th>PRICE</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td>NEXUS APEX</td><td>5 Platforms Integrated</td><td class="g">Transformer Fusion</td><td class="g">SSB-Aligned</td><td class="g">TSK Base — Ready</td><td class="g">$90K/mo ✓</td><td>Modular</td></tr>
+          <tr><td>Aselsan (TR)</td><td>Land + Radar</td><td>Limited</td><td class="g">Strong</td><td class="r">—</td><td class="r">—</td><td>High</td></tr>
+          <tr><td>Palantir (US)</td><td>Software / C2</td><td class="g">Strong</td><td>NATO-Restricted</td><td class="r">—</td><td>License</td><td>Very High</td></tr>
+          <tr><td>Anduril (US)</td><td>Land + Air</td><td class="g">Strong</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td>Very High</td></tr>
+          <tr><td>Regional Local</td><td>Point solutions</td><td class="r">—</td><td>Limited</td><td>Fragmented</td><td class="r">—</td><td>Low</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede rv" style="margin-top:1.2rem"><b>Core moat:</b> Aselsan and Havelsan build siloed systems — not integrated. Palantir and Anduril are absent from Türkiye and Somalia. Nexus Apex fills both gaps at once: <b>domestic + integrated + present in two markets + a MaaS model.</b></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow rd rv">// INVESTMENT REQUEST</p>
+    <h2 class="big rv"><em>$850K</em> PRE-SEED · $1–3M SERIES A</h2>
+    <div class="grid g2 rv">
+      <div class="cardx" style="border-color:var(--amber)">
+        <span class="k" style="color:var(--amber)">PRE-SEED — NOW · CONVERTIBLE NOTE / SAFE · 18-MO RUNWAY</span>
+        <div class="ask"><span>SENTINEL hardware + Somalia installation</span><b>$320K</b></div>
+        <div class="ask"><span>TERRA MVP (seismic + AI engine)</span><b>$180K</b></div>
+        <div class="ask"><span>Team expansion (3 engineers)</span><b>$200K</b></div>
+        <div class="ask"><span>SSB applications + legal</span><b>$80K</b></div>
+        <div class="ask"><span>Operations + runway buffer</span><b>$70K</b></div>
+        <div class="foot" style="color:var(--amber)">END OF ROUND: FIRST PAYING CUSTOMER (TSK HALANE $800K) · 2 WORKING PRODUCTS · SERIES A REFERENCE (TSK + UN)</div>
+      </div>
+      <div class="cardx">
+        <span class="k" style="color:var(--cyan)">VALUATION ROADMAP</span>
+        <div class="vroad">
+          <div><div class="k" style="color:var(--cyan)">2025 · PRE-SEED</div><p>$0→$5M — incorporation + Somalia target</p></div>
+          <div><div class="k" style="color:var(--cyan)">2027 · SERIES A</div><p>$30–80M — SSB reference + pilot revenue</p></div>
+          <div><div class="k" style="color:var(--cyan)">2030 · SERIES B/C</div><p>$500M–2B — KALKAN + NX-EDGE + $45M ARR</p></div>
+          <div><div class="k" style="color:var(--amber)">2035 · IPO+</div><p>$200B target — NATO exports · POSEIDON global</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div><!-- /invView -->
+
 </main>
+
 <footer>
   <div class="wrap">
     <span class="fm">⬡ NEXUS<span>·</span>APEX — © 2026 MUHAMMET ASLAN</span>
@@ -923,15 +1563,278 @@ html.js-reveal .rv.in{opacity:1;transform:none}
 
 <script>
 (function(){
-  try{var tc=document.getElementById('tClock');function clk(){tc.textContent=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Istanbul',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date())}clk();setInterval(clk,1000)}catch(e){}
-  try{var target=new Date('2026-10-05T09:00:00+03:00').getTime(),hc=document.getElementById('heroCount'),sc=document.getElementById('tCount');function pad(n){return String(n).padStart(2,'0')}
-  function cd(){var d=target-Date.now();if(d<=0){if(hc)hc.textContent='GO — ANTALYA STAGE';sc.textContent='LIVE';return}var D=Math.floor(d/864e5),H=Math.floor(d%864e5/36e5),M=Math.floor(d%36e5/6e4),S=Math.floor(d%6e4/1e3);if(hc)hc.textContent=pad(D)+'D : '+pad(H)+'H : '+pad(M)+'M : '+pad(S)+'S';sc.textContent='T\u2013 '+D+'D '+pad(H)+'H '+pad(M)+'M'}cd();setInterval(cd,1000)}catch(e){}
-  try{var fb=document.querySelectorAll('#divFilters .fb'),cards=document.querySelectorAll('#divGrid .cardx');fb.forEach(function(b){b.addEventListener('click',function(){fb.forEach(function(x){x.classList.remove('on')});b.classList.add('on');var f=b.dataset.f;cards.forEach(function(c){c.style.display=(f==='all'||c.dataset.c===f)?'':'none'})})})}catch(e){}
-  try{var els=document.querySelectorAll('.rv');function showAll(){els.forEach(function(el){el.classList.add('in')})}
-  if('IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-reveal');
-  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0,rootMargin:'0px 0px 15% 0px'});els.forEach(function(el){io.observe(el)});
-  var vh=window.innerHeight||800;els.forEach(function(el){if(el.getBoundingClientRect().top<vh*1.25)el.classList.add('in')});setTimeout(showAll,1500);
-  ['scroll','touchstart','keydown','pointerdown'].forEach(function(ev){window.addEventListener(ev,showAll,{once:true,passive:true})})}else{showAll()}}catch(e){}
+  try{
+  // ── clock ──
+  var tc=document.getElementById('tClock');
+  function clk(){try{tc.textContent=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Istanbul',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date())}catch(e){tc.textContent=new Date().toLocaleTimeString('en-GB')}}
+  clk();setInterval(clk,1000);
+  }catch(e){if(window.console)console.error('block failed',e)}
+  try{
+  // ── IAC 2026 countdown — 5 Oct 2026, Antalya ──
+  var target=new Date('2026-10-05T09:00:00+03:00').getTime();
+  var hc=document.getElementById('heroCount'),sc=document.getElementById('tCount');
+  function pad(n){return String(n).padStart(2,'0')}
+  function cd(){
+    var d=target-Date.now();
+    if(d<=0){hc.textContent='GO — ANTALYA STAGE';sc.textContent='LIVE';return}
+    var D=Math.floor(d/864e5),H=Math.floor(d%864e5/36e5),M=Math.floor(d%36e5/6e4),S=Math.floor(d%6e4/1e3);
+    hc.textContent=pad(D)+'D : '+pad(H)+'H : '+pad(M)+'M : '+pad(S)+'S';
+    sc.textContent='T\u2013 '+D+'D '+pad(H)+'H '+pad(M)+'M';
+  }
+  cd();setInterval(cd,1000);
+  }catch(e){if(window.console)console.error('block failed',e)}
+  try{
+  // ── showcase / investor mode ──
+  var rp=document.getElementById('modePub'),ri=document.getElementById('modeInv');
+  function onMode(){window.scrollTo({top:0,behavior:'auto'});document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in')})}
+  if(rp)rp.addEventListener('change',onMode);if(ri)ri.addEventListener('change',onMode);
+  }catch(e){if(window.console)console.error('block failed',e)}
+  try{
+  // ── divisions data ──
+  var CATS=[["all","ALL"],["os","NEXUS OS"],["tek","CHIPS & AI"],["sav","5 DEFENSE"],["hav","AVIATION & SPACE"],["rob","ROBOTICS & VEHICLES"],["yapi","CONSTRUCTION & MFG"],["ar","RESEARCH & FRONTIER"],["str","STRATEGY & REVENUE"]];
+  var DIVS=[
+    ["00","os","Nexus OS — Autonomous Systems Platform","RTOS · ROS2 · AI command · digital twin — the software backbone binding every division. TERRA data reaches KALKAN within 50ms."],
+    ["S1","tek","Nexus Silicon — Chip Design Center","NX-EDGE · NX-NEURO · NX-SPACE · NX-QUANTUM chip family · Fabless model (TSMC/Samsung)."],
+    ["S2","tek","Nexus AI Lab — Artificial Intelligence Center","NFM foundation model (70B, TR+EN) · Autonomous AI · Scientific AI · Data moat."],
+    ["S3","tek","AI Data Center & Sovereign Compute — NX-DC-001","From-scratch build: containerized micro-DC → regional facility · liquid cooling · renewable + SMR power via the Energy division · KVKK data residency · NFM training home · NX-EDGE/NX-NEURO silicon target."],
+    ["P1","sav","TERRA — Underground Defense","Seismic geophones · Fiber DAS · GPR · AI tunnel detection · 100m depth · EMP-hardened."],
+    ["P2","sav","SENTINEL — Land & Surface Defense","3D radar · Anti-drone EW · Acoustic/thermal fence · RCWS · Mobile + fixed."],
+    ["P3","sav","POSEIDON — Naval & Underwater Defense","USV · UUV · Sonar AI · Torpedo countermeasures · Naval EW · Indian Ocean."],
+    ["P4","sav","KALKAN — Air + Cyber Defense","Anti-ballistic · EW/EMP shield · AI swarm defense · 5-layer architecture · NATO export goal."],
+    ["P5","sav","ORBITAL-1 ★ — Space Surveillance & Debris","YOLOv11 · 88% mAP@0.50 · <25ms · Jetson Orin NX · IAC 2026 A6.3 — ACTIVE."],
+    ["01","hav","Aviation & UAV","Defense UAV · Construction drone SaaS · Agri drones · KALKAN coordination."],
+    ["02","hav","Space Systems","CubeSat SaaS · Ground station · Satellite ops platform · Somalia launch site."],
+    ["03","hav","Hypersonics & Rocketry","Nexus-1 small launcher · Roketsan partnership vision · Somalia pad · 2033 target."],
+    ["25","hav","HELIOS — Orbital, Lunar & Solar-System Data Centers","Earth-orbit defense shield (H-1) · solar-powered orbital DC on NX-SPACE silicon (H-2) · lunar DC — polar light, regolith shielding, SMR nights (H-3) · Sun-powered solar-system compute network (H-4) · 2030 → 2050+."],
+    ["04","rob","Ground Vehicles — UGV & Logistics","Autonomous UGV · Defense convoys · Mining/logistics retrofit · SENTINEL integration."],
+    ["05","rob","Marine Vehicles — USV/UUV Operations","Coast guard USV · Pipeline UUV · Port security · POSEIDON operations."],
+    ["06","rob","Industrial Robotics","UR5e + Nexus MES · Factory automation · Install + monthly SaaS model."],
+    ["07","rob","Humanoid Robotics","Dual-arm → general purpose · NX-NEURO sensing · KALKAN maintenance · Phase 4 humanoid."],
+    ["08","rob","Military Robotics","EOD · Land patrol · SENTINEL-integrated · Mine-sweeping UGV swarm."],
+    ["09","rob","Medical Robotics & Exoskeletons","Surgical robots · Exoskeletons · BCI rehabilitation · Somalia remote surgery."],
+    ["10","yapi","Smart Building IoT","Energy tracking · Security integration · Install + SaaS · KGM bridge monitoring."],
+    ["11","yapi","Modular Construction","Prefab modules · Somalia base construction · Rapid field setup · 3D AM."],
+    ["12","yapi","Construction Drone SaaS","Site tracking · Monthly per-site subscription · DJI RTK + Nexus AI · 15K+ TR sites."],
+    ["13","yapi","Infrastructure Monitoring","KGM 3,200 bridges · BOTAŞ 8,800 km pipelines · Akkuyu · TERRA integration."],
+    ["14","yapi","3D AM Center","Metal SLM Ti-6Al-4V · Polymer FDM · Concrete AM · POSEIDON UUV hulls."],
+    ["15","ar","Manufacturing Tech R&D","AM process optimization · Defects 5%→0.1% · Defense Ti part quality."],
+    ["16","ar","Materials Science Lab","Ti-6Al-4V marine · Anechoic acoustics · Boron nitride · CFRP · Bio-composites (bamboo/hemp) · ASCENT-1 link · Opens post-Phase 3 (2030+)."],
+    ["17","ar","Energy Center","Somalia 2MW solar · SMR small modular reactors · Hydrogen · 10MWh LFP."],
+    ["18","ar","Space Colony Center","Lunar base R&D · ISRU · Mars infrastructure prep · Nexus-1 · 2040–2050."],
+    ["19","ar","Frontier Science Coordination","AGI safety · Consciousness research · Longevity · Synthetic biology · Terraforming."],
+    ["24","ar","Frontier Science Center — Quantum & Experimental Tech (NX-FSC-001)","Quantum sensing & QKD · ATOMOS programmable-matter testbeds · Neuro/BCI bench · Swarm arena · Opens with the Materials Lab post-Phase 3 (2030+) · NX-QUANTUM silicon target."],
+    ["23","ar","Nexus Codex — Science Writing, Art & Letters (proposed)","Codex Inventoris I–II · Physica Operativa · Naturae Methodus · Codex Sensorius · essays, fiction, the blog — the company's written and artistic output as a line of its own."],
+    ["21","str","Somalia Base Strategy","TSK Halane · 2°N equatorial advantage · SENTINEL Q2 2026 · POSEIDON Indian Ocean."],
+    ["20","str","MaaS — Managed Monitoring Service","TERRA $45K/mo · SENTINEL $55K/mo · Full $90K/mo · ~82% gross margin."],
+    ["22","str","SHEPHERD-1 / ÇobanAI — Active MVP","Flutter + local Qwen LLM · YKS prep · KVKK-compliant · LLM pipeline experience."]
+  ];
+  var fWrap=document.getElementById('divFilters'),grid=document.getElementById('divGrid');
+  fWrap.innerHTML='';
+  CATS.forEach(function(c,i){
+    var b=document.createElement('button');b.className='fb'+(i===0?' on':'');b.textContent=c[1];b.dataset.f=c[0];
+    b.addEventListener('click',function(){
+      fWrap.querySelectorAll('.fb').forEach(function(x){x.classList.remove('on')});
+      b.classList.add('on');render(c[0]);
+    });
+    fWrap.appendChild(b);
+  });
+  function render(f){
+    grid.innerHTML='';
+    DIVS.forEach(function(d){
+      if(f!=='all'&&d[1]!==f)return;
+      var el=document.createElement('div');el.className='cardx';
+      el.innerHTML='<span class="num">['+d[0]+']</span><h3>'+d[2]+'</h3><p>'+d[3]+'</p>';
+      grid.appendChild(el);
+    });
+  }
+  render('all');
+  }catch(e){if(window.console)console.error('block failed',e)}
+  try{
+  // ── document catalog ──
+  var DCATS=[["all","ALL"],["hs","HOLDING & STRATEGY"],["pp","PLATFORMS & PROJECTS"],["sr","SCIENCE & ENGINEERING"],["fo","FOUNDER OS"],["pw","PRESENTATIONS & WEB"]];
+  var DOCS=[
+    ["HS-01","hs","Nexus Apex — Full Architecture Dashboard","Apr 2026 · holding-architecture chat","HTML",0],
+    ["HS-02","hs","22-Division Dashboard v3 (28 cards)","Apr 2026 · holding-architecture chat","HTML",1],
+    ["HS-03","hs","Lean Phase Dashboard — FAZ 0 → FAZ 5","Apr 2026 · holding-architecture chat","HTML",0],
+    ["HS-04","hs","Türkiye Roadmap Dashboard","Apr 2026 · holding-architecture chat","HTML",0],
+    ["HS-05","hs","Unified Vision — Four Pillars · One Table","10 May 2026","HTML",1],
+    ["HS-06","hs","Needs Analysis (three projects, plain text)","24 Apr 2026","MD",0],
+    ["HS-07","hs","Needs-Analysis Dashboard Prompt (10 sections)","26 Apr 2026","MD",0],
+    ["HS-08","hs","Türkiye Structural Gap Analysis — State Support Map (24 programs)","4 May 2026","HTML",0],
+    ["HS-09","hs","Defense Software Intelligence Briefing — post-SAHA 2026","11 May 2026","HTML",0],
+    ["HS-10","hs","Nexus Apex Events 2026 (three priorities)","12 May 2026","HTML",0],
+    ["HS-11","hs","All-Domains Events 2026 — 14 events · GO/WATCH/SKIP","12 May 2026","HTML",0],
+    ["HS-12","hs","Five-Division Backbone — D-01–D-05 thermal states","12 Jun 2026","HTML",0],
+    ["HS-13","hs","Global Funding & Innovation Support Structures (15 pp)","8 Jun 2026","PDF",0],
+    ["HS-14","hs","Valuation Ladder — $100M target · VC method","9 Jun 2026","JSX",0],
+    ["HS-15","hs","Capability Dashboard — NATO DIANA / ESA channels","21 Jun 2026","HTML",0],
+    ["HS-16","hs","Strategic Roadmap — four capital gates","21 Jun 2026","HTML",0],
+    ["HS-17","hs","Pentagon Pathway — FOCI/ITAR routes 01–04","28 Jun 2026","HTML",0],
+    ["HS-18","hs","US Space Force Reference","12 Jul 2026","HTML",0],
+    ["HS-19","hs","D-04 Reframe — Space-Domain Awareness","12 Jul 2026","HTML",0],
+    ["HS-20","hs","SIPRI Top-100 Defense Companies","10 Aug 2026","HTML",0],
+    ["HS-21","hs","A&D Top-100 by Market Cap","10 Aug 2026","HTML",0],
+    ["HS-22","hs","AI-in-Space VC Landscape","10 Aug 2026","HTML",0],
+    ["HS-23","hs","Global AI Investor Landscape","10 Aug 2026","HTML",0],
+    ["HS-24","hs","NX-FTP-001 — Future-Tech Productization (FT-01…05)","28 Aug 2026","HTML",0],
+    ["HS-25","hs","$100M Nexus Apex Protocol","29 Mar 2026","HTML",0],
+    ["HS-26","hs","$100M Global Methods","29 Mar 2026","HTML",0],
+    ["HS-27","hs","Terafab Analysis","Mar 2026","HTML",0],
+    ["HS-28","hs","US Talent Visa Dashboard — O-1A / EB-1A","22 Jun 2026","HTML",0],
+    ["PP-01","pp","ORBITAL-1 IAC Paper Draft v1 (11 pp)","11 May 2026","DOCX",0],
+    ["PP-02","pp","ORBITAL-1 IAC Paper Draft v2 (16 pp · Section 8 roadmap)","11 May 2026","DOCX",0],
+    ["PP-03","pp","IAC Presentation Guide — 8 sections","21 May 2026","HTML",0],
+    ["PP-04","pp","Long-Horizon Strategic Outlook — cislunar → interstellar (11 pp)","11 May 2026","DOCX",0],
+    ["PP-05","pp","KALKAN — Air Defense Dashboard","Apr 2026 · holding-architecture chat","HTML",0],
+    ["PP-06","pp","LUNA KALKAN — Lunar Defense Concept (TRL 1)","20 Jun 2026","HTML",0],
+    ["PP-07","pp","ALEV-1 Mission Control — fire suppression","21 Jun 2026","HTML",0],
+    ["PP-08","pp","POSEIDON — Turtle Anatomy & Naval Crosswalk","26 Apr 2026","HTML",0],
+    ["PP-09","pp","UAV-ALPHA NX-UAV-001 — Quadrotor MVP","11 May 2026","HTML",0],
+    ["PP-10","pp","NX-SWM-001 — Swarm Intelligence Substrate","4 May 2026","HTML",0],
+    ["PP-11","pp","5-Platform Software Architecture (9 layers)","1 May 2026","HTML",0],
+    ["PP-12","pp","5-Platform Hardware Architecture","1 May 2026","HTML",0],
+    ["PP-13","pp","System Interaction Dashboard — 9 defense layers","1 May 2026","HTML",0],
+    ["PP-14","pp","Product Documentation — Türkiye & Somalia markets","1 May 2026","HTML",0],
+    ["PP-15","pp","44-Prompt Image Generation Library","1 May 2026","HTML",0],
+    ["PP-16","pp","KVKK / GDPR Compliance Framework v2.0","24 Apr 2026","DOCX",0],
+    ["PP-17","pp","JARVIS Voice Assistant — Qwen3 · faster-whisper · Kokoro","15 May 2026","ZIP",0],
+    ["PP-18","pp","PRAXIS-1 — ST-01…ST-08 pipeline","22 Aug 2026","HTML",0],
+    ["PP-19","pp","PAIDEIA-1 — founding guideline (10 sections)","23 Aug 2026","HTML",0],
+    ["PP-20","pp","ENTELEKHEIA-1 — PAIDEIA + PRAXIS merged","23 Aug 2026","HTML",0],
+    ["PP-21","pp","AtomOS Nexus","Mar 2026","HTML",0],
+    ["PP-22","pp","Nexus Apex Systems Engineer Guide (20 pp · TR)","18 Aug 2026","DOCX",0],
+    ["PP-23","pp","SE Roadmap SVG set — IT · Space · Nexus career · hub-spoke","18 Aug 2026","SVG",0],
+    ["PP-24","pp","Drone Taxonomy Dashboard","11 May 2026","HTML",0],
+    ["PP-25","pp","Drone Foresight — 3 horizons · 14 technologies","11 May 2026","HTML",0],
+    ["PP-26","pp","Knowledge Ingestion System — 90+ sources","11 May 2026","HTML",0],
+    ["PP-27","pp","NX-EODS-001 — Earth-Orbit Defense Shield Mission Control (HELIOS H-1)","3 Sep 2026","HTML",1],
+    ["SR-01","sr","Formula Encyclopedia — physics · chemistry · math","Apr 2026 · holding-architecture chat","HTML",0],
+    ["SR-02","sr","Materials Encyclopedia","Apr 2026 · holding-architecture chat","HTML",0],
+    ["SR-03","sr","Concrete Technologies (13 sections)","25 Apr 2026","HTML",0],
+    ["SR-04","sr","Naturae Methodus — Tomus I","26 Apr 2026","HTML",0],
+    ["SR-05","sr","Physica Operativa — Tomus II","4 May 2026","HTML",0],
+    ["SR-06","sr","Codex Sensorius NM-006 — electricity as a sixth sense","7 May 2026","HTML",0],
+    ["SR-07","sr","BIOSTRUCTURA — biomimetic structural atlas","2 May 2026","HTML",0],
+    ["SR-08","sr","MIKNATIS — magnets deep analysis (Beylikova REE)","2 May 2026","HTML",0],
+    ["SR-09","sr","Quality Standards Atlas (11 sections)","2 May 2026","HTML",0],
+    ["SR-10","sr","Engineering Thinking Systematics — spatial · mechanical · aero","1 May 2026","HTML",0],
+    ["SR-11","sr","EV Engineering Guide (11 sections)","2 May 2026","HTML",0],
+    ["SR-12","sr","EV Systems Engineer Role Map (SE-01…07)","13 May 2026","HTML",0],
+    ["SR-13","sr","Humanoid Robotics Dashboard","9 May 2026","HTML",0],
+    ["SR-14","sr","Starship-Class Rocket — Vol. 01","6 May 2026","HTML",0],
+    ["SR-15","sr","Space Access Cost Alternatives — Vol. 02","6 May 2026","HTML",0],
+    ["SR-16","sr","Systems Engineer Responsibilities — 14 sections (TR)","8 May 2026","HTML",0],
+    ["SR-17","sr","Systems Engineer Responsibilities — B1 English","8 May 2026","HTML",0],
+    ["SR-18","sr","MATERIA · INFORMATIO — Three Lenses on Matter","26 Jun 2026","HTML",0],
+    ["SR-19","sr","Golden Dome — annotated dashboard","7 Aug 2026","HTML",0],
+    ["SR-20","sr","Big Tech AI Investment Network","11 Jul 2026","HTML",0],
+    ["SR-21","sr","CAD Suite — AutoCAD DOC-AC-001 (16 wk)","27 Apr 2026","JSX",0],
+    ["SR-22","sr","CAD Suite — SolidWorks DOC-SW-001","27 Apr 2026","JSX",0],
+    ["SR-23","sr","CAD Suite — Fusion 360 DOC-F360-001","27 Apr 2026","JSX",0],
+    ["SR-24","sr","CAD AI Ecosystem DOC-ECO-001 (60+ tools)","27 Apr 2026","JSX",0],
+    ["SR-25","sr","Architecture + Construction Curriculum","27 Apr 2026","JSX",0],
+    ["SR-26","sr","Electronics + PCB DOC-EE-001","27 Apr 2026","JSX",0],
+    ["SR-27","sr","Blacksmith — trade dashboard (12 sections)","27 Apr 2026","HTML",0],
+    ["SR-28","sr","Welder — trade dashboard","27 Apr 2026","HTML",0],
+    ["SR-29","sr","Plumbing / Mechanical — trade dashboard","27 Apr 2026","HTML",0],
+    ["FO-01","fo","Life OS v2.1 — reality panel","Apr 2026","HTML",1],
+    ["FO-02","fo","Pinboard Reference v1.0 (TR + EN · A3)","19 May 2026","HTML",1],
+    ["FO-03","fo","Codex Inventoris Vol. I","4 May 2026","HTML",0],
+    ["FO-04","fo","Codex Inventoris Vol. II — Editio Augmentata","4 May 2026","HTML",0],
+    ["FO-05","fo","Codex Vol. 015 — Lifelong Learning × Value Creation","20 May 2026","JSX",0],
+    ["FO-06","fo","Filtra Videndi — 20 perceptual filters","14 May 2026","HTML",0],
+    ["FO-07","fo","CORPUS — Thought · Body · Vision (TR + EN)","26 May 2026","HTML",0],
+    ["FO-08","fo","NX-PRS-001 PRAESENS — moment awareness","12 Jun 2026","HTML",0],
+    ["FO-09","fo","NX-RES-001 — Resilience guide (4 pp)","12 Jun 2026","PDF",0],
+    ["FO-10","fo","KAIROS — Time Constraint Engine","2 May 2026","JSX",0],
+    ["FO-11","fo","Tavsiyeler — Time Constraint Manual (25 techniques)","2 May 2026","JSX",0],
+    ["FO-12","fo","Nexus Decision Engine — 8 workstreams","21 May 2026","JSX",0],
+    ["FO-13","fo","Ship-Tracker — 14-day sprint","28 May 2026","HTML",0],
+    ["FO-14","fo","NEXUS APEX // LEDGER — three-domain tracker","4 Jun 2026","HTML",0],
+    ["FO-15","fo","AXIS-1 — personal capital instrument","25 Aug 2026","JSX",0],
+    ["FO-16","fo","AXIS-1/G — six-stage field manual","25 Aug 2026","JSX",0],
+    ["FO-17","fo","İFŞA KALKANI — disclosure shield","18 Aug 2026","HTML",0],
+    ["FO-18","fo","KATMAN — epistemic reform strategy","19 Aug 2026","HTML",0],
+    ["FO-19","fo","Guide to Behavioral Paralysis (11 pp · TR)","17 Aug 2026","PDF",0],
+    ["FO-20","fo","Body–Mind Harmony Protocol (1 p)","3 Jun 2026","PDF",0],
+    ["FO-21","fo","Guide for Smart Work","1 Jun 2026","PDF",0],
+    ["FO-22","fo","Mental Citadel","Mar 2026","HTML",0],
+    ["FO-23","fo","Mental Citadel — Musk Style","Mar 2026","HTML",0],
+    ["FO-24","fo","Wealth Philosophy dashboard","29 Mar 2026","HTML",0],
+    ["FO-25","fo","ENG-ACQ-01 — English acquisition system","21 May 2026","HTML",0],
+    ["FO-26","fo","LINGUA MAXIMA — films & series atlas","21 May 2026","HTML",0],
+    ["FO-27","fo","MLBB English Series (6 React dashboards)","14 May 2026","JSX",0],
+    ["FO-28","fo","Chaotic-Life Modular Planning diagram (TR + EN)","15 May 2026","SVG",0],
+    ["PW-01","pw","Logo + Investor Presentation — \"Bağlantıların Zirvesi\"","Mar 2026","PPTX",0],
+    ["PW-02","pw","Cyberpunk Portfolio v1","Mar 2026","HTML",1],
+    ["PW-03","pw","Cyberpunk Portfolio v2 — Nexus Apex · Philosophy · Grad targets","4 Apr 2026","HTML",0],
+    ["PW-04","pw","Investor Deck — from scratch","1 May 2026","HTML",0],
+    ["PW-05","pw","Investor Deck — futuristic HUD","1 May 2026","HTML",0],
+    ["PW-06","pw","NexusApex Website v3 — 12-slide investor site","22 Apr 2026","HTML",1],
+    ["PW-07","pw","NEXUS APEX — Mission Control pitch (1:1)","18 Jun 2026","HTML",0],
+    ["PW-08","pw","Investor Deck v6 — 14 slides · ready, unsent","May 2026","DECK",0],
+    ["PW-09","pw","Website v4 — two-mode showcase/investor (TR)","26 Aug 2026","HTML",1],
+    ["PW-10","pw","Website v5-EN — this site","31 Aug 2026","HTML",1]
+  ];
+  var dF=document.getElementById('docFilters'),dL=document.getElementById('docList'),dS=document.getElementById('dSearch'),dC=document.getElementById('dCount');
+  var dCat='all';
+  if(dF){
+    DCATS.forEach(function(c,i){
+      var b=document.createElement('button');b.className='fb'+(i===0?' on':'');b.textContent=c[1];
+      b.addEventListener('click',function(){dF.querySelectorAll('.fb').forEach(function(x){x.classList.remove('on')});b.classList.add('on');dCat=c[0];renderDocs()});
+      dF.appendChild(b);
+    });
+    dS.addEventListener('input',renderDocs);
+  }
+  function renderDocs(){
+    if(!dL)return;
+    var q=(dS.value||'').toLowerCase();dL.innerHTML='';var n=0;
+    DOCS.forEach(function(d){
+      if(dCat!=='all'&&d[1]!==dCat)return;
+      if(q&&(d[2]+' '+d[3]+' '+d[4]+' '+d[0]).toLowerCase().indexOf(q)<0)return;
+      n++;var el=document.createElement('div');el.className='docrow';
+      el.innerHTML='<span class="id">'+d[0]+'</span><div class="t">'+d[2]+(d[5]?'<span class="ok">✓</span>':'')+'<small>'+d[3]+'</small></div><span class="cat '+d[1]+'">'+DCATS.filter(function(c){return c[0]===d[1]})[0][1]+'</span><span class="fmt">'+d[4]+'</span>';
+      dL.appendChild(el);
+    });
+    var inhand=DOCS.filter(function(d){return d[5]}).length;
+    dC.textContent=n+' / '+DOCS.length+' ARTIFACTS · '+inhand+' IN HAND · MAR–AUG 2026';
+  }
+  renderDocs();
+  }catch(e){if(window.console)console.error('block failed',e)}
+  try{
+  // ── lean phases ──
+  var PH=[
+    ["FAZ 0","Zero-Capital Lab","Months 1–3","#00E5FF","$0–5K","$0","—","Don't buy hardware. Write a simulator. Find a customer.","At least one customer says yes → Phase 1"],
+    ["FAZ 1","Paid MVP","Months 4–12","#3B82F6","$30–80K","$20–60K","Mo 10–12","Don't build before you sell. The user pays → then you build.","$20K MRR or a $200K project contract → Phase 2"],
+    ["FAZ 2","Product-Market Fit","Months 13–30","#8B5CF6","$150–400K","$200K–1M","Mo 22–26","Carry the first three divisions to profit, fund the rest.","3 profitable divisions + $1M ARR → Phase 3"],
+    ["FAZ 3","Scale Machine","Months 31–54","#00FF88","$1–5M","$3–15M","Mo 40–44","Copy the profitable division's playbook. The system funds itself.","$10M ARR + NX-EDGE chip ready → Phase 4"],
+    ["FAZ 4","Platform & Ecosystem","Months 55–84","#FFB300","$5–20M","$20–100M","Mo 66–72","Rivals end up having to use Nexus OS. Platform network effect.","$50M ARR + proven ecosystem network effect → Phase 5"],
+    ["FAZ 5","Civilization Infrastructure","2032+","#A78BFA","$50M+","$200M+","Self-funding","From Türkiye to the world. From the world to the universe.","Humanity becomes a multi-planetary species"]
+  ];
+  var pg=document.getElementById('phaseGrid');
+  if(pg){pg.innerHTML='';PH.forEach(function(p){
+    var el=document.createElement('div');el.className='phase';el.style.borderTopColor=p[3];
+    el.innerHTML='<span class="code" style="color:'+p[3]+'">'+p[0]+'</span><h3>'+p[1]+'</h3><span class="per">'+p[2]+'</span><p class="q">"'+p[7]+'"</p>'+
+      '<div class="nums"><div>COST<b>'+p[4]+'</b></div><div>REVENUE<b>'+p[5]+'</b></div><div>BREAK-EVEN<b>'+p[6]+'</b></div></div>'+
+      '<div class="gate">GATE → '+p[8]+'</div>';
+    pg.appendChild(el);
+  });}
+  }catch(e){if(window.console)console.error('block failed',e)}
+  try{
+  // ── reveal ──
+  var els=document.querySelectorAll('.rv');
+  function showAll(){els.forEach(function(el){el.classList.add('in')})}
+  if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.documentElement.classList.add('js-reveal');
+    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0,rootMargin:'0px 0px 15% 0px'});
+    els.forEach(function(el){io.observe(el)});
+    var vh=window.innerHeight||document.documentElement.clientHeight||800;
+    els.forEach(function(el){var r=el.getBoundingClientRect();if(r.top<vh*1.25)el.classList.add('in')});
+    setTimeout(showAll,1500);
+    ['scroll','touchstart','keydown','pointerdown'].forEach(function(ev){window.addEventListener(ev,showAll,{once:true,passive:true})});
+    var bi2=document.getElementById('btnInv');if(bi2)bi2.addEventListener('click',function(){setTimeout(showAll,60)});
+  }else{showAll()}
+  }catch(e){if(window.console)console.error('block failed',e)}
 })();
 </script>
 </body>
