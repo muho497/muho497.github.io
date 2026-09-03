@@ -241,9 +241,9 @@ h2.big em{font-style:normal;color:var(--cyan)}
 .handle{font-family:var(--mono);font-size:.76rem;color:var(--cyan);letter-spacing:.04em}
 
 /* ── investor view ── */
-#invView{display:none}
-body.inv #pubView{display:none}
-body.inv #invView{display:block}
+#invView{display:block}
+#modePub:checked ~ main #invView{display:none}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);left:-9999px}
 .confband{
   position:sticky;top:5.05rem;z-index:40;display:flex;gap:1rem;align-items:center;
   background:repeating-linear-gradient(-45deg,var(--redG),var(--redG) 12px,rgba(255,51,102,.16) 12px,rgba(255,51,102,.16) 24px);
@@ -386,8 +386,8 @@ html.js-reveal .rv.in{opacity:1;transform:none}
 </style>
 </head>
 <body>
-<input type="radio" name="viewmode" id="modePub" checked hidden>
-<input type="radio" name="viewmode" id="modeInv" hidden>
+<input type="radio" name="viewmode" id="modePub" class="vh" checked hidden>
+<input type="radio" name="viewmode" id="modeInv" class="vh" hidden>
 
 <!-- ══ TELEMETRY ══ -->
 <div class="tele">
@@ -977,5 +977,4 @@ html.js-reveal .rv.in{opacity:1;transform:none}
       <div class="docrow"><span class="id">PP-17</span><div class="t">JARVIS Voice Assistant — Qwen3 · faster-whisper · Kokoro<small>15 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">ZIP</span></div>
       <div class="docrow"><span class="id">PP-18</span><div class="t">PRAXIS-1 — ST-01…ST-08 pipeline<small>22 Aug 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
       <div class="docrow"><span class="id">PP-19</span><div class="t">PAIDEIA-1 — founding guideline (10 sections)<small>23 Aug 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-20</span><div class="t">ENTELEKHEIA-1 — PAIDEIA + PRAXIS merged<small>23 Aug 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-21</span><div class="t">AtomOS N
+      <div class="docrow"><span class="id">PP-20</span><div class="t">ENTELEKHEIA-1 — PAIDEIA + PRAXIS merged<small>23 Aug 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt"
