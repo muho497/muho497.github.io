@@ -63,12 +63,15 @@ a:focus-visible,button:focus-visible{outline:1px solid var(--cyan);outline-offse
 .nav .links a{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;color:var(--dim);text-decoration:none;white-space:nowrap;transition:color .2s}
 .nav .links a:hover{color:var(--cyan)}
 .modes{margin-left:auto;display:flex;border:1px solid var(--lineS);flex:none}
-.modes button{
+.modes label{
   font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;padding:.5rem .85rem;
-  background:transparent;color:var(--dim);border:0;cursor:pointer;transition:all .2s;
+  background:transparent;color:var(--dim);border:0;cursor:pointer;transition:all .2s;user-select:none;
 }
-.modes button.on{background:var(--cyan);color:var(--bg)}
-.modes button.inv.on{background:var(--red);color:#fff}
+#modePub:checked ~ .nav .modes label[for="modePub"]{background:var(--cyan);color:var(--bg)}
+#modeInv:checked ~ .nav .modes label[for="modeInv"]{background:var(--red);color:#fff}
+#modeInv:checked ~ .nav .links{visibility:hidden}
+#modeInv:checked ~ main #pubView{display:none}
+#modeInv:checked ~ main #invView{display:block}
 
 /* ── layout ── */
 main{padding-top:6.6rem}
@@ -383,6 +386,8 @@ html.js-reveal .rv.in{opacity:1;transform:none}
 </style>
 </head>
 <body>
+<input type="radio" name="viewmode" id="modePub" checked hidden>
+<input type="radio" name="viewmode" id="modeInv" hidden>
 
 <!-- ══ TELEMETRY ══ -->
 <div class="tele">
@@ -390,7 +395,7 @@ html.js-reveal .rv.in{opacity:1;transform:none}
   <span>LOC <span class="c">AYDIN·TR 37.84N 27.84E</span></span>
   <span>LOCAL <span class="c" id="tClock">--:--:--</span> TRT</span>
   <span class="sp"></span>
-  <span>IAC 2026 · ANTALYA <span class="a" id="tCount">T– --D --H --M</span></span>
+  <span>IAC 2026 · ANTALYA <span class="a" id="tCount">5–9 OCT 2026</span></span>
 </div>
 
 <!-- ══ NAV ══ -->
@@ -413,8 +418,8 @@ html.js-reveal .rv.in{opacity:1;transform:none}
     <a href="#social">CONTACT</a>
   </div>
   <div class="modes" role="group" aria-label="View mode">
-    <button id="btnPub" class="on">SHOWCASE</button>
-    <button id="btnInv" class="inv">INVESTOR</button>
+    <label for="modePub" id="btnPub">SHOWCASE</label>
+    <label for="modeInv" id="btnInv" class="inv">INVESTOR</label>
   </div>
 </nav>
 
@@ -451,7 +456,7 @@ html.js-reveal .rv.in{opacity:1;transform:none}
     </div>
     <div class="count">
       <span class="l">NEXT WAYPOINT — IAC 2026</span>
-      <span class="t" id="heroCount">--D : --H : --M : --S</span>
+      <span class="t" id="heroCount">5 – 9 OCT 2026</span>
       <span class="w">NEST CONGRESS CENTER · ANTALYA · 5–9 OCT 2026 · SESSION A6.3</span>
     </div>
   </div>
@@ -566,8 +571,43 @@ html.js-reveal .rv.in{opacity:1;transform:none}
     <p class="eyebrow rv">// HOLDING STRUCTURE</p>
     <h2 class="big rv">22+ DIVISIONS — <em>ONE VISION</em></h2>
     <p class="lede rv">From the Nexus OS backbone to Frontier Science: the full division map. <b>Five of these are defense platforms; the rest are science, energy, space, robotics, construction, education — and, newly proposed, letters.</b> Filter to explore — every card carries a division's mission and its link inside the company.</p>
-    <div class="dfilters rv" id="divFilters"></div>
-    <div class="grid g3 rv" id="divGrid"></div>
+    <div class="dfilters rv" id="divFilters"><button class="fb on" data-f="all">ALL</button><button class="fb" data-f="os">NEXUS OS</button><button class="fb" data-f="tek">CHIPS & AI</button><button class="fb" data-f="sav">5 DEFENSE</button><button class="fb" data-f="hav">AVIATION & SPACE</button><button class="fb" data-f="rob">ROBOTICS & VEHICLES</button><button class="fb" data-f="yapi">CONSTRUCTION & MFG</button><button class="fb" data-f="ar">RESEARCH & FRONTIER</button><button class="fb" data-f="str">STRATEGY & REVENUE</button></div>
+    <div class="grid g3 rv" id="divGrid">
+      <div class="cardx" data-c="os"><span class="num">[00]</span><h3>Nexus OS — Autonomous Systems Platform</h3><p>RTOS · ROS2 · AI command · digital twin — the software backbone binding every division. TERRA data reaches KALKAN within 50ms.</p></div>
+      <div class="cardx" data-c="tek"><span class="num">[S1]</span><h3>Nexus Silicon — Chip Design Center</h3><p>NX-EDGE · NX-NEURO · NX-SPACE · NX-QUANTUM chip family · Fabless model (TSMC/Samsung).</p></div>
+      <div class="cardx" data-c="tek"><span class="num">[S2]</span><h3>Nexus AI Lab — Artificial Intelligence Center</h3><p>NFM foundation model (70B, TR+EN) · Autonomous AI · Scientific AI · Data moat.</p></div>
+      <div class="cardx" data-c="tek"><span class="num">[S3]</span><h3>AI Data Center & Sovereign Compute — NX-DC-001</h3><p>From-scratch build: containerized micro-DC → regional facility · liquid cooling · renewable + SMR power via the Energy division · KVKK data residency · NFM training home · NX-EDGE/NX-NEURO silicon target.</p></div>
+      <div class="cardx" data-c="sav"><span class="num">[P1]</span><h3>TERRA — Underground Defense</h3><p>Seismic geophones · Fiber DAS · GPR · AI tunnel detection · 100m depth · EMP-hardened.</p></div>
+      <div class="cardx" data-c="sav"><span class="num">[P2]</span><h3>SENTINEL — Land & Surface Defense</h3><p>3D radar · Anti-drone EW · Acoustic/thermal fence · RCWS · Mobile + fixed.</p></div>
+      <div class="cardx" data-c="sav"><span class="num">[P3]</span><h3>POSEIDON — Naval & Underwater Defense</h3><p>USV · UUV · Sonar AI · Torpedo countermeasures · Naval EW · Indian Ocean.</p></div>
+      <div class="cardx" data-c="sav"><span class="num">[P4]</span><h3>KALKAN — Air + Cyber Defense</h3><p>Anti-ballistic · EW/EMP shield · AI swarm defense · 5-layer architecture · NATO export goal.</p></div>
+      <div class="cardx" data-c="sav"><span class="num">[P5]</span><h3>ORBITAL-1 ★ — Space Surveillance & Debris</h3><p>YOLOv11 · 88% mAP@0.50 · <25ms · Jetson Orin NX · IAC 2026 A6.3 — ACTIVE.</p></div>
+      <div class="cardx" data-c="hav"><span class="num">[01]</span><h3>Aviation & UAV</h3><p>Defense UAV · Construction drone SaaS · Agri drones · KALKAN coordination.</p></div>
+      <div class="cardx" data-c="hav"><span class="num">[02]</span><h3>Space Systems</h3><p>CubeSat SaaS · Ground station · Satellite ops platform · Somalia launch site.</p></div>
+      <div class="cardx" data-c="hav"><span class="num">[03]</span><h3>Hypersonics & Rocketry</h3><p>Nexus-1 small launcher · Roketsan partnership vision · Somalia pad · 2033 target.</p></div>
+      <div class="cardx" data-c="hav"><span class="num">[25]</span><h3>HELIOS — Orbital, Lunar & Solar-System Data Centers</h3><p>Earth-orbit defense shield (H-1) · solar-powered orbital DC on NX-SPACE silicon (H-2) · lunar DC — polar light, regolith shielding, SMR nights (H-3) · Sun-powered solar-system compute network (H-4) · 2030 → 2050+.</p></div>
+      <div class="cardx" data-c="rob"><span class="num">[04]</span><h3>Ground Vehicles — UGV & Logistics</h3><p>Autonomous UGV · Defense convoys · Mining/logistics retrofit · SENTINEL integration.</p></div>
+      <div class="cardx" data-c="rob"><span class="num">[05]</span><h3>Marine Vehicles — USV/UUV Operations</h3><p>Coast guard USV · Pipeline UUV · Port security · POSEIDON operations.</p></div>
+      <div class="cardx" data-c="rob"><span class="num">[06]</span><h3>Industrial Robotics</h3><p>UR5e + Nexus MES · Factory automation · Install + monthly SaaS model.</p></div>
+      <div class="cardx" data-c="rob"><span class="num">[07]</span><h3>Humanoid Robotics</h3><p>Dual-arm → general purpose · NX-NEURO sensing · KALKAN maintenance · Phase 4 humanoid.</p></div>
+      <div class="cardx" data-c="rob"><span class="num">[08]</span><h3>Military Robotics</h3><p>EOD · Land patrol · SENTINEL-integrated · Mine-sweeping UGV swarm.</p></div>
+      <div class="cardx" data-c="rob"><span class="num">[09]</span><h3>Medical Robotics & Exoskeletons</h3><p>Surgical robots · Exoskeletons · BCI rehabilitation · Somalia remote surgery.</p></div>
+      <div class="cardx" data-c="yapi"><span class="num">[10]</span><h3>Smart Building IoT</h3><p>Energy tracking · Security integration · Install + SaaS · KGM bridge monitoring.</p></div>
+      <div class="cardx" data-c="yapi"><span class="num">[11]</span><h3>Modular Construction</h3><p>Prefab modules · Somalia base construction · Rapid field setup · 3D AM.</p></div>
+      <div class="cardx" data-c="yapi"><span class="num">[12]</span><h3>Construction Drone SaaS</h3><p>Site tracking · Monthly per-site subscription · DJI RTK + Nexus AI · 15K+ TR sites.</p></div>
+      <div class="cardx" data-c="yapi"><span class="num">[13]</span><h3>Infrastructure Monitoring</h3><p>KGM 3,200 bridges · BOTAŞ 8,800 km pipelines · Akkuyu · TERRA integration.</p></div>
+      <div class="cardx" data-c="yapi"><span class="num">[14]</span><h3>3D AM Center</h3><p>Metal SLM Ti-6Al-4V · Polymer FDM · Concrete AM · POSEIDON UUV hulls.</p></div>
+      <div class="cardx" data-c="ar"><span class="num">[15]</span><h3>Manufacturing Tech R&D</h3><p>AM process optimization · Defects 5%→0.1% · Defense Ti part quality.</p></div>
+      <div class="cardx" data-c="ar"><span class="num">[16]</span><h3>Materials Science Lab</h3><p>Ti-6Al-4V marine · Anechoic acoustics · Boron nitride · CFRP · Bio-composites (bamboo/hemp) · ASCENT-1 link · Opens post-Phase 3 (2030+).</p></div>
+      <div class="cardx" data-c="ar"><span class="num">[17]</span><h3>Energy Center</h3><p>Somalia 2MW solar · SMR small modular reactors · Hydrogen · 10MWh LFP.</p></div>
+      <div class="cardx" data-c="ar"><span class="num">[18]</span><h3>Space Colony Center</h3><p>Lunar base R&D · ISRU · Mars infrastructure prep · Nexus-1 · 2040–2050.</p></div>
+      <div class="cardx" data-c="ar"><span class="num">[19]</span><h3>Frontier Science Coordination</h3><p>AGI safety · Consciousness research · Longevity · Synthetic biology · Terraforming.</p></div>
+      <div class="cardx" data-c="ar"><span class="num">[24]</span><h3>Frontier Science Center — Quantum & Experimental Tech (NX-FSC-001)</h3><p>Quantum sensing & QKD · ATOMOS programmable-matter testbeds · Neuro/BCI bench · Swarm arena · Opens with the Materials Lab post-Phase 3 (2030+) · NX-QUANTUM silicon target.</p></div>
+      <div class="cardx" data-c="ar"><span class="num">[23]</span><h3>Nexus Codex — Science Writing, Art & Letters (proposed)</h3><p>Codex Inventoris I–II · Physica Operativa · Naturae Methodus · Codex Sensorius · essays, fiction, the blog — the company's written and artistic output as a line of its own.</p></div>
+      <div class="cardx" data-c="str"><span class="num">[21]</span><h3>Somalia Base Strategy</h3><p>TSK Halane · 2°N equatorial advantage · SENTINEL Q2 2026 · POSEIDON Indian Ocean.</p></div>
+      <div class="cardx" data-c="str"><span class="num">[20]</span><h3>MaaS — Managed Monitoring Service</h3><p>TERRA $45K/mo · SENTINEL $55K/mo · Full $90K/mo · ~82% gross margin.</p></div>
+      <div class="cardx" data-c="str"><span class="num">[22]</span><h3>SHEPHERD-1 / ÇobanAI — Active MVP</h3><p>Flutter + local Qwen LLM · YKS prep · KVKK-compliant · LLM pipeline experience.</p></div>
+    </div>
   </div>
 </section>
 
@@ -584,7 +624,14 @@ html.js-reveal .rv.in{opacity:1;transform:none}
       <span class="chip c">🧠 MAX LEARNING — every decision produces data, data updates decisions</span>
       <span class="chip c">💥 FOCUSED FAILURE — make the cheap mistake early, the expensive one never</span>
     </div>
-    <div class="phgrid rv" id="phaseGrid"></div>
+    <div class="phgrid rv" id="phaseGrid">
+      <div class="phase" style="border-top-color:#00E5FF"><span class="code" style="color:#00E5FF">FAZ 0</span><h3>Zero-Capital Lab</h3><span class="per">Months 1–3</span><p class="q">"Don't buy hardware. Write a simulator. Find a customer."</p><div class="nums"><div>COST<b>$0–5K</b></div><div>REVENUE<b>$0</b></div><div>BREAK-EVEN<b>—</b></div></div><div class="gate">GATE → At least one customer says yes → Phase 1</div></div>
+      <div class="phase" style="border-top-color:#3B82F6"><span class="code" style="color:#3B82F6">FAZ 1</span><h3>Paid MVP</h3><span class="per">Months 4–12</span><p class="q">"Don't build before you sell. The user pays → then you build."</p><div class="nums"><div>COST<b>$30–80K</b></div><div>REVENUE<b>$20–60K</b></div><div>BREAK-EVEN<b>Mo 10–12</b></div></div><div class="gate">GATE → $20K MRR or a $200K project contract → Phase 2</div></div>
+      <div class="phase" style="border-top-color:#8B5CF6"><span class="code" style="color:#8B5CF6">FAZ 2</span><h3>Product-Market Fit</h3><span class="per">Months 13–30</span><p class="q">"Carry the first three divisions to profit, fund the rest."</p><div class="nums"><div>COST<b>$150–400K</b></div><div>REVENUE<b>$200K–1M</b></div><div>BREAK-EVEN<b>Mo 22–26</b></div></div><div class="gate">GATE → 3 profitable divisions + $1M ARR → Phase 3</div></div>
+      <div class="phase" style="border-top-color:#00FF88"><span class="code" style="color:#00FF88">FAZ 3</span><h3>Scale Machine</h3><span class="per">Months 31–54</span><p class="q">"Copy the profitable division's playbook. The system funds itself."</p><div class="nums"><div>COST<b>$1–5M</b></div><div>REVENUE<b>$3–15M</b></div><div>BREAK-EVEN<b>Mo 40–44</b></div></div><div class="gate">GATE → $10M ARR + NX-EDGE chip ready → Phase 4</div></div>
+      <div class="phase" style="border-top-color:#FFB300"><span class="code" style="color:#FFB300">FAZ 4</span><h3>Platform & Ecosystem</h3><span class="per">Months 55–84</span><p class="q">"Rivals end up having to use Nexus OS. Platform network effect."</p><div class="nums"><div>COST<b>$5–20M</b></div><div>REVENUE<b>$20–100M</b></div><div>BREAK-EVEN<b>Mo 66–72</b></div></div><div class="gate">GATE → $50M ARR + proven ecosystem network effect → Phase 5</div></div>
+      <div class="phase" style="border-top-color:#A78BFA"><span class="code" style="color:#A78BFA">FAZ 5</span><h3>Civilization Infrastructure</h3><span class="per">2032+</span><p class="q">"From Türkiye to the world. From the world to the universe."</p><div class="nums"><div>COST<b>$50M+</b></div><div>REVENUE<b>$200M+</b></div><div>BREAK-EVEN<b>Self-funding</b></div></div><div class="gate">GATE → Humanity becomes a multi-planetary species</div></div>
+    </div>
     <div class="loop rv"><span class="s">01 TRY</span><span class="ar">▸</span><span class="s">02 MEASURE</span><span class="ar">▸</span><span class="s">03 LEARN</span><span class="ar">▸</span><span class="s">04 PIVOT</span><span class="ar">▸</span><span class="s">05 REPEAT</span><span style="margin-left:auto">BUILD → MEASURE → LEARN → PIVOT · one cycle every two weeks</span></div>
 
     <div class="fh rv" style="margin-top:2.8rem">// RESEARCH NETWORK — MATERIALS LAB · POST-PHASE 3 (2030+)</div>
@@ -931,59 +978,4 @@ html.js-reveal .rv.in{opacity:1;transform:none}
       <div class="docrow"><span class="id">PP-18</span><div class="t">PRAXIS-1 — ST-01…ST-08 pipeline<small>22 Aug 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
       <div class="docrow"><span class="id">PP-19</span><div class="t">PAIDEIA-1 — founding guideline (10 sections)<small>23 Aug 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
       <div class="docrow"><span class="id">PP-20</span><div class="t">ENTELEKHEIA-1 — PAIDEIA + PRAXIS merged<small>23 Aug 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-21</span><div class="t">AtomOS Nexus<small>Mar 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-22</span><div class="t">Nexus Apex Systems Engineer Guide (20 pp · TR)<small>18 Aug 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">DOCX</span></div>
-      <div class="docrow"><span class="id">PP-23</span><div class="t">SE Roadmap SVG set — IT · Space · Nexus career · hub-spoke<small>18 Aug 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">SVG</span></div>
-      <div class="docrow"><span class="id">PP-24</span><div class="t">Drone Taxonomy Dashboard<small>11 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-25</span><div class="t">Drone Foresight — 3 horizons · 14 technologies<small>11 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-26</span><div class="t">Knowledge Ingestion System — 90+ sources<small>11 May 2026</small></div><span class="cat pp">PLATFORMS & PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PP-27</span><div class="t">NX-EODS-001 — Earth-Orbit Defense Shield Mission Control (HELIOS H-1)<span class="ok">✓</span><small>3 Sep 2026</small></div><span class="cat pp">PLATFORMS &amp; PROJECTS</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-01</span><div class="t">Formula Encyclopedia — physics · chemistry · math<small>Apr 2026 · holding-architecture chat</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-02</span><div class="t">Materials Encyclopedia<small>Apr 2026 · holding-architecture chat</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-03</span><div class="t">Concrete Technologies (13 sections)<small>25 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-04</span><div class="t">Naturae Methodus — Tomus I<small>26 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-05</span><div class="t">Physica Operativa — Tomus II<small>4 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-06</span><div class="t">Codex Sensorius NM-006 — electricity as a sixth sense<small>7 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-07</span><div class="t">BIOSTRUCTURA — biomimetic structural atlas<small>2 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-08</span><div class="t">MIKNATIS — magnets deep analysis (Beylikova REE)<small>2 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-09</span><div class="t">Quality Standards Atlas (11 sections)<small>2 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-10</span><div class="t">Engineering Thinking Systematics — spatial · mechanical · aero<small>1 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-11</span><div class="t">EV Engineering Guide (11 sections)<small>2 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-12</span><div class="t">EV Systems Engineer Role Map (SE-01…07)<small>13 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-13</span><div class="t">Humanoid Robotics Dashboard<small>9 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-14</span><div class="t">Starship-Class Rocket — Vol. 01<small>6 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-15</span><div class="t">Space Access Cost Alternatives — Vol. 02<small>6 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-16</span><div class="t">Systems Engineer Responsibilities — 14 sections (TR)<small>8 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-17</span><div class="t">Systems Engineer Responsibilities — B1 English<small>8 May 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-18</span><div class="t">MATERIA · INFORMATIO — Three Lenses on Matter<small>26 Jun 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-19</span><div class="t">Golden Dome — annotated dashboard<small>7 Aug 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-20</span><div class="t">Big Tech AI Investment Network<small>11 Jul 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-21</span><div class="t">CAD Suite — AutoCAD DOC-AC-001 (16 wk)<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">JSX</span></div>
-      <div class="docrow"><span class="id">SR-22</span><div class="t">CAD Suite — SolidWorks DOC-SW-001<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">JSX</span></div>
-      <div class="docrow"><span class="id">SR-23</span><div class="t">CAD Suite — Fusion 360 DOC-F360-001<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">JSX</span></div>
-      <div class="docrow"><span class="id">SR-24</span><div class="t">CAD AI Ecosystem DOC-ECO-001 (60+ tools)<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">JSX</span></div>
-      <div class="docrow"><span class="id">SR-25</span><div class="t">Architecture + Construction Curriculum<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">JSX</span></div>
-      <div class="docrow"><span class="id">SR-26</span><div class="t">Electronics + PCB DOC-EE-001<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">JSX</span></div>
-      <div class="docrow"><span class="id">SR-27</span><div class="t">Blacksmith — trade dashboard (12 sections)<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-28</span><div class="t">Welder — trade dashboard<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">SR-29</span><div class="t">Plumbing / Mechanical — trade dashboard<small>27 Apr 2026</small></div><span class="cat sr">SCIENCE & ENGINEERING</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PW-01</span><div class="t">Logo + Investor Presentation — "Bağlantıların Zirvesi"<small>Mar 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">PPTX</span></div>
-      <div class="docrow"><span class="id">PW-02</span><div class="t">Cyberpunk Portfolio v1<span class="ok">✓</span><small>Mar 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PW-03</span><div class="t">Cyberpunk Portfolio v2 — Nexus Apex · Philosophy · Grad targets<small>4 Apr 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PW-04</span><div class="t">Investor Deck — from scratch<small>1 May 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PW-05</span><div class="t">Investor Deck — futuristic HUD<small>1 May 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PW-06</span><div class="t">NexusApex Website v3 — 12-slide investor site<span class="ok">✓</span><small>22 Apr 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PW-07</span><div class="t">NEXUS APEX — Mission Control pitch (1:1)<small>18 Jun 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PW-08</span><div class="t">Investor Deck v6 — 14 slides · ready, unsent<small>May 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">DECK</span></div>
-      <div class="docrow"><span class="id">PW-09</span><div class="t">Website v4 — two-mode showcase/investor (TR)<span class="ok">✓</span><small>26 Aug 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">HTML</span></div>
-      <div class="docrow"><span class="id">PW-10</span><div class="t">Website v5-EN — this site<span class="ok">✓</span><small>31 Aug 2026</small></div><span class="cat pw">PRESENTATIONS & WEB</span><span class="fmt">HTML</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ OPEN DOOR ══ -->
-<section id="opendoor">
-  <div class="wrap">
-    <p class="eyebrow rv">// BETA · OPEN DOOR</p>
-    <h2 class="big rv">THIS SITE IS IN <em>BETA</em>. SO ARE WE.</h2>
-    <p class="lede rv">Everything here is a working draft — the numbers, the plans, even the mandate. <b>Don't hesitate.</b> Tel
+      <div class="docrow"><span class="id">PP-21</span><div class="t">AtomOS N
