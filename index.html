@@ -595,6 +595,21 @@ html.js-reveal .rv.in{opacity:1;transform:none}
   .confband{top:auto}
   .hero{min-height:auto;padding:2.6rem 0 4rem}
 }
+
+/* ── mobile: bars scroll with the page (appended last so it wins) ── */
+@media(max-width:760px){
+  .tele{position:static;padding:.45rem .8rem;gap:.7rem;font-size:.56rem}
+  .nav{position:static;top:auto;flex-wrap:wrap;gap:.45rem .6rem;padding:.55rem .8rem}
+  .nav .logo{order:1;flex:1 1 auto}
+  .lsw{order:2;margin-left:auto;margin-right:0}
+  .modes{order:3;flex:0 0 100%;margin:0}
+  .modes label,.modes a{flex:1 1 auto;text-align:center}
+  .nav .links{order:4;flex:0 0 100%;width:100%;margin:0;gap:.9rem;padding:.1rem 0 .1rem}
+  main{padding-top:0}
+  .hero{min-height:auto;padding:1.8rem 0 2.8rem}
+  .confband{position:static;top:auto}
+  html{scroll-padding-top:0}
+}
 </style>
 </head>
 <body>
