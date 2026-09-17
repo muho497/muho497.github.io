@@ -510,6 +510,37 @@ html[data-maint="1"] .maint{display:flex}
 .ztbl td{padding:.5rem .6rem;border-bottom:1px solid var(--line);color:var(--dim);vertical-align:top}
 .ztbl td b{color:var(--w);font-weight:600}.ztbl td.g{color:var(--green);font-family:var(--mono);font-size:.7rem}
 
+/* ── css-only filters ── */
+.dfilters label.fb{display:inline-block;cursor:pointer;user-select:none}
+#df-all:checked ~ #divFilters label[for="df-all"]{background:var(--cyan);color:var(--bg);border-color:var(--cyan)}
+#df-sav:checked ~ #divGrid .cardx:not([data-c="sav"]){display:none}
+#df-sav:checked ~ #divFilters label[for="df-sav"]{background:var(--cyan);color:var(--bg);border-color:var(--cyan)}
+#df-os:checked ~ #divGrid .cardx:not([data-c="os"]){display:none}
+#df-os:checked ~ #divFilters label[for="df-os"]{background:var(--cyan);color:var(--bg);border-color:var(--cyan)}
+#df-tek:checked ~ #divGrid .cardx:not([data-c="tek"]){display:none}
+#df-tek:checked ~ #divFilters label[for="df-tek"]{background:var(--cyan);color:var(--bg);border-color:var(--cyan)}
+#df-hav:checked ~ #divGrid .cardx:not([data-c="hav"]){display:none}
+#df-hav:checked ~ #divFilters label[for="df-hav"]{background:var(--cyan);color:var(--bg);border-color:var(--cyan)}
+#df-rob:checked ~ #divGrid .cardx:not([data-c="rob"]){display:none}
+#df-rob:checked ~ #divFilters label[for="df-rob"]{background:var(--cyan);color:var(--bg);border-color:var(--cyan)}
+#df-yapi:checked ~ #divGrid .cardx:not([data-c="yapi"]){display:none}
+#df-yapi:checked ~ #divFilters label[for="df-yapi"]{background:var(--cyan);color:var(--bg);border-color:var(--cyan)}
+#df-ar:checked ~ #divGrid .cardx:not([data-c="ar"]){display:none}
+#df-ar:checked ~ #divFilters label[for="df-ar"]{background:var(--cyan);color:var(--bg);border-color:var(--cyan)}
+#df-str:checked ~ #divGrid .cardx:not([data-c="str"]){display:none}
+#df-str:checked ~ #divFilters label[for="df-str"]{background:var(--cyan);color:var(--bg);border-color:var(--cyan)}
+#dc-all:checked ~ #docFilters label[for="dc-all"]{background:var(--cyan);color:var(--bg);border-color:var(--cyan)}
+#dc-hs:checked ~ #docList .docrow:not([data-cat="hs"]){display:none}
+#dc-hs:checked ~ #docFilters label[for="dc-hs"]{background:var(--cyan);color:var(--bg);border-color:var(--cyan)}
+#dc-pp:checked ~ #docList .docrow:not([data-cat="pp"]){display:none}
+#dc-pp:checked ~ #docFilters label[for="dc-pp"]{background:var(--cyan);color:var(--bg);border-color:var(--cyan)}
+#dc-sr:checked ~ #docList .docrow:not([data-cat="sr"]){display:none}
+#dc-sr:checked ~ #docFilters label[for="dc-sr"]{background:var(--cyan);color:var(--bg);border-color:var(--cyan)}
+#dc-fo:checked ~ #docList .docrow:not([data-cat="fo"]){display:none}
+#dc-fo:checked ~ #docFilters label[for="dc-fo"]{background:var(--cyan);color:var(--bg);border-color:var(--cyan)}
+#dc-pw:checked ~ #docList .docrow:not([data-cat="pw"]){display:none}
+#dc-pw:checked ~ #docFilters label[for="dc-pw"]{background:var(--cyan);color:var(--bg);border-color:var(--cyan)}
+
 /* ── footer ── */
 footer{padding:2.8rem 0 4rem;color:var(--faint)}
 footer .wrap{display:flex;flex-wrap:wrap;gap:1.2rem;justify-content:space-between}
@@ -790,16 +821,4 @@ html.js-reveal .rv.in{opacity:1;transform:none}
         <div class="nm-t" id="nm-pt" data-i18n="t.7f42fbb3">NEXUS OS</div><div class="nm-g" id="nm-pg" data-i18n="t.3215fa4a">CORE · THE NUCLEUS</div>
         <p id="nm-pd" data-i18n="t.8f08d6b3">Cyan = command, purple = science feeds, green = infrastructure, red = education &amp; letters, amber dashed = optimization, grey = horizon.</p>
         <ul id="nm-pl"></ul>
-      </aside>
-    </div></div>
-  </div>
-</section>
-
-<!-- ══ THREAD MAP ══ -->
-<section id="threads">
-  <div class="wrap">
-    <p class="eyebrow rv" data-i18n="t_eb">// THREAD MAP — WHAT'S RUNNING, WHAT'S BLOCKED, WHAT WAITS</p>
-    <h2 class="big rv" data-i18n="t_h2">37 THREADS · <em>39 DEPENDENCIES</em></h2>
-    <p class="lede rv" data-i18n="t_lede">The structure map shows what the company <i>is</i>; this one shows what it is <i>doing</i>. Six lanes, four time columns, every dependency drawn: three P0 threads run now under the WIP rule, the raise waits on Antalya, and everything in the Company Build lane waits on the raise. <b>Green is running. Red is one action away.</b></p>
-    <div class="rv"><div id="tmap"><div class="tm-strip" data-i18n="t.289ebe1d">SCHEDULER — <b>P0 THREADS 3 (WIP LIMIT 3)</b> · RUNNING 9 · IMMINENT 4 · WAITING 2 · BLOCKED 3 · DESIGN STUDY 3 · QUEUED 15 · RULE 1</div><div class="tm-grid">
-      <div class="tm-map"><svg id="tmsvg" viewBox="0 0 1300 1140" role="img" aria-label="Thread map of Nexus Apex"><text class="cl" x="180" y="42" text-anchor="middle">NOW · SEP 2026</text><line class="cv" x1="180" x2="180" y1="52" y2="1120"/><text class="cl" x="450" y="42" text-anchor="middle">Q4 2026</text><line class="cv" x1="450" x2="450" y1="52" y2="1120"/><text class="cl" x="720" y="42" text-anchor="middle">2027</text><line class="cv" x1="720" x2="720" y1="52" y2="1120"/><text class="cl" x="990" y="42" text-anchor="middle">2028+</text><line class="cv" x1="990" x2="990" y1="52" y2="1120"/><line class="lane" x1="60" x2="1260" y1="150" y2="150"/><text class="ll" x="60" y="80">SCIENCE & PUBLICATION</text><line class="lane" x1="60" x2="1260" y1="330" y2="330"/><text class="ll" x="60" y="260" data-i18n="nav_product">PRODUCT</text><line class="lane" x1="60" x2="1260" y1="510" y2="510"/><text class="ll" x="60" y="440">CAPITAL & INSTITUTIONS</text><line class="lane" x1="60" x2="1260" y1="690" y2="690"/><text class="ll" x="60" y="620">ECOSYSTEM & EVENTS</text><line class="lane" x1="60" x2="1260" y1="870" y2="870"/><text class="ll" x="60" y="800">COMPANY BUILD</text><line class="lane" x1="60" x2="1260" y1="1050" y2="1050"/><text class="ll" x="60" y="980">FOUNDER</text><path class="e run" data-s="t03" data-t="t01" d="M180 98 C180 98 180 202 180 202"/><path class="e run" data-s="t01" data-t="t02" d="M180 202 C315 202 315 150 450 150"/><path class="e imm" data-s="t02" data-t="t11" d="M450 150 C315 150 315 562 180 562"/><path class="e imm" data-s="t02" data-t="t04" d="M450 150 C585 150 585 202 720 202"/><path class="e run" data-s="t01" data-t="t05" d="M180 202 C450 202 450 98 720 98"/><path class="e que" data-s="t05" data-t="t10" d="M720 98 C855 98 855 150 990 
+      
